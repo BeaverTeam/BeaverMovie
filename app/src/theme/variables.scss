@@ -24,11 +24,25 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  // 主色
+  primary: #00BCD4,
+  // 次色
+  secondary: #FFC107,
+  // 警告色
+  danger: #F53D3D,
+  // 浅主色
+  light: #B2EBF2,
+  // 深主色
+  dark: #0097A7,
+
+  // 文字主色
+  text-primary: #FFFFFF,
+  // 主文字色
+  primary-text: #212121,
+  // 次文字色
+  secondary-text: #757575,
+  // 分割线色
+  divider-color: #BDBDBD
 );
 
 
