@@ -1,7 +1,8 @@
 <ion-content padding class='login-content'>
   <div class="header-logo" padding>
-    <img src="./../assets/logo.png"/>
+    <img src="../../assets/logo.png"/>
   </div>
+  <!-- 登录 -->
   <ion-card *ngIf="user == null">
     <div class="header">欢迎回来</div>
     <button class="fab" ion-button icon-only color="secondary" round (click)="gotoRegister()">
@@ -45,4 +46,6 @@
       <button class="normal-button" ion-button color="primary">注 册</button>
     </div>
   </ion-card>
+  <!-- footer -->
+  <div class="footer">© Beaver Movie 2017</div>
 </ion-content>
