@@ -2,4 +2,54 @@ page-login {
   .login-content {
     background-color: #FAFAFA;
   }
+
+  // logo
+  .header-logo {
+    text-align: center;
+  }
+
+  .header-logo img {
+    height: 120px;
+    width: auto;
+  }
+
+  // login card
+  ion-card {
+    position: relative;
+  }
+
+  .header {
+    font-size: 28px;
+    padding: 16px;
+    height: 80px;
+    color: #FFFFFF;
+    background-color: #00BCD4;
+  }
+
+  .register {
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    left: 75%;
+    top: 53px;
+    z-index: 1;
+  }
+
+  .login-button {
+    text-align: center;
+  }
+
+  // register
+  .login {
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    left: 75%;
+    top: 53px;
+    z-index: 1;
+  }
+
+  .register-button {
+    text-align: center;
+  }
 }
