@@ -3,6 +3,7 @@ export class Validator {
   isSignInPasswordVisited: boolean = false;
   isSignUpUsernameVisited: boolean = false;
   isSignUpPasswordVisited: boolean = false;
+  isSignUpConfirmVisited: boolean = false;
 
   constructor() {}
 
@@ -12,6 +13,7 @@ export class Validator {
     this.isSignInPasswordVisited = false;
     this.isSignUpUsernameVisited = false;
     this.isSignUpPasswordVisited = false;
+    this.isSignUpConfirmVisited = false;
   }
 
   // 登录的校验器
@@ -58,11 +60,14 @@ export class Validator {
     // 判断哪些 input 已经被访问过
     if (inputId == 0) { this.isSignUpUsernameVisited = true; }
     else if (inputId == 1) { this.isSignUpPasswordVisited = true; }
-    else { this.isSignUpUsernameVisited = this.isSignUpPasswordVisited = true; }
+    else if (inputId == 2) { this.isSignUpConfirmVisited = true; }
+    else { this.isSignUpUsernameVisited = this.isSignUpPasswordVisited =
+           this.isSignUpConfirmVisited = true; }
 
     // 从函数参数中读取数据
     let username = formData.signUpUsername;
     let password = formData.signUpPassword;
+    let confirm = formData.signUpConfirm;
     let errorMessage: string = '';
 
     // 定义校验规则
@@ -86,7 +91,13 @@ export class Validator {
       else if (password.length < 8 || password.length > 20)
         errorMessage = '密码长度需在 8 到 20 之间';
       else if (password.match(passwordRegex) == null)
-        errorMessage = '密码至少需包含一个大写字母、一个小写字母、一个数字和一个特殊字符';
+        errorMessage = '密码包含不合法字符，或未包含数字或字母';
+    }
+
+    // 对确认密码进行校验
+    if (this.isSignUpConfirmVisited) {
+      if (confirm != password)
+        errorMessage = '确认密码与密码不一致';
     }
 
     return errorMessage;

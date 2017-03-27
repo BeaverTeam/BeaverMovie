@@ -21,15 +21,14 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  // 登录校验
   signInValidator(formData, inputId) {
     this.errorMessage = this.validator.signInValidator(formData, inputId);
   }
 
   signInCheck(formData) {
-    console.log(formData);
     // 进行前端校验
     this.signInValidator(formData, -1);
-    console.log(this.errorMessage);
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
@@ -38,6 +37,19 @@ export class LoginPage {
     } else {
       this.auth.signOut();
     }
+  }
+
+  // 注册校验
+  signUpValidator(formData, inputId) {
+    this.errorMessage = this.validator.signUpValidator(formData, inputId);
+  }
+
+  signUpCheck(formData) {
+    // 进行前端校验
+    this.signUpValidator(formData, -1);
+    if (this.errorMessage != '') return;
+
+    // TODO 发往后端进行校验
   }
 
   gotoRegister() {
