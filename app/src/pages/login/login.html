@@ -1,4 +1,52 @@
 <ion-content padding class='login-content'>
-  <div>注册登录页面</div>
-  <button ion-button (click)="signIn()">登录</button>
+  <div class="header-logo" padding>
+    <img src="./../assets/logo.jpg"/>
+  </div>
+  <ion-card *ngIf="user == null">
+    <div class="header">
+      欢迎回来
+    </div>
+    <button class="register" ion-button icon-only color="secondary" round (click)="gotoRegister()">
+      <ion-icon md="md-person-add" color="text-primary"></ion-icon>
+    </button>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>用户名</ion-label>
+        <ion-input type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>密 码</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="login-button" padding>
+      <button ion-button color="primary">登  录</button>
+    </div>
+  </ion-card>
+  <!-- 注册 -->
+  <ion-card *ngIf="user != null">
+    <div class="header">
+      嘿，新朋友！
+    </div>
+    <button class="login" ion-button icon-only color="secondary" round (click)="gotoLogin()">
+      <ion-icon md="md-log-in" color="text-primary"></ion-icon>
+    </button>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>用户名</ion-label>
+        <ion-input type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>密 码</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>确认密码</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="register-button" padding>
+      <button ion-button color="primary">注   册</button>
+    </div>
+  </ion-card>
 </ion-content>

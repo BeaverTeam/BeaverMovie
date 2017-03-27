@@ -8,8 +8,11 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  user: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.user = null;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -17,6 +20,14 @@ export class LoginPage {
 
   signIn() {
     this.navCtrl.push(HomePage);
+  }
+
+  gotoRegister() {
+    this.user = "user";
+  }
+
+  gotoLogin() {
+    this.user = null;
   }
 
 }
