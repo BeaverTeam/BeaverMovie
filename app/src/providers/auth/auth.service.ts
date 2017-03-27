@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { User } from './auth-data';
-
 @Injectable()
 export class Auth {
-  user: User = null;
 
   constructor(public http: Http) {}
 
@@ -20,6 +17,11 @@ export class Auth {
     localStorage.setItem('password', JSON.stringify(password));
     // TODO 发到后端校验
     return true;
+  }
+
+  signOut() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
   }
 
 }

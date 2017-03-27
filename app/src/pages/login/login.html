@@ -2,27 +2,29 @@
   <div class="header-logo" padding>
     <img src="./../assets/logo.png"/>
   </div>
-  <ion-card *ngIf="user == null">
+  <ion-card *ngIf="pageName == 'signIn'">
     <div class="header">欢迎回来</div>
     <button class="fab" ion-button icon-only color="secondary" round (click)="gotoRegister()">
       <ion-icon md="md-person-add" color="text-primary"></ion-icon>
     </button>
     <div padding>
-      <ion-item class="input-container">
-        <ion-label floating>用户名</ion-label>
-        <ion-input type="text" [(ngModel)]="loginUsername"></ion-input>
-      </ion-item>
-      <ion-item class="input-container">
-        <ion-label floating>密 码</ion-label>
-        <ion-input type="password" [(ngModel)]="loginPassword"></ion-input>
-      </ion-item>
-    </div>
-    <div class="normal-button-container" padding>
-      <button class="normal-button" ion-button color="primary">登 录</button>
+      <form #signInForm="ngForm">
+        <ion-item class="input-container">
+          <ion-label floating>用户名</ion-label>
+          <ion-input type="text" [(ngModel)]="signInUsername" name="signInUsername" (blur)='signInValidator(signInForm.value, 0)'></ion-input>
+        </ion-item>
+        <ion-item class="input-container">
+          <ion-label floating>密 码</ion-label>
+          <ion-input type="password" [(ngModel)]="signInPassword" name="signInPassword" (blur)='signInValidator(signInForm.value, 1)'></ion-input>
+        </ion-item>
+        <div class="normal-button-container" padding>
+          <button class="normal-button" ion-button color="primary" (click)="signInCheck(signInForm.value)">登 录</button>
+        </div>
+      </form>
     </div>
   </ion-card>
   <!-- 注册 -->
-  <ion-card *ngIf="user != null">
+  <ion-card *ngIf="pageName == 'register'">
     <div class="header">嘿，新朋友！</div>
     <button class="fab" ion-button icon-only color="secondary" round (click)="gotoLogin()">
       <ion-icon md="md-log-in" color="text-primary"></ion-icon>

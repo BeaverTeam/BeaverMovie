@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
-import { Auth } from '../../providers/auth';
+import { Auth } from '../../providers/Auth/auth.service';
+import { Validator } from '../../providers/Auth/Validator';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  user: string = null;
-  loginUsername: string = null;
-  loginPassword: string = null;
+  pageName: string = 'signIn';
+  errorMessage: string = '';
+  validator: Validator = new Validator();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public auth: Auth) {}
@@ -20,24 +21,31 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  signIn() {
-    if (this.loginUsername != null && this.loginPassword != null) {
-      if (this.auth.signIn(this.loginUsername, this.loginPassword)) {
-        this.navCtrl.push(HomePage);
-      } else {
-        alert("登录失败，请检查登录信息");
-      }
+  signInValidator(formData, inputId) {
+    this.errorMessage = this.validator.signInValidator(formData, inputId);
+  }
+
+  signInCheck(formData) {
+    console.log(formData);
+    // 进行前端校验
+    this.signInValidator(formData, -1);
+    console.log(this.errorMessage);
+    if (this.errorMessage != '') return;
+
+    // 发往后端进行校验
+    if (this.auth.signIn(formData.signInUsername, formData.signInPassword)) {
+      this.navCtrl.push(HomePage);
     } else {
-      alert("请输入完整信息");
+      this.auth.signOut();
     }
   }
 
   gotoRegister() {
-    this.user = "user";
+    this.pageName = "register";
   }
 
   gotoLogin() {
-    this.user = null;
+    this.pageName = "signIn";
   }
 
 }

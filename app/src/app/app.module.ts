@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
-import { Auth } from '../providers/auth';
+import { Auth } from '../providers/Auth/auth.service';
 
 @NgModule({
   declarations: [
