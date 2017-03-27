@@ -10,11 +10,11 @@
     <div padding>
       <ion-item class="input-container">
         <ion-label floating>用户名</ion-label>
-        <ion-input type="text" value=""></ion-input>
+        <ion-input type="text" [(ngModel)]="loginUsername"></ion-input>
       </ion-item>
       <ion-item class="input-container">
         <ion-label floating>密 码</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="loginPassword"></ion-input>
       </ion-item>
     </div>
     <div class="normal-button-container" padding>

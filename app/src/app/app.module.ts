@@ -7,6 +7,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
+import { Auth } from '../providers/auth';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -23,6 +25,7 @@ import { LoginPage } from '../pages/login/login';
     HomePage
   ],
   providers: [
+    Auth,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
