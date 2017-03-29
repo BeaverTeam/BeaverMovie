@@ -29,12 +29,14 @@ export class LoginPage {
   signInCheck(formData) {
     // 进行前端校验
     this.signInValidator(formData, -1);
+    console.log(this.errorMessage);
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
     if (this.auth.signIn(formData.signInUsername, formData.signInPassword)) {
       this.navCtrl.push(HomePage);
     } else {
+      // TODO 处理后端报错信息
       this.auth.signOut();
     }
   }
@@ -49,7 +51,13 @@ export class LoginPage {
     this.signUpValidator(formData, -1);
     if (this.errorMessage != '') return;
 
-    // TODO 发往后端进行校验
+    // 发往后端进行校验
+    if (this.auth.signUp(formData.signInUsername, formData.signInPassword)) {
+      this.gotoLogin();
+    } else {
+      // TODO 处理后端报错信息
+      this.auth.signOut();
+    }
   }
 
   gotoRegister() {

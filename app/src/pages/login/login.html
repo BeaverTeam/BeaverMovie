@@ -17,6 +17,7 @@
           <ion-label floating>密 码</ion-label>
           <ion-input type="password" [(ngModel)]="signInPassword" name="signInPassword" (blur)="signInValidator(signInForm.value, 1)"></ion-input>
         </ion-item>
+        <div class="errorMessage">{{errorMessage}}</div>
         <div class="normal-button-container" padding>
           <button class="normal-button" ion-button color="primary" (click)="signInCheck(signInForm.value)">登 录</button>
         </div>
@@ -43,6 +44,7 @@
           <ion-label floating>确认密码</ion-label>
           <ion-input type="password" [(ngModel)]="signUpConfirm" name="signUpConfirm" (blur)="signUpValidator(signUpForm.value, 2)"></ion-input>
         </ion-item>
+        <div class="errorMessage">{{errorMessage}}</div>
         <div class="normal-button-container" padding>
           <button class="normal-button" ion-button color="primary" (click)="signUpCheck(signUpForm.value)">注 册</button>
         </div>
