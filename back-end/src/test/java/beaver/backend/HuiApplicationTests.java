@@ -1,4 +1,4 @@
-package ferret.backend;
+package beaver.backend;
 
 public class HuiApplicationTests {
 
