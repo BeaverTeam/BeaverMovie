@@ -29,7 +29,6 @@ export class LoginPage {
   signInCheck(formData) {
     // 进行前端校验
     this.signInValidator(formData, -1);
-    console.log(this.errorMessage);
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
@@ -61,11 +60,17 @@ export class LoginPage {
   }
 
   gotoRegister() {
-    this.pageName = "register";
+    // 清空所有对 input 的访问记录
+    this.validator.clearVisits();
+    this.errorMessage = '';
+    this.pageName = 'register';
   }
 
   gotoLogin() {
-    this.pageName = "signIn";
+    // 清空所有对 input 的访问记录
+    this.validator.clearVisits();
+    this.errorMessage = '';
+    this.pageName = 'signIn';
   }
 
 }
