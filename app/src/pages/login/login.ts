@@ -51,7 +51,7 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    if (this.auth.signUp(formData.signInUsername, formData.signInPassword)) {
+    if (this.auth.signUp(formData.signUpUsername, formData.signUpPassword)) {
       this.gotoLogin();
     } else {
       // TODO 处理后端报错信息

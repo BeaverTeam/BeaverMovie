@@ -3,8 +3,11 @@ import { Http } from '@angular/http';
 import { Md5 } from 'ts-md5/dist/md5';
 import 'rxjs/add/operator/map';
 
+import { Global } from '../global';
+
 @Injectable()
 export class Auth {
+  private global = new Global();
 
   constructor(public http: Http) {}
 
@@ -18,6 +21,13 @@ export class Auth {
 
   // 注册
   signUp(username: string, password: string) {
+    // 对密码进行哈希
+    let encryptedPassword = this.encryptPassword(password);
+    // 向后端发起注册的请求
+    this.http.post(this.global.serverUrl + '/api/sign-up',
+                   {username: username, encryptedPassword: encryptedPassword})
+             .map((res) => res.json())
+             .subscribe(data => console.log(data));
     return true;
   }
 
