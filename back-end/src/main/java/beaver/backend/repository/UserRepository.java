@@ -1,6 +1,6 @@
-package ferret.backend.repository;
+package beaver.backend.repository;
 
-import ferret.backend.entity.User;
+import beaver.backend.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**

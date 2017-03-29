@@ -1,4 +1,4 @@
-package ferret.backend.entity.responseType;
+package beaver.backend.entity.responseType;
 
 /**
  * Created by parda on 2017/3/29.

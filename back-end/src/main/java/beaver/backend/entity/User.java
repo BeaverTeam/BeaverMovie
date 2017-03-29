@@ -1,4 +1,4 @@
-package ferret.backend.entity;
+package beaver.backend.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

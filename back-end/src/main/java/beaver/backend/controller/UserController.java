@@ -1,9 +1,9 @@
-package ferret.backend.controller;
+package beaver.backend.controller;
 
-import ferret.backend.entity.User;
-import ferret.backend.entity.requestType.SignRequest;
-import ferret.backend.entity.responseType.SignResult;
-import ferret.backend.repository.UserRepository;
+import beaver.backend.entity.User;
+import beaver.backend.entity.requestType.SignRequest;
+import beaver.backend.entity.responseType.SignResult;
+import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
