@@ -23,6 +23,13 @@ page-login {
     z-index: 1;
   }
 
+  .errorMessage {
+    color: #F44336;
+    font-size: 14px;
+    text-align: left;
+    padding: 16px 0px 0px 0px;
+  }
+
   .normal-button-container {
     text-align: center;
 
