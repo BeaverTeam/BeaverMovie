@@ -24,29 +24,23 @@ export class Auth {
     // 对密码进行哈希
     let encryptedPassword = this.encryptPassword(password);
     // 向后端发起注册的请求
-    this.http.post(this.global.serverUrl + '/api/sign-up',
-                   {username: username, encryptedPassword: encryptedPassword})
-             .map((res) => res.json())
-             .subscribe(data => console.log(data));
-    return true;
+    return this.http.post(this.global.serverUrl + '/api/sign-up',
+                         {username: username, encryptedPassword: encryptedPassword})
+                    .map((res) => res.json());
   }
 
   // 登录
   signIn(username: string, password: string) {
-    // 清空本地缓存
-    localStorage.removeItem('username');
-    localStorage.removeItem('encryptPassword');
-    // 创建新的凭证并存入本地
-    localStorage.setItem('username', JSON.stringify(username));
-    localStorage.setItem('encryptPassword', JSON.stringify(this.encryptPassword(password)));
-    // TODO 发到后端校验
-    return true;
+    // 对密码进行哈希
+    let encryptedPassword = this.encryptPassword(password);
+    // 向后端发起登录的请求
+    return this.http.post(this.global.serverUrl + '/api/sign-in',
+                         {username: username, encryptedPassword: encryptedPassword})
+                    .map((res) => res.json());
   }
 
   // 登出
   signOut() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
   }
 
 }
