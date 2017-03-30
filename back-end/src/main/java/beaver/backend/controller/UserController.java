@@ -22,6 +22,7 @@ public class UserController {
 
     @RequestMapping("/sign-up")
     public SignResult signUp(SignRequest request) {
+        System.out.println(request.getEncryptedPassword());
         User u = new User(request.getUsername(), request.getEncryptedPassword());
         try {
             userRepository.save(u);

@@ -30,8 +30,8 @@ public class HuiApplication {
 				registry.addMapping("/**")
 						.allowedHeaders("*")
 						.allowedMethods("*")
-						.allowedOrigins("*")
-			};
+						.allowedOrigins("*");
+			}
 		};
 	}
 }
