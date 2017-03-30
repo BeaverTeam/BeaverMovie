@@ -5,7 +5,9 @@ import beaver.backend.entity.requestType.SignRequest;
 import beaver.backend.entity.responseType.SignResult;
 import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -21,8 +23,8 @@ public class UserController {
     UserRepository userRepository;
 
     @RequestMapping("/sign-up")
-    public SignResult signUp(SignRequest request) {
-        System.out.println(request.getEncryptedPassword());
+    public SignResult signUp(@RequestBody SignRequest request) {
+//        System.out.println(request.getEncryptedPassword());
         User u = new User(request.getUsername(), request.getEncryptedPassword());
         try {
             userRepository.save(u);
@@ -33,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping("/sign-in")
-    public SignResult signIn(SignRequest request, HttpSession session) {
+    public SignResult signIn(@RequestBody SignRequest request, HttpSession session) {
         User u = userRepository.findByUsernameAndPassword(request.getUsername(), request.getEncryptedPassword());
         if (u == null)
             return new SignResult(false, -1);
