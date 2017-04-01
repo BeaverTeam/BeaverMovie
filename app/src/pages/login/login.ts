@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 import { Auth } from '../../providers/Auth/auth.service';
 import { Validator } from '../../providers/Auth/Validator';
 
@@ -34,7 +34,7 @@ export class LoginPage {
     // 发往后端进行校验
     this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
       console.log(data);
-      if(data.success == true) this.navCtrl.push(HomePage);
+      if(data.success == true) this.navCtrl.push(TabsPage);
       else this.auth.signOut();
     });
   }
