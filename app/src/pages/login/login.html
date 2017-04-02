@@ -17,6 +17,10 @@
           <ion-label floating>密 码</ion-label>
           <ion-input type="password" [(ngModel)]="signInPassword" name="signInPassword" (blur)="signInValidator(signInForm.value, 1)"></ion-input>
         </ion-item>
+        <ion-item class="toggle-container">
+          <ion-label color="primary-text">保持登录</ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
         <div class="errorMessage">{{errorMessage}}</div>
         <div class="normal-button-container" padding>
           <button class="normal-button" ion-button (click)="signInCheck(signInForm.value)">登 录</button>

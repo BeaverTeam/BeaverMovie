@@ -26,7 +26,6 @@ page-login {
     color: #F44336;
     font-size: 16px;
     text-align: left;
-    padding: 16px 0px 0px 0px;
   }
 
   .normal-button-container {
@@ -61,6 +60,21 @@ page-login {
     // 为 input 添加灰线
     .item-inner {
       border-bottom: 1px solid #BDBDBD !important;
+    }
+  }
+
+  .toggle-container {
+    padding: 0px;
+    height: 71px;
+
+    .item-inner {
+      padding-right: 0px !important;
+      ion-toggle {
+        padding-right: 0px;
+        button {
+          padding-right: 0px;
+        }
+      }
     }
   }
 
