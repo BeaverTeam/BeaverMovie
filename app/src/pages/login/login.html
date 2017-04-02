@@ -4,7 +4,7 @@
   </div>
   <ion-card *ngIf="pageName == 'signIn'">
     <div class="header">欢迎回来</div>
-    <button class="fab" ion-button icon-only color="secondary" round (click)="gotoRegister()">
+    <button ion-fab (click)="gotoRegister()">
       <ion-icon name="person-add" color="text-primary"></ion-icon>
     </button>
     <div padding>
@@ -19,7 +19,7 @@
         </ion-item>
         <div class="errorMessage">{{errorMessage}}</div>
         <div class="normal-button-container" padding>
-          <button class="normal-button" ion-button color="primary" (click)="signInCheck(signInForm.value)">登 录</button>
+          <button class="normal-button" ion-button (click)="signInCheck(signInForm.value)">登 录</button>
         </div>
       </form>
     </div>
@@ -27,7 +27,7 @@
   <!-- 注册 -->
   <ion-card *ngIf="pageName == 'register'">
     <div class="header">嘿，新朋友！</div>
-    <button class="fab" ion-button icon-only color="secondary" round (click)="gotoLogin()">
+    <button ion-fab (click)="gotoLogin()">
       <ion-icon name="log-in" color="text-primary"></ion-icon>
     </button>
     <div padding>
@@ -46,7 +46,7 @@
         </ion-item>
         <div class="errorMessage">{{errorMessage}}</div>
         <div class="normal-button-container" padding>
-          <button class="normal-button" ion-button color="primary" (click)="signUpCheck(signUpForm.value)">注 册</button>
+          <button class="normal-button" ion-button (click)="signUpCheck(signUpForm.value)">注 册</button>
         </div>
       </form>
     </div>
