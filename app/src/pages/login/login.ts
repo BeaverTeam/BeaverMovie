@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 import { Auth } from '../../providers/Auth/auth.service';
@@ -15,10 +15,19 @@ export class LoginPage {
   validator: Validator = new Validator();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public auth: Auth) {}
+              public toastCtrl: ToastController, public auth: Auth) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   // 登录校验
@@ -33,8 +42,7 @@ export class LoginPage {
 
     // 发往后端进行校验
     this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
-      console.log(data);
-      if(data.success == true) this.navCtrl.push(TabsPage);
+      if (data.success == true) this.navCtrl.push(TabsPage);
       else this.auth.signOut();
     });
   }
@@ -51,8 +59,12 @@ export class LoginPage {
 
     // 发往后端进行校验
     this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
-      if(data.success == true) this.gotoLogin();
-      else this.auth.signOut();
+      if (data.success == true) {
+        this.gotoLogin();
+        this.presentToast('注册成功，请登录账号');
+      } else {
+        this.auth.signOut();
+      }
     });
   }
 
