@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 import { Auth } from '../../providers/Auth/auth.service';
 import { Validator } from '../../providers/Auth/Validator';
 
@@ -32,12 +32,11 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    if (this.auth.signIn(formData.signInUsername, formData.signInPassword)) {
-      this.navCtrl.push(HomePage);
-    } else {
-      // TODO 处理后端报错信息
-      this.auth.signOut();
-    }
+    this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
+      console.log(data);
+      if(data.success == true) this.navCtrl.push(TabsPage);
+      else this.auth.signOut();
+    });
   }
 
   // 注册校验
@@ -51,12 +50,10 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    if (this.auth.signUp(formData.signUpUsername, formData.signUpPassword)) {
-      this.gotoLogin();
-    } else {
-      // TODO 处理后端报错信息
-      this.auth.signOut();
-    }
+    this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
+      if(data.success == true) this.gotoLogin();
+      else this.auth.signOut();
+    });
   }
 
   gotoRegister() {
