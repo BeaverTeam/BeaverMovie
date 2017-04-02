@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { Auth } from '../../providers/Auth/auth.service';
-import { Validator } from '../../providers/Auth/Validator';
+import { Auth } from '../../providers/auth/auth.service';
+import { Validator } from '../../providers/auth/validator';
 
 @Component({
   selector: 'page-login',

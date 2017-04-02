@@ -10,7 +10,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { Auth } from '../providers/Auth/auth.service';
+import { Auth } from '../providers/auth/auth.service';
 
 @NgModule({
   declarations: [
