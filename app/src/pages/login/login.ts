@@ -17,10 +17,6 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public toastCtrl: ToastController, public auth: Auth) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
   // 显示 toast
   presentToast(message: string) {
     let toast = this.toastCtrl.create({

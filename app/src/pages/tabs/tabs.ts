@@ -7,8 +7,7 @@ import { ContactPage } from '../contact/contact';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
+  num: Number;
   tab1Root: any = HomePage;
   tab2Root: any = ContactPage;
 
