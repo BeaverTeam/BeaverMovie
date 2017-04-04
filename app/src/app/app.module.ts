@@ -7,9 +7,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ContactPage } from '../pages/contact/contact';
+import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { Auth } from '../providers/Auth/auth.service';
+import { Auth } from '../providers/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { Auth } from '../providers/Auth/auth.service';
     LoginPage,
     HomePage,
     ContactPage,
+    SettingPage,
     TabsPage
   ],
   imports: [
@@ -28,6 +30,7 @@ import { Auth } from '../providers/Auth/auth.service';
     LoginPage,
     HomePage,
     ContactPage,
+    SettingPage,
     TabsPage
   ],
   providers: [

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { Auth } from '../../providers/Auth/auth.service';
-import { Validator } from '../../providers/Auth/Validator';
+import { Auth } from '../../providers/auth/auth.service';
+import { Validator } from '../../providers/auth/validator';
 
 @Component({
   selector: 'page-login',
@@ -16,10 +16,6 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public toastCtrl: ToastController, public auth: Auth) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
 
   // 显示 toast
   presentToast(message: string) {

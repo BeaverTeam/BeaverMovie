@@ -32,16 +32,6 @@ export class Validator {
     let usernameRegex = /^[a-zA-Z0-9]+$/;
     let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).+$/;
 
-    // 对用户名进行校验
-    if (this.isSignInUsernameVisited) {
-      if (username == null || username == undefined || username == '')
-        errorMessage = '用户名不能为空';
-      else if (username.length < 5 || username.length > 10)
-        errorMessage = '用户名长度需在 5 到 10 之间';
-      else if (username.match(usernameRegex) == null)
-        errorMessage = '用户名只能由字母和数字组成';
-    }
-
     // 对密码进行校验
     if (this.isSignInPasswordVisited) {
       if (password == null || password == undefined || password == '')
@@ -50,6 +40,16 @@ export class Validator {
         errorMessage = '密码长度需在 8 到 20 之间';
       else if (password.match(passwordRegex) == null)
         errorMessage = '密码不符合规范';
+    }
+
+    // 对用户名进行校验
+    if (this.isSignInUsernameVisited) {
+      if (username == null || username == undefined || username == '')
+        errorMessage = '用户名不能为空';
+      else if (username.length < 5 || username.length > 10)
+        errorMessage = '用户名长度需在 5 到 10 之间';
+      else if (username.match(usernameRegex) == null)
+        errorMessage = '用户名只能由字母和数字组成';
     }
 
     return errorMessage;
@@ -74,14 +74,10 @@ export class Validator {
     let usernameRegex = /^[a-zA-Z0-9]+$/;
     let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).+$/;
 
-    // 对用户名进行校验
-    if (this.isSignUpUsernameVisited) {
-      if (username == null || username == undefined || username == '')
-        errorMessage = '用户名不能为空';
-      else if (username.length < 5 || username.length > 10)
-        errorMessage = '用户名长度需在 5 到 10 之间';
-      else if (username.match(usernameRegex) == null)
-        errorMessage = '用户名只能由字母和数字组成';
+    // 对确认密码进行校验
+    if (this.isSignUpConfirmVisited) {
+      if (confirm != password)
+        errorMessage = '确认密码与密码不一致';
     }
 
     // 对密码进行校验
@@ -94,10 +90,14 @@ export class Validator {
         errorMessage = '密码包含不合法字符，或未包含数字或字母';
     }
 
-    // 对确认密码进行校验
-    if (this.isSignUpConfirmVisited) {
-      if (confirm != password)
-        errorMessage = '确认密码与密码不一致';
+    // 对用户名进行校验
+    if (this.isSignUpUsernameVisited) {
+      if (username == null || username == undefined || username == '')
+        errorMessage = '用户名不能为空';
+      else if (username.length < 5 || username.length > 10)
+        errorMessage = '用户名长度需在 5 到 10 之间';
+      else if (username.match(usernameRegex) == null)
+        errorMessage = '用户名只能由字母和数字组成';
     }
 
     return errorMessage;
