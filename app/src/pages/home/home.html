@@ -10,5 +10,13 @@
 </ion-header>
 
 <ion-content padding>
-  欢迎使用Beaver Movie！这是首页！
+  <ion-list *ngFor = "let movie of myMovies">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="{{movie.imgUrl}}">
+      </ion-thumbnail>
+      <h2>{{movie.title}}</h2>
+      <p>{{movie.star}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
