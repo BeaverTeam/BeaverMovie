@@ -4,9 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { ContactPage } from '../pages/contact/contact';
+import { HistoryPage } from '../pages//history/history';
+import { RecommendPage } from '../pages/recommend/recommend';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -17,6 +19,8 @@ import { Auth } from '../providers/auth/auth.service';
     MyApp,
     LoginPage,
     HomePage,
+    RecommendPage,
+    HistoryPage,
     ContactPage,
     SettingPage,
     TabsPage
@@ -29,6 +33,8 @@ import { Auth } from '../providers/auth/auth.service';
     MyApp,
     LoginPage,
     HomePage,
+    RecommendPage,
+    HistoryPage,
     ContactPage,
     SettingPage,
     TabsPage
