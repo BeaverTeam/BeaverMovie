@@ -1,3 +1,15 @@
 page-home {
-
+  ion-item {
+    .title {
+      font-size: 18px;
+      color: black;
+    }
+    .star {
+      color: #e09015;
+    }
+  }
+  ion-thumbnail img {
+    width: 64px !important ;
+    height: 95px !important ;
+  }
 }

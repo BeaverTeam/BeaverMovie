@@ -13,10 +13,11 @@
   <ion-list *ngFor = "let movie of myMovies">
     <ion-item>
       <ion-thumbnail item-left>
-        <img src="{{movie.imgUrl}}">
+        <img class="poster" src="{{movie.imgUrl}}">
       </ion-thumbnail>
-      <h2>{{movie.title}}</h2>
-      <p>{{movie.star}}</p>
+      <p class="title">{{movie.title}}</p>
+      <p class="star" *ngIf="movie.star!=null">{{movie.star}}</p>
+      <p *ngIf="movie.star==null">暂无评分</p>
     </ion-item>
   </ion-list>
 </ion-content>
