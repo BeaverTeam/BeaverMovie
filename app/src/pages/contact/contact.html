@@ -9,6 +9,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是个人主页！
+<ion-content>
+  <div class="avatar-container">
+  </div>
+  <ion-item-group>
+    <ion-item-divider>个人信息</ion-item-divider>
+    <ion-item>
+      <span>姓名: </span> Beaver
+    </ion-item>
+    <ion-item>
+      <span>电话: </span> 18800000000</ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider>订单信息</ion-item-divider>
+    <ion-item>我的电影票</ion-item>
+    <ion-item>看过的电影</ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
+    <ion-item class="signOut" (click)="gotoLogin()">退出登录</ion-item>
+  </ion-item-group>
 </ion-content>

@@ -1,3 +1,18 @@
 page-contact {
+  ion-content {
+    background-color: #FAFAFA !important;
 
+    .avatar-container {
+      height: 60px;
+    }
+
+    ion-item-divider {
+      background-color: #f4f4f4 !important;
+    }
+
+    .signOut {
+      text-align: center;
+      color: #f53d3d;
+    }
+  }
 }
