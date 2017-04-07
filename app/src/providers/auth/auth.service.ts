@@ -40,7 +40,6 @@ export class Auth {
   }
 
   // 登出
-  signOut() {
-  }
+  signOut() {}
 
 }
