@@ -1,5 +1,6 @@
 package beaver.backend.controller;
 
+import beaver.backend.controller.Validator;
 import beaver.backend.entity.User;
 import beaver.backend.entity.requestType.SignRequest;
 import beaver.backend.entity.responseType.SignResult;
@@ -26,6 +27,11 @@ public class UserController {
     @RequestMapping("/sign-up")
     public SignResult signUp(@RequestBody SignRequest request) {
 //        System.out.println(request.getEncryptedPassword());
+
+        Validator validator = new Validator();
+        if(!validator.isUsername(request.getUsername()) || !validator.isEncryptedPassword(request.getEncryptedPassword()))
+            return new SignResult(false, -1);
+
         User u = new User(request.getUsername(), request.getEncryptedPassword());
         try {
             userRepository.save(u);
