@@ -13,6 +13,7 @@ import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { Auth } from '../providers/auth/auth.service';
+import { Theater } from '../providers/theater/theater.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { Auth } from '../providers/auth/auth.service';
   ],
   providers: [
     Auth,
+    Theater,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
