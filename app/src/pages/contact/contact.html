@@ -14,19 +14,23 @@
   </div>
   <ion-item-group>
     <ion-item-divider>个人信息</ion-item-divider>
-    <ion-item>
-      <span>姓名: </span>
-      <span>Beaver</span>
-    </ion-item>
-    <ion-item>
-      <span>电话: </span>
-      <span>18800000000</span>
-    </ion-item>
+    <ion-list no-margin>
+      <ion-item>
+        <ion-label fixed>用户名</ion-label>
+        <ion-input type="text" value="Beaver" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>电话</ion-label>
+        <ion-input type="number" value="18800000000" disabled></ion-input>
+      </ion-item>
+    </ion-list>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider>订单信息</ion-item-divider>
-    <ion-item>我的电影票</ion-item>
-    <ion-item>看过的电影</ion-item>
+    <ion-list no-margin>
+      <button ion-item>我的电影票</button>
+      <button ion-item>看过的电影</button>
+    </ion-list>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider></ion-item-divider>
