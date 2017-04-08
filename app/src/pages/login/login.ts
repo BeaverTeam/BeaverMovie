@@ -37,7 +37,10 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
+    this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
+      let data = raw.json();
+      // TODO 拿回 cookies
+      // let cookies = raw.headers.get('Set-Cookie');
       if (data.success == true) this.navCtrl.push(TabsPage);
       else this.auth.signOut();
     });
@@ -54,7 +57,8 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
+    this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
+      let data = raw.json();
       if (data.success == true) {
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
