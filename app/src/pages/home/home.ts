@@ -9,8 +9,8 @@ export class HomePage {
   myMovies : any = []
   constructor(public navCtrl: NavController) {
     var request = new XMLHttpRequest();
-    request.open('GET', '../../assets/data/data.json', false);
-    request.send(null)
+    request.open('GET', '../../assets/data/movies.json', false);
+    request.send(null);
     this.myMovies = JSON.parse(request.responseText);
   }
 
