@@ -7,7 +7,13 @@ page-contact {
     }
 
     ion-item-divider {
-      background-color: #f4f4f4 !important;
+      background-color: #fafafa !important;
+    }
+
+    ion-input {
+      input {
+        opacity: 1 !important;  
+      }
     }
 
     .signOut {
