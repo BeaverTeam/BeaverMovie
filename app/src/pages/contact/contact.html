@@ -3,12 +3,37 @@
     <ion-title>个人主页</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="gotoSetting()">
-        <ion-icon name="settings" color="text-primary"></ion-icon>
+        <ion-icon name="create" color="text-primary"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是个人主页！
+<ion-content>
+  <div class="avatar-container">
+  </div>
+  <ion-item-group>
+    <ion-item-divider>个人信息</ion-item-divider>
+    <ion-list no-margin>
+      <ion-item>
+        <ion-label fixed>用户名</ion-label>
+        <ion-input type="text" value="Beaver" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>电话</ion-label>
+        <ion-input type="number" value="18800000000" disabled></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider>订单信息</ion-item-divider>
+    <ion-list no-margin>
+      <button ion-item>我的电影票</button>
+      <button ion-item>看过的电影</button>
+    </ion-list>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
+    <ion-item class="signOut" (click)="gotoLogin()">退出登录</ion-item>
+  </ion-item-group>
 </ion-content>

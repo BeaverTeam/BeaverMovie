@@ -25,8 +25,7 @@ export class Auth {
     let encryptedPassword = this.encryptPassword(password);
     // 向后端发起注册的请求
     return this.http.post(this.global.serverUrl + '/api/sign-up',
-                         {username: username, encryptedPassword: encryptedPassword})
-                    .map((res) => res.json());
+                          {username: username, encryptedPassword: encryptedPassword});
   }
 
   // 登录
@@ -35,12 +34,10 @@ export class Auth {
     let encryptedPassword = this.encryptPassword(password);
     // 向后端发起登录的请求
     return this.http.post(this.global.serverUrl + '/api/sign-in',
-                         {username: username, encryptedPassword: encryptedPassword})
-                    .map((res) => res.json());
+                          {username: username, encryptedPassword: encryptedPassword});
   }
 
   // 登出
-  signOut() {
-  }
+  signOut() {}
 
 }
