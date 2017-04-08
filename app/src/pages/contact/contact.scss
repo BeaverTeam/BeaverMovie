@@ -12,8 +12,12 @@ page-contact {
 
     ion-input {
       input {
-        opacity: 1 !important;  
+        opacity: 1 !important;
       }
+    }
+
+    .bottom-line {
+      border-bottom: 1px solid #dddddd;
     }
 
     .signOut {
