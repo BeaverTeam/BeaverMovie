@@ -10,19 +10,17 @@
 </ion-header>
 
 <ion-content>
-  <div class="avatar-container">
-    <div class="avatar" [style.background-image]="'url(' + user.avatarUrl + ')'"></div>
-  </div>
-  <ion-item-group>
+  <ion-item-group class="bottom-line">
     <ion-item-divider>个人信息</ion-item-divider>
     <ion-list no-margin>
       <ion-item>
-        <ion-label fixed>用户名</ion-label>
-        <ion-input type="text" value="{{user.username}}" disabled></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label fixed>电话</ion-label>
-        <ion-input type="number" value="{{user.phone}}" disabled></ion-input>
+        <div class="user-info-container">
+          <div class="avatar" [style.background-image]="'url(' + user.avatarUrl + ')'"></div>
+          <div class="text-info-container">
+            <div class="username">{{user.username}}</div>
+            <div class="phone">{{user.phone}}</div>
+          </div>
+        </div>
       </ion-item>
     </ion-list>
   </ion-item-group>
