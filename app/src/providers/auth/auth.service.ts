@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { Md5 } from 'ts-md5/dist/md5';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
 import { Global } from '../global';
@@ -9,7 +10,7 @@ import { Global } from '../global';
 export class AuthService {
   private global = new Global();
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, public storage: Storage) {}
 
   // 加密密码
   encryptPassword(password: string) {
@@ -44,6 +45,10 @@ export class AuthService {
   }
 
   // 登出
-  signOut() {}
+  signOut() {
+    this.storage.ready().then(() => {
+      this.storage.remove('user');
+    });
+  }
 
 }
