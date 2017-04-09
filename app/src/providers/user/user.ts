@@ -8,4 +8,5 @@ export class User {
     this.userAvatarUrl = userAvatarUrl;
     this.phone = phone;
   }
+
 }

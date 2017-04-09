@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -12,8 +13,9 @@ import { RecommendPage } from '../pages/recommend/recommend';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { Auth } from '../providers/auth/auth.service';
-import { Theater } from '../providers/theater/theater.service';
+import { AuthService } from '../providers/auth/auth.service';
+import { TheaterService } from '../providers/theater/theater.service';
+import { UserService } from '../providers/user/user.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { Theater } from '../providers/theater/theater.service';
     TabsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,8 +44,9 @@ import { Theater } from '../providers/theater/theater.service';
     TabsPage
   ],
   providers: [
-    Auth,
-    Theater,
+    AuthService,
+    TheaterService,
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

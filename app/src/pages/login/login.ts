@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { TabsPage } from '../tabs/tabs';
-import { Auth } from '../../providers/auth/auth.service';
+import { AuthService } from '../../providers/auth/auth.service';
 import { Validator } from '../../providers/auth/validator';
 
 @Component({
@@ -15,7 +16,24 @@ export class LoginPage {
   validator: Validator = new Validator();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toastCtrl: ToastController, public auth: Auth) {}
+              public toastCtrl: ToastController, public authService: AuthService,
+              public storage: Storage) {
+    // 自动登录
+    storage.ready().then(() => {
+      storage.get('user').then((val) => {
+        if (val != null && val != undefined) {
+          authService.signIn(val.username, val.password).subscribe(raw => {
+            let data = raw.json();
+            if (data.success == true) {
+              this.navCtrl.push(TabsPage);
+            } else {
+               storage.remove('user');
+            }
+          });
+        }
+      });
+    });
+  }
 
   // 显示 toast
   presentToast(message: string) {
@@ -37,12 +55,18 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
+    this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
       let data = raw.json();
-      // TODO 拿回 cookies
-      // let cookies = raw.headers.get('Set-Cookie');
-      if (data.success == true) this.navCtrl.push(TabsPage);
-      else this.auth.signOut();
+      if (data.success == true) {
+        this.navCtrl.push(TabsPage);
+        // 将用户名等信息存储到本地
+        this.storage.ready().then(() => {
+          this.storage.set('user', {username: formData.signInUsername,
+                                    password: formData.signInPassword});
+        });
+      } else {
+        this.errorMessage = '登录失败，请检查用户名和密码';
+      }
     });
   }
 
@@ -57,13 +81,13 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
+    this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
       let data = raw.json();
       if (data.success == true) {
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
       } else {
-        this.auth.signOut();
+        this.errorMessage = '该用户已经存在，请更换用户名或直接登录';
       }
     });
   }
