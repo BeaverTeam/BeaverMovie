@@ -4,7 +4,7 @@ import { App } from 'ionic-angular';
 
 import { SettingPage }  from '../setting/setting';
 import { LoginPage } from '../login/login';
-import { Auth } from '../../providers/auth/auth.service';
+import { AuthService } from '../../providers/auth/auth.service';
 
 @Component({
   selector: 'page-contact',
@@ -12,7 +12,7 @@ import { Auth } from '../../providers/auth/auth.service';
 })
 export class ContactPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public appCtrl: App, public auth: Auth) {}
+              public appCtrl: App, public auth: AuthService) {}
 
   gotoSetting() {
     this.navCtrl.push(SettingPage);

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { Auth } from '../../providers/auth/auth.service';
+import { AuthService } from '../../providers/auth/auth.service';
 import { Validator } from '../../providers/auth/validator';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginPage {
   validator: Validator = new Validator();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toastCtrl: ToastController, public auth: Auth) {}
+              public toastCtrl: ToastController, public auth: AuthService) {}
 
   // 显示 toast
   presentToast(message: string) {
@@ -41,6 +41,7 @@ export class LoginPage {
       let data = raw.json();
       // TODO 拿回 cookies
       // let cookies = raw.headers.get('Set-Cookie');
+      console.log(raw.headers);
       if (data.success == true) this.navCtrl.push(TabsPage);
       else this.auth.signOut();
     });

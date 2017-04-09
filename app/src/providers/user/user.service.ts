@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class User {
   username: string;
   userAvatarUrl: string;
@@ -8,4 +11,5 @@ export class User {
     this.userAvatarUrl = userAvatarUrl;
     this.phone = phone;
   }
+
 }

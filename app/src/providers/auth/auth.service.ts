@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Global } from '../global';
 
 @Injectable()
-export class Auth {
+export class AuthService {
   private global = new Global();
 
   constructor(public http: Http) {}
