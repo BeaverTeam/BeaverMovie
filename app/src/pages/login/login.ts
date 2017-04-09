@@ -39,11 +39,12 @@ export class LoginPage {
     // 发往后端进行校验
     this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
       let data = raw.json();
-      // TODO 拿回 cookies
-      // let cookies = raw.headers.get('Set-Cookie');
       console.log(raw.headers);
-      if (data.success == true) this.navCtrl.push(TabsPage);
-      else this.authService.signOut();
+      if (data.success == true) {
+        this.navCtrl.push(TabsPage);
+      } else {
+        this.errorMessage = '登录失败，请检查用户名和密码';
+      }
     });
   }
 
@@ -64,6 +65,7 @@ export class LoginPage {
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
       } else {
+        this.errorMessage = '该用户已经存在，请更换用户名或直接登录';
         this.authService.signOut();
       }
     });
