@@ -1,19 +1,41 @@
 page-contact {
   ion-content {
-    background-color: #FAFAFA !important;
+    background-color: #fafafa !important;
 
-    .avatar-container {
-      height: 60px;
+    .user-info-container {
+      height: 72px;
+
+      .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 36px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+
+      .text-info-container {
+        width: calc(100% - 72px);
+        height: 72px;
+        display: inline-block;
+        vertical-align: top;
+        padding: 6px 0px 0px 16px;
+
+        .username {
+          font-size: 1.6em;
+          padding-bottom: 4px;
+          color: #212121;
+        }
+
+        .phone {
+          color: #757575;
+        }
+      }
     }
 
     ion-item-divider {
       background-color: #fafafa !important;
-    }
-
-    ion-input {
-      input {
-        opacity: 1 !important;
-      }
     }
 
     .bottom-line {

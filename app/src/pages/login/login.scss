@@ -1,6 +1,6 @@
 page-login {
   .login-content {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
   }
 
   // logo
@@ -19,11 +19,11 @@ page-login {
     right: 20px;
     top: 48px;
     z-index: 1;
-    background-color: #FFC107;
+    background-color: #ffc107;
   }
 
   .errorMessage {
-    color: #F44336;
+    color: #f44336;
     font-size: 16px;
     text-align: left;
     padding: 16px 0px 0px 0px;
@@ -36,8 +36,8 @@ page-login {
       font-size: 16px;
       min-width: 88px;
       height: 36px;
-      background-color: #00BCD4;
-      color: #FFFFFF;
+      background-color: #00bcd4;
+      color: #ffffff;
     }
   }
 
@@ -51,8 +51,8 @@ page-login {
     padding: 16px;
     height: 80px;
     line-height: 48px;
-    color: #FFFFFF;
-    background-color: #00BCD4;
+    color: #ffffff;
+    background-color: #00bcd4;
   }
 
   .input-container {
@@ -60,14 +60,14 @@ page-login {
 
     // 为 input 添加灰线
     .item-inner {
-      border-bottom: 1px solid #BDBDBD !important;
+      border-bottom: 1px solid #bdbdbd !important;
     }
   }
 
   // 为 input focus 时强制去除灰线
   .input-has-focus {
     .item-inner {
-      border-bottom: 1px solid #00BCD4 !important;
+      border-bottom: 1px solid #00bcd4 !important;
     }
   }
 }
