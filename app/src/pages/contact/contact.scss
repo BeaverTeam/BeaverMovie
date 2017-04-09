@@ -1,9 +1,20 @@
 page-contact {
   ion-content {
-    background-color: #FAFAFA !important;
+    background-color: #fafafa !important;
 
     .avatar-container {
-      height: 60px;
+      text-align: center;
+      padding: 16px 0px;
+
+      .avatar {
+        height: 80px;
+        width: 80px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 40px;
+      }
     }
 
     ion-item-divider {
