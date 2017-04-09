@@ -14,7 +14,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
-import { User } from '../providers/user/user.service';
+import { UserService } from '../providers/user/user.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { User } from '../providers/user/user.service';
   providers: [
     AuthService,
     TheaterService,
-    User,
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

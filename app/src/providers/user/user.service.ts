@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class User {
-  username: string;
-  userAvatarUrl: string;
-  phone: string;
+import { User } from 'user';
 
-  constructor(username: string, userAvatarUrl: string, phone: string) {
-    this.username = username;
-    this.userAvatarUrl = userAvatarUrl;
-    this.phone = phone;
-  }
+@Injectable()
+export class UserService {
+
+  constructor() {}
 
 }
