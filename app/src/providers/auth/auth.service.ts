@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Md5 } from 'ts-md5/dist/md5';
 import 'rxjs/add/operator/map';
 
@@ -24,8 +24,11 @@ export class AuthService {
     // 对密码进行哈希
     let encryptedPassword = this.encryptPassword(password);
     // 向后端发起注册的请求
+    let options = new RequestOptions({withCredentials: true});
     return this.http.post(this.global.serverUrl + '/api/sign-up',
-                          {username: username, encryptedPassword: encryptedPassword});
+                          {username: username,
+                           encryptedPassword: encryptedPassword},
+                          options);
   }
 
   // 登录
@@ -33,8 +36,11 @@ export class AuthService {
     // 对密码进行哈希
     let encryptedPassword = this.encryptPassword(password);
     // 向后端发起登录的请求
+    let options = new RequestOptions({withCredentials: true});
     return this.http.post(this.global.serverUrl + '/api/sign-in',
-                          {username: username, encryptedPassword: encryptedPassword});
+                          {username: username,
+                           encryptedPassword: encryptedPassword},
+                          options);
   }
 
   // 登出
