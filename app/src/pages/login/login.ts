@@ -15,7 +15,7 @@ export class LoginPage {
   validator: Validator = new Validator();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toastCtrl: ToastController, public auth: AuthService) {}
+              public toastCtrl: ToastController, public authService: AuthService) {}
 
   // 显示 toast
   presentToast(message: string) {
@@ -37,13 +37,13 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
+    this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
       let data = raw.json();
       // TODO 拿回 cookies
       // let cookies = raw.headers.get('Set-Cookie');
       console.log(raw.headers);
       if (data.success == true) this.navCtrl.push(TabsPage);
-      else this.auth.signOut();
+      else this.authService.signOut();
     });
   }
 
@@ -58,13 +58,13 @@ export class LoginPage {
     if (this.errorMessage != '') return;
 
     // 发往后端进行校验
-    this.auth.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
+    this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
       let data = raw.json();
       if (data.success == true) {
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
       } else {
-        this.auth.signOut();
+        this.authService.signOut();
       }
     });
   }

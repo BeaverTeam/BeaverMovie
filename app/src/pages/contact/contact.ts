@@ -12,14 +12,14 @@ import { AuthService } from '../../providers/auth/auth.service';
 })
 export class ContactPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public appCtrl: App, public auth: AuthService) {}
+              public appCtrl: App, public authService: AuthService) {}
 
   gotoSetting() {
     this.navCtrl.push(SettingPage);
   }
 
   gotoLogin() {
-    this.auth.signOut();
+    this.authService.signOut();
     this.appCtrl.getRootNav().push(LoginPage);
   }
 

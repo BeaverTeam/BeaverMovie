@@ -13,7 +13,7 @@ import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AuthService } from '../providers/auth/auth.service';
-import { Theater } from '../providers/theater/theater.service';
+import { TheaterService } from '../providers/theater/theater.service';
 import { User } from '../providers/user/user.service';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { User } from '../providers/user/user.service';
   ],
   providers: [
     AuthService,
-    Theater,
+    TheaterService,
     User,
     StatusBar,
     SplashScreen,
