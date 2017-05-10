@@ -16,4 +16,17 @@ export class SettingPage {
     this.user = userService.getUser();
   }
 
+  // 用户变更头像
+  avatarChange(event) {
+    var reader = new FileReader();
+    var that = this;
+
+    reader.onload = function(e: any) {
+      that.user.avatarUrl = e.target.result;
+    };
+
+    if (event.target.files[0] != undefined)
+      reader.readAsDataURL(event.target.files[0]);
+  }
+
 }

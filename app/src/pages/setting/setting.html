@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content>
+  <input type="file" accept="image/*" id="user-avartar" class="image-input" (change)="avatarChange($event)">
+  <div class="avatar" [style.background-image]="'url(' + user.avatarUrl + ')'">
+    <label for="user-avartar" class="user-avartar-cover"></label>
+    <div class="avatar-hint">编 辑</div>
+  </div>
   <ion-item-group>
     <ion-item-divider>个人信息</ion-item-divider>
     <ion-list>
