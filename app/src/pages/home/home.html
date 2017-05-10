@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngFor = "let movie of movies">
-    <ion-item>
-      <ion-thumbnail item-left>
-        <img class="poster" src="{{movie.images.small}}">
-      </ion-thumbnail>
-      <p class="title">{{movie.title}}</p>
-      <p class="star" *ngIf="movie.rating.average > 0">{{movie.rating.average}}</p>
-      <p *ngIf="movie.rating.average == 0">暂无评分</p>
+  <div *ngFor="let movie of movies; let i = index">
+    <ion-item class="movie-item">
+      <div class="poster-container" [class.first-poster-container]="i == 0" item-left>
+        <div class="poster" [style.background-image]="'url(' + movie.images.medium + ')'"></div>
+      </div>
+      <div class="title">{{movie.title}}</div>
+      <div class="star" *ngIf="movie.rating.average > 0">{{movie.rating.average}}</div>
+      <div *ngIf="movie.rating.average == 0">暂无评分</div>
     </ion-item>
-  </ion-list>
+  </div>
 </ion-content>
