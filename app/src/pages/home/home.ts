@@ -8,9 +8,10 @@ import { TheaterService } from '../../providers/theater/theater.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  movies : any = []
+  movies: any = [];
+
   constructor(public navCtrl: NavController, public theaterService: TheaterService) {
-    this.movies = theaterService.getMovies();
+    this.movies = this.theaterService.getMovies();
   }
 
   gotoNotes() {
