@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <div *ngFor="let movie of movies; let i = index">
-    <ion-item class="movie-item">
+    <ion-item class="movie-item" (click)="gotoDetail(i)">
       <div class="poster-container" [class.first-poster-container]="i == 0" item-left>
         <div class="poster" [style.background-image]="'url(' + movie.images.medium + ')'"></div>
       </div>

@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { ContactPage } from '../pages/contact/contact';
 import { HistoryPage } from '../pages//history/history';
 import { RecommendPage } from '../pages/recommend/recommend';
@@ -22,6 +23,7 @@ import { UserService } from '../providers/user/user.service';
     MyApp,
     LoginPage,
     HomePage,
+    MovieDetailPage,
     RecommendPage,
     HistoryPage,
     ContactPage,
@@ -37,6 +39,7 @@ import { UserService } from '../providers/user/user.service';
     MyApp,
     LoginPage,
     HomePage,
+    MovieDetailPage,
     RecommendPage,
     HistoryPage,
     ContactPage,

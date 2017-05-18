@@ -14,8 +14,15 @@ export class HomePage {
     this.movies = this.theaterService.getMovies();
   }
 
+  // 前往消息中心
   gotoNotes() {
 
   }
+
+  // 前往电影详情页面
+  gotoDetail(index) {
+    
+  }
+
 
 }
