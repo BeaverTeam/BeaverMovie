@@ -4,6 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是电影详情页面！
+<ion-content>
+  <div class="poster-container">
+    <div class="poster" [style.background-image]="'url(' + movie.images.large + ')'"></div>
+  </div>
 </ion-content>

@@ -13,4 +13,17 @@ export class TheaterService {
     return JSON.parse(request.responseText).subjects;
   }
 
+  // 根据电影名称获取电影的详情
+  getMovie(movieName) {
+    var request = new XMLHttpRequest();
+    request.open('GET', '../../assets/data/in-theaters.json', false);
+    request.send(null);
+    var movies = JSON.parse(request.responseText).subjects;
+    for (var i = 0; i < movies.length; i++) {
+      if (movies[i].title == movieName)
+        return movies[i];
+    }
+    return false;
+  }
+
 }
