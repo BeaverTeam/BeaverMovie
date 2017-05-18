@@ -11,13 +11,13 @@
 
 <ion-content padding>
   <div *ngFor="let movie of movies; let i = index">
-    <ion-item class="movie-item" (click)="gotoDetail(i)">
+    <button ion-item class="movie-item" (click)="gotoDetail(i)">
       <div class="poster-container" [class.first-poster-container]="i == 0" item-left>
         <div class="poster" [style.background-image]="'url(' + movie.images.medium + ')'"></div>
       </div>
       <div class="title">{{movie.title}}</div>
       <div class="star" *ngIf="movie.rating.average > 0">{{movie.rating.average}}</div>
       <div *ngIf="movie.rating.average == 0">暂无评分</div>
-    </ion-item>
+    </button>
   </div>
 </ion-content>
