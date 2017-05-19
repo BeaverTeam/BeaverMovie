@@ -44,6 +44,11 @@ page-movie-detail {
         }
 
         .rating {
+          padding-top: 8px;
+
+          .stars {
+            color: #ff9800;
+          }
         }
 
       }
