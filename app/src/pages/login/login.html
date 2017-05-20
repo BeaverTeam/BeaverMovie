@@ -1,0 +1,54 @@
+<ion-content padding class="login-content">
+  <div class="header-logo" padding>
+    <img src="../../assets/images/logo.png"/>
+  </div>
+  <ion-card *ngIf="pageName == 'signIn'">
+    <div class="header">欢迎回来</div>
+    <button ion-fab (click)="gotoRegister()">
+      <ion-icon name="person-add" color="text-primary"></ion-icon>
+    </button>
+    <div padding>
+      <form #signInForm="ngForm">
+        <ion-item class="input-container">
+          <ion-label floating>用户名</ion-label>
+          <ion-input type="text" [(ngModel)]="signInUsername" name="signInUsername" (blur)="signInValidator(signInForm.value, 0)"></ion-input>
+        </ion-item>
+        <ion-item class="input-container">
+          <ion-label floating>密 码</ion-label>
+          <ion-input type="password" [(ngModel)]="signInPassword" name="signInPassword" (blur)="signInValidator(signInForm.value, 1)"></ion-input>
+        </ion-item>
+        <div class="errorMessage">{{errorMessage}}</div>
+        <div class="normal-button-container" padding>
+          <button class="normal-button" ion-button (click)="signInCheck(signInForm.value)">登 录</button>
+        </div>
+      </form>
+    </div>
+  </ion-card>
+  <!-- 注册 -->
+  <ion-card *ngIf="pageName == 'register'">
+    <div class="header">嘿，新朋友！</div>
+    <button ion-fab (click)="gotoLogin()">
+      <ion-icon name="log-in" color="text-primary"></ion-icon>
+    </button>
+    <div padding>
+      <form #signUpForm="ngForm">
+        <ion-item class="input-container">
+          <ion-label floating>用户名</ion-label>
+          <ion-input type="text" [(ngModel)]="signUpUsername" name="signUpUsername" (blur)="signUpValidator(signUpForm.value, 0)"></ion-input>
+        </ion-item>
+        <ion-item class="input-container">
+          <ion-label floating>密 码</ion-label>
+          <ion-input type="password" [(ngModel)]="signUpPassword" name="signUpPassword" (blur)="signUpValidator(signUpForm.value, 1)"></ion-input>
+        </ion-item>
+        <ion-item class="input-container">
+          <ion-label floating>确认密码</ion-label>
+          <ion-input type="password" [(ngModel)]="signUpConfirm" name="signUpConfirm" (blur)="signUpValidator(signUpForm.value, 2)"></ion-input>
+        </ion-item>
+        <div class="errorMessage">{{errorMessage}}</div>
+        <div class="normal-button-container" padding>
+          <button class="normal-button" ion-button (click)="signUpCheck(signUpForm.value)">注 册</button>
+        </div>
+      </form>
+    </div>
+  </ion-card>
+</ion-content>

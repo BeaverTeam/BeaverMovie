@@ -1,0 +1,33 @@
+page-home {
+  .movie-item {
+    padding-left: 0px !important;
+
+    .title {
+      font-size: 18px;
+      color: black;
+    }
+
+    .star {
+      color: #e09015;
+    }
+
+  }
+
+  .poster-container {
+    min-width: 72px !important;
+    margin: 16px 16px 16px 0px !important;
+
+    .poster {
+      width: 72px !important;
+      height: 96px !important;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      margin-right: 0px !important;
+    }
+  }
+
+  .first-poster-container {
+    margin-top: 0px !important;
+  }
+}
