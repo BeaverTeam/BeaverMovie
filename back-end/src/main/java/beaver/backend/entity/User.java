@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by parda on 2017/3/29.
@@ -19,6 +23,15 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<Order>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Ticket> tickets = new ArrayList<Ticket>();
+
+    @OneToMany(mappedBy = "user")
+    private List<MovieInvitation> movieInvitations = new ArrayList<MovieInvitation>();
 
     public User() { }
 

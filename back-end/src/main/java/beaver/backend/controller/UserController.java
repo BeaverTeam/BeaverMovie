@@ -29,8 +29,9 @@ public class UserController {
 //        System.out.println(request.getEncryptedPassword());
 
         Validator validator = new Validator();
-        if(!validator.isUsername(request.getUsername()) || !validator.isEncryptedPassword(request.getEncryptedPassword()))
+        if(!validator.isUsername(request.getUsername()) || !validator.isEncryptedPassword(request.getEncryptedPassword())) {
             return new SignResult(false, -1);
+        }
 
         User u = new User(request.getUsername(), request.getEncryptedPassword());
         try {
@@ -38,6 +39,7 @@ public class UserController {
         } catch (Exception e) {
             return new SignResult(false, -1);
         }
+
         return new SignResult(true, u.getId());
     }
 
