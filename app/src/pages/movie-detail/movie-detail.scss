@@ -1,0 +1,57 @@
+page-movie-detail {
+
+  .movie-info-container {
+    height: 251px;
+
+    .bgimg {
+      height: 251px;
+      background-size: cover;
+      overflow: hidden;
+      background-position: center;
+      filter: brightness(60%) blur(30px);
+      -webkit-filter: brightness(60%) blur(30px);
+      -moz-filter: brightness(60%) blur(30px);
+      -ms-filter: brightness(60%) blur(30px);
+    }
+
+    .movie-detail-container {
+      position: absolute;
+      top: 0px;
+      padding: 20px;
+      width: 100%;
+
+      .poster {
+        height: 209px;
+        width: 150px;
+        background-size: 150px 209px;
+        background-repeat: no-repeat;
+        border: 1px solid white;
+        display: inline-block;
+      }
+
+      .movie-detail {
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 20px;
+        color: white;
+
+        .title {
+          font-size: 24px;
+        }
+
+        .original_title {
+          padding: 6px 0px 24px 0px;
+        }
+
+        .rating {
+          padding-top: 8px;
+
+          .stars {
+            color: #ff9800;
+          }
+        }
+
+      }
+    }
+  }
+}

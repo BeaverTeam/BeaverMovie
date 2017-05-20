@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>电影详情</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="movie-info-container">
+    <div class="bgimg" [style.background-image]="'url(' + movie.images.large + ')'"></div>
+    <div class="movie-detail-container">
+      <div class="poster" [style.background-image]="'url(' + movie.images.large + ')'"></div>
+      <div class="movie-detail">
+        <div class="title">{{movie.title}}</div>
+        <div class="original_title" *ngIf="movie.title != movie.original_title">{{movie.original_title}}</div>
+        <!-- <div class="date">{{movie.mainland_pubdate}}</div> -->
+        <div class="genres">{{movie.genres}}</div>
+        <!-- <div>{{movie.countries}}[{{movie.languages}}]/{{movie.durations}}</div> -->
+        <div class="rating">
+          <span class="stars" *ngFor="let star of stars">
+            <ion-icon name="star" *ngIf="star == 2"></ion-icon>
+            <ion-icon name="star-half" *ngIf="star == 1"></ion-icon>
+            <ion-icon name="star-outline" *ngIf="star == 0"></ion-icon>
+          </span>
+          {{movie.rating.average}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actor-info-container">
+  </div>
+</ion-content>
