@@ -1,10 +1,10 @@
 page-movie-detail {
 
   .movie-info-container {
-    height: 251px;
+    height: 59vw;
 
     .bgimg {
-      height: 251px;
+      height: 59vw;
       background-size: cover;
       overflow: hidden;
       background-position: center;
@@ -17,26 +17,28 @@ page-movie-detail {
     .movie-detail-container {
       position: absolute;
       top: 0px;
-      padding: 20px;
+      padding: 5vw;
+      height: 59vw;
       width: 100%;
 
       .poster {
-        height: 209px;
-        width: 150px;
-        background-size: 150px 209px;
+        height: 49vw;
+        width: 35vw;
+        background-size: 35vw 49vw;
         background-repeat: no-repeat;
         border: 1px solid white;
         display: inline-block;
       }
 
       .movie-detail {
+        width: 45vw;
         display: inline-block;
         vertical-align: top;
-        padding-left: 20px;
+        padding-left: 5vw;
         color: white;
 
         .title {
-          font-size: 24px;
+          font-size: 22px;
         }
 
         .original_title {

@@ -15,7 +15,7 @@
         <!-- <div class="date">{{movie.mainland_pubdate}}</div> -->
         <div class="genres">{{movie.genres}}</div>
         <!-- <div>{{movie.countries}}[{{movie.languages}}]/{{movie.durations}}</div> -->
-        <div class="rating">
+        <div class="rating" *ngIf="movie.rating.average != 0">
           <span class="stars" *ngFor="let star of stars">
             <ion-icon name="star" *ngIf="star == 2"></ion-icon>
             <ion-icon name="star-half" *ngIf="star == 1"></ion-icon>
