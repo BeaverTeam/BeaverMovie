@@ -37,7 +37,7 @@
 <type label="SET" quote="" sql="SET" length="1"/>
 <type label="Bit" quote="" sql="bit" length="0"/>
 </group>
-</datatypes><table x="206" y="193" name="User">
+</datatypes><table x="47" y="290" name="User">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -45,7 +45,11 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Order" row="id" />
 </row>
-<row name="movieInvitation_id" null="1" autoincrement="0">
+<row name="postMovieInvitation_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="MovieInvitation" row="id" />
+</row>
+<row name="receiveMovieInvitation_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="MovieInvitation" row="id" />
 </row>
@@ -57,7 +61,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="520" y="185" name="Order">
+<table x="453" y="476" name="Order">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -87,21 +91,13 @@
 <part>id</part>
 </key>
 </table>
-<table x="179" y="567" name="Ticket">
+<table x="146" y="601" name="Ticket">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="User" row="id" />
-</row>
 <row name="order_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Order" row="id" />
-</row>
-<row name="movieSession_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="MovieSession" row="id" />
 </row>
 <row name="seatNum" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -109,20 +105,17 @@
 <row name="cost" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="isPaid" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="479" y="411" name="MovieInvitation">
+<table x="729" y="262" name="MovieInvitation">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
+<row name="movieSession_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="User" row="id" />
+<default>NULL</default><relation table="MovieSession" row="id" />
 </row>
 <row name="order_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -131,31 +124,17 @@
 <row name="cost" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="isAck" null="1" autoincrement="0">
-<datatype>TINYINT</datatype>
-<default>NULL</default></row>
-<row name="isPaid" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="isReturned" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="939" y="529" name="MovieSession">
+<table x="1034" y="534" name="MovieSession">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="movieItem_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="MovieItem" row="id" />
-</row>
-<row name="ticket_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Ticket" row="id" />
-</row>
+<default>NULL</default></row>
 <row name="startTime" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
@@ -169,7 +148,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="554" y="725" name="Cinema">
+<table x="541" y="728" name="Cinema">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -181,7 +160,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1001" y="728" name="Movie">
+<table x="1031" y="733" name="Movie">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -208,7 +187,6 @@
 <row name="movieSession_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="MovieSession" row="id" />
-<relation table="MovieSession" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
