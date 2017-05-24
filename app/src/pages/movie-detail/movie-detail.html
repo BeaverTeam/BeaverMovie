@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="movie-info-container">
+  <ion-scroll scrollY="true" class="movie-info-container">
     <div class="bg-img" [style.background-image]="'url(' + movie.images.large + ')'"></div>
     <div class="movie-detail-container">
       <div class="poster" [style.background-image]="'url(' + movie.images.large + ')'"></div>
@@ -26,6 +26,6 @@
       </div>
     </div>
     <div class="actor-info-container"></div>
-  </div>
+  </ion-scroll>
   <div class="buy-ticket-button">立即购票</div>
 </ion-content>
