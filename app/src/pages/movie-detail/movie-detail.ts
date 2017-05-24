@@ -19,7 +19,6 @@ export class MovieDetailPage {
     if (Math.round(this.movie.rating.average) % 2) this.stars.push(1);
     // 补空星星
     while (this.stars.length < 5) this.stars.push(0);
-    console.log(this.stars);
   }
 
 }
