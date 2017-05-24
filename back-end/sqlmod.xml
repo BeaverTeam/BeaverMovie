@@ -41,9 +41,19 @@
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="username" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="password" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <row name="order_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Order" row="id" />
+</row>
+<row name="ticket_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Ticket" row="id" />
 </row>
 <row name="postMovieInvitation_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -52,10 +62,6 @@
 <row name="receiveMovieInvitation_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="MovieInvitation" row="id" />
-</row>
-<row name="ticket_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Ticket" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -117,13 +123,18 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="MovieSession" row="id" />
 </row>
+<row name="poster_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="User" row="id" />
+</row>
+<row name="receiver_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="User" row="id" />
+</row>
 <row name="order_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Order" row="id" />
 </row>
-<row name="cost" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -193,4 +204,3 @@
 </key>
 </table>
 </sql>
-
