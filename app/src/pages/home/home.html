@@ -25,6 +25,9 @@
         <span class="rate-val">{{movie.rating.average}}</span>
       </div>
       <div class="no-rate" *ngIf="movie.rating.average == 0">暂无评分</div>
+      <div class="genres">
+        <span *ngFor="let genre of movie.genres">{{genre}} </span>
+      </div>
     </button>
   </div>
 </ion-content>

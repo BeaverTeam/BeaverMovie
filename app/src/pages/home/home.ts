@@ -15,6 +15,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public theaterService: TheaterService) {
     this.movies = this.theaterService.getMovies();
 
+    // 将评分转换成星星
     for (let movie of this.movies) {
       let stars: any[] = [0, 0, 0, 0, 0];
       // 计算全星星的数目

@@ -11,9 +11,11 @@
       <div class="poster" [style.background-image]="'url(' + movie.images.large + ')'"></div>
       <div class="movie-detail">
         <div class="title">{{movie.title}}</div>
-        <div class="original_title" *ngIf="movie.title != movie.original_title">{{movie.original_title}}</div>
+        <div class="original-title" *ngIf="movie.title != movie.original_title">{{movie.original_title}}</div>
         <!-- <div class="date">{{movie.mainland_pubdate}}</div> -->
-        <div class="genres">{{movie.genres}}</div>
+        <div class="genres">
+          <span *ngFor="let genre of movie.genres">{{genre}} </span>
+        </div>
         <!-- <div>{{movie.countries}}[{{movie.languages}}]/{{movie.durations}}</div> -->
         <div class="rating" *ngIf="movie.rating.average != 0">
           <span class="stars" *ngFor="let star of stars">
