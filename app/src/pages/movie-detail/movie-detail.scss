@@ -4,7 +4,7 @@ page-movie-detail {
     height: 100%;
 
     .bg-img {
-      height: 59vw;
+      height: 60vw;
       background-size: cover;
       overflow: hidden;
       background-position: center;
@@ -18,13 +18,13 @@ page-movie-detail {
       position: absolute;
       top: 0px;
       padding: 5vw;
-      height: 59vw;
+      height: 60vw;
       width: 100%;
 
       .poster {
-        height: 49vw;
+        height: 50vw;
         width: 35vw;
-        background-size: 35vw 49vw;
+        background-size: 35vw 50vw;
         background-repeat: no-repeat;
         border: 1px solid white;
         display: inline-block;
@@ -60,8 +60,23 @@ page-movie-detail {
       }
     }
 
-    .actor-info-container {
-      height: 700px;
+    .cast-info-container {
+      padding: 12px 16px;
+      background-color: #f5f5f5;
+
+      .cast {
+        width: 52px;
+        display: inline-block;
+        margin-right: 12px;
+
+        .cast-avatar {
+          height: 52px;
+          border-radius: 26px;
+          background-size: cover;
+          overflow: hidden;
+          background-position: center;
+        }
+      }
     }
   }
 

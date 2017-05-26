@@ -12,11 +12,9 @@
       <div class="movie-detail">
         <div class="title">{{movie.title}}</div>
         <div class="original-title" *ngIf="movie.title != movie.original_title">{{movie.original_title}}</div>
-        <!-- <div class="date">{{movie.mainland_pubdate}}</div> -->
         <div class="genres">
           <span *ngFor="let genre of movie.genres">{{genre}} </span>
         </div>
-        <!-- <div>{{movie.countries}}[{{movie.languages}}]/{{movie.durations}}</div> -->
         <div class="rating" *ngIf="movie.rating.average != 0">
           <span class="stars" *ngFor="let star of stars">
             <ion-icon name="star" *ngIf="star == 2"></ion-icon>
@@ -27,7 +25,14 @@
         </div>
       </div>
     </div>
-    <div class="actor-info-container"></div>
+    <div class="cast-info-container">
+      <div class="cast" *ngFor="let director of movie.directors">
+        <div class="cast-avatar" [style.background-image]="'url(' + director.avatars.medium + ')'"></div>
+      </div>
+      <div class="cast" *ngFor="let cast of movie.casts">
+        <div class="cast-avatar" [style.background-image]="'url(' + cast.avatars.medium + ')'"></div>
+      </div>
+    </div>
   </ion-scroll>
   <div class="buy-ticket-button">立即购票</div>
 </ion-content>
