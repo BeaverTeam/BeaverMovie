@@ -10,6 +10,7 @@ import { TheaterService } from '../../providers/theater/theater.service';
 export class MovieDetailPage {
   movie: any;
   stars: any[] = [0, 0, 0, 0, 0];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService) {
     this.movie = this.theaterService.getMovie(this.navParams.get('movieName'));

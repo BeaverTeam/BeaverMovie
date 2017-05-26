@@ -14,6 +14,17 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService) {
     this.movies = this.theaterService.getMovies();
+
+    for (let movie of this.movies) {
+      let stars: any[] = [0, 0, 0, 0, 0];
+      // 计算全星星的数目
+      stars = Array(Math.floor(Math.round(movie.rating.average) / 2)).fill(2);
+      // 计算半星星的数目
+      if (Math.round(movie.rating.average) % 2) stars.push(1);
+      // 补空星星
+      while (stars.length < 5) stars.push(0);
+      movie.stars = stars;
+    }
   }
 
   // 前往消息中心

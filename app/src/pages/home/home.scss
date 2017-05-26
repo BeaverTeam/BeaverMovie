@@ -1,21 +1,36 @@
 page-home {
   .movie-item {
-    padding-left: 0px !important;
+    padding: 16px 0px 0px 0px !important;
 
     .title {
       font-size: 18px;
       color: black;
     }
 
-    .star {
+    .rate {
       color: #e09015;
+      font-size: 12px;
+      padding-top: 4px;
+
+      .stars {
+        color: #ff9800;
+      }
+
+      .rate-val {
+        padding-left: 8px;
+      }
     }
 
+    .no-rate {
+      color: #757575;
+      font-size: 12px;
+      padding-top: 4px;
+    }
   }
 
   .poster-container {
     min-width: 72px !important;
-    margin: 16px 16px 16px 0px !important;
+    margin: 0px 16px !important;
 
     .poster {
       width: 72px !important;
@@ -24,10 +39,7 @@ page-home {
       background-position: center center;
       background-size: cover;
       margin-right: 0px !important;
+      margin-bottom: 16px !important;
     }
-  }
-
-  .first-poster-container {
-    margin-top: 0px !important;
   }
 }

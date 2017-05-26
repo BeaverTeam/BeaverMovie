@@ -9,15 +9,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div *ngFor="let movie of movies; let i = index">
     <button ion-item class="movie-item" (click)="gotoDetail(i)">
-      <div class="poster-container" [class.first-poster-container]="i == 0" item-left>
+      <div class="poster-container" item-left>
         <div class="poster" [style.background-image]="'url(' + movie.images.medium + ')'"></div>
       </div>
       <div class="title">{{movie.title}}</div>
-      <div class="star" *ngIf="movie.rating.average > 0">{{movie.rating.average}}</div>
-      <div *ngIf="movie.rating.average == 0">暂无评分</div>
+      <div class="rate" *ngIf="movie.rating.average > 0">
+        <span class="stars" *ngFor="let star of movie.stars">
+          <ion-icon name="star" *ngIf="star == 2"></ion-icon>
+          <ion-icon name="star-half" *ngIf="star == 1"></ion-icon>
+          <ion-icon name="star-outline" *ngIf="star == 0"></ion-icon>
+        </span>
+        <span class="rate-val">{{movie.rating.average}}</span>
+      </div>
+      <div class="no-rate" *ngIf="movie.rating.average == 0">暂无评分</div>
     </button>
   </div>
 </ion-content>
