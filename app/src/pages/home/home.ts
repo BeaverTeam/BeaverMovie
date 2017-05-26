@@ -30,7 +30,7 @@ export class HomePage {
 
   // 前往消息中心
   gotoNotes() {
-
+    // TODO 页面跳转
   }
 
   // 前往电影详情页面
@@ -38,5 +38,9 @@ export class HomePage {
     this.navCtrl.push(MovieDetailPage, {movieName: this.movies[index].title});
   }
 
+  // 前往购票页面
+  buyTicket(index) {
+    // TODO 页面跳转
+  }
 
 }

@@ -28,6 +28,7 @@
       <div class="genres">
         <span *ngFor="let genre of movie.genres">{{genre}} </span>
       </div>
+      <button ion-button item-right class="normal-button" (click)="buyTicket(i); $event.stopPropagation()">购 票</button>
     </button>
   </div>
 </ion-content>
