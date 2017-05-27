@@ -7,6 +7,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import java.util.Arrays;
 
 /**
  * Created by parda on 2017/4/8.
@@ -21,7 +22,7 @@ public class HeaderModifierAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        response.getHeaders().add("dummy-header","dummy-value");
+        response.getHeaders().setAccessControlExposeHeaders(Arrays.asList("*"));
         return body;
     }
 }

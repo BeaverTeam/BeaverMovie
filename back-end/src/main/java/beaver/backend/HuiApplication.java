@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.session.data.mongo.JdkMongoSessionConverter;
 import org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -33,5 +34,10 @@ public class HuiApplication {
 						.allowedOrigins("*");
 			}
 		};
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 }

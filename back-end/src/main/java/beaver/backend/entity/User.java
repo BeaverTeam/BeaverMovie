@@ -24,15 +24,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders = new ArrayList<Order>();
-
-    @OneToMany(mappedBy = "user")
-    private List<Ticket> tickets = new ArrayList<Ticket>();
-
-    @OneToMany(mappedBy = "user")
-    private List<MovieInvitation> movieInvitations = new ArrayList<MovieInvitation>();
-
     public User() { }
 
     public User(String username, String password) {
