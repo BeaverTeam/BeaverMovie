@@ -1,6 +1,7 @@
 package beaver.backend.controller;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -22,7 +23,8 @@ public class HeaderModifierAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        response.getHeaders().setAccessControlExposeHeaders(Arrays.asList("*"));
+        response.getHeaders().setAccessControlExposeHeaders(Arrays.asList(HttpHeaders.SET_COOKIE));
+        response.getHeaders().setAccessControlAllowHeaders(Arrays.asList(HttpHeaders.SET_COOKIE, HttpHeaders.CONTENT_TYPE, HttpHeaders.ORIGIN, HttpHeaders.ACCEPT, HttpHeaders.AUTHORIZATION));
         return body;
     }
 }
