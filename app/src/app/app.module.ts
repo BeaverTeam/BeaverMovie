@@ -15,6 +15,7 @@ import { HistoryPage } from '../pages//history/history';
 import { RecommendPage } from '../pages/recommend/recommend';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
+import { BuyTicketPage } from '../pages/buy-ticket/buy-ticket';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -30,7 +31,8 @@ import { UserService } from '../providers/user/user.service';
     HistoryPage,
     ContactPage,
     SettingPage,
-    TabsPage
+    TabsPage,
+    BuyTicketPage
   ],
   imports: [
     HttpModule,
@@ -48,7 +50,8 @@ import { UserService } from '../providers/user/user.service';
     HistoryPage,
     ContactPage,
     SettingPage,
-    TabsPage
+    TabsPage,
+    BuyTicketPage
   ],
   providers: [
     AuthService,
