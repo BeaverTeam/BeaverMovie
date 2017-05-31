@@ -13,7 +13,7 @@ public class Validator {
     }
 
     public static boolean isEncryptedPassword(String str) {
-        String regex = "^[A-Za-z0-9]{16}$"; //MD5 regex
+        String regex = "^[A-Za-z0-9]{32}$"; //MD5 regex
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();

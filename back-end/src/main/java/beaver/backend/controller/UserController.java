@@ -33,8 +33,7 @@ public class UserController {
     @RequestMapping("/sign-up")
     public ResponseEntity signUp(@RequestBody SignRequest request) throws BadRequest, DuplicatedUserName, Exception {
 
-        Validator validator = new Validator();
-        if(!validator.isUsername(request.getUsername()) || !validator.isEncryptedPassword(request.getEncryptedPassword())) {
+        if(!Validator.isUsername(request.getUsername()) || !Validator.isEncryptedPassword(request.getEncryptedPassword())) {
             throw new BadRequest("Request not valid");
         } else if (userRepository.findByUsername(request.getUsername()) != null) {
             throw new DuplicatedUserName();
