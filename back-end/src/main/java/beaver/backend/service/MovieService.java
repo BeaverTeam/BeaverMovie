@@ -1,8 +1,10 @@
 package beaver.backend.service;
 
 import beaver.backend.entity.Movie;
+import beaver.backend.entity.responseType.Info;
 import beaver.backend.entity.responseType.ResponseMovies;
 import beaver.backend.repository.MovieRepository;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -43,8 +46,9 @@ public class MovieService {
         return null;
     }
 
-    public Optional<Movie> getMovie(long id) {
-        return Optional.of(movieRepository.findOne(id));
+    public ResponseEntity getMovie(long id) {
+        return restTemplate.exchange("http://localhost:3000/movieItem/{id}", HttpMethod.GET,
+                null, Map.class, id);
     }
 
     public List<Movie> getLastest(final int startNum) {
