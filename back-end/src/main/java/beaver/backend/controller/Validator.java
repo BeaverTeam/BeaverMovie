@@ -9,6 +9,7 @@ public class Validator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
+//        return true;
     }
 
     public static boolean isEncryptedPassword(String str) {
@@ -16,5 +17,6 @@ public class Validator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
+//        return true;
     }
 }

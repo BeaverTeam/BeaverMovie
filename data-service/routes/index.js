@@ -21,8 +21,8 @@ router.get('/', (req, res, next) => {
     .then(body => {
       movies = [];
       body.subjects.forEach(function(element) {
-        let temp = "";
-        for (let genre of element.genres)
+        var temp = "";
+        for (var genre of element.genres)
           temp += genre + " ";
 
         movies.push({

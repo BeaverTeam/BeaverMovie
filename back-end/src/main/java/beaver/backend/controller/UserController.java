@@ -4,8 +4,14 @@ import beaver.backend.controller.Validator;
 import beaver.backend.entity.User;
 import beaver.backend.entity.requestType.SignRequest;
 import beaver.backend.entity.responseType.SignResult;
+import beaver.backend.exception.BadRequest;
+import beaver.backend.exception.DuplicatedUserName;
+import beaver.backend.exception.NotLogin;
+import beaver.backend.exception.UserNotFound;
 import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,37 +31,36 @@ public class UserController {
     UserRepository userRepository;
 
     @RequestMapping("/sign-up")
-    public SignResult signUp(@RequestBody SignRequest request) {
-//        System.out.println(request.getEncryptedPassword());
+    public ResponseEntity signUp(@RequestBody SignRequest request) throws BadRequest, DuplicatedUserName, Exception {
 
         Validator validator = new Validator();
         if(!validator.isUsername(request.getUsername()) || !validator.isEncryptedPassword(request.getEncryptedPassword())) {
-            return new SignResult(false, -1);
+            throw new BadRequest("Request not valid");
+        } else if (userRepository.findByUsername(request.getUsername()) != null) {
+            throw new DuplicatedUserName();
         }
 
-        User u = new User(request.getUsername(), request.getEncryptedPassword());
-        try {
-            userRepository.save(u);
-        } catch (Exception e) {
-            return new SignResult(false, -1);
-        }
+        userRepository.save(new User(request.getUsername(), request.getEncryptedPassword()));
 
-        return new SignResult(true, u.getId());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping("/sign-in")
-    public SignResult signIn(@RequestBody SignRequest request, HttpSession session) {
+    public ResponseEntity signIn(@RequestBody SignRequest request, HttpSession session) throws UserNotFound, Exception {
         User u = userRepository.findByUsernameAndPassword(request.getUsername(), request.getEncryptedPassword());
         if (u == null)
-            return new SignResult(false, -1);
+            throw new UserNotFound();
 
         session.setMaxInactiveInterval(5 * 60);
         session.setAttribute("currentUser", u.getId());
-        return new SignResult(true, u.getId());
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping("/sign-out")
-    public void signOut(HttpSession session) {
+    public ResponseEntity signOut(HttpSession session) throws NotLogin, Exception {
+        if (session.getAttribute("currentUser") == null)
+            throw new NotLogin();
         session.invalidate();
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
