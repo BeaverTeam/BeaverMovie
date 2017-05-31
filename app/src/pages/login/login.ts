@@ -26,9 +26,8 @@ export class LoginPage {
           let loading = loadingCtrl.create({content: '正在加载...'});
           loading.present();
           // 尝试登录
-          authService.signIn(val.username, val.password).subscribe(raw => {
-            let data = raw.json();
-            if (data.success == true) {
+          authService.signIn(val.username, val.password).subscribe(data => {
+            if (data.status == 200) {
               loading.dismiss();
               this.navCtrl.push(TabsPage);
             } else {
@@ -64,9 +63,8 @@ export class LoginPage {
     let loading = this.loadingCtrl.create({content: '正在登录...'});
     loading.present();
     // 发往后端进行校验
-    this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(raw => {
-      let data = raw.json();
-      if (data.success == true) {
+    this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
+      if (data.status == 200) {
         loading.dismiss();
         this.navCtrl.push(TabsPage);
         // 将用户名等信息存储到本地
@@ -95,9 +93,8 @@ export class LoginPage {
     let loading = this.loadingCtrl.create({content: '正在注册...'});
     loading.present();
     // 发往后端进行校验
-    this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(raw => {
-      let data = raw.json();
-      if (data.success == true) {
+    this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
+      if (data.status == 200) {
         loading.dismiss();
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');

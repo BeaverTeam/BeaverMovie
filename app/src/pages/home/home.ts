@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
+import { BuyTicketPage } from '../buy-ticket/buy-ticket';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -40,7 +41,7 @@ export class HomePage {
 
   // 前往购票页面
   buyTicket(index) {
-    // TODO 页面跳转
+    this.navCtrl.push(BuyTicketPage, {movieName: this.movies[index].title});
   }
 
 }

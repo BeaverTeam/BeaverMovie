@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { BuyTicketPage } from '../buy-ticket/buy-ticket';
+
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -20,8 +22,10 @@ export class MovieDetailPage {
     if (Math.round(this.movie.rating.average) % 2) this.stars.push(1);
     // 补空星星
     while (this.stars.length < 5) this.stars.push(0);
+  }
 
-    console.log(this.movie);
+  gotoBuyTicket() {
+    this.navCtrl.push(BuyTicketPage, {movieName: this.movie.title});
   }
 
 }
