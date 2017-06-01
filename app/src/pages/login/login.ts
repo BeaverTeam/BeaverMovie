@@ -27,11 +27,12 @@ export class LoginPage {
           loading.present();
           // 尝试登录
           authService.signIn(val.username, val.password).subscribe(data => {
-            if (data.status == 200) {
+            if (data.state == 'success') {
               loading.dismiss();
               this.navCtrl.push(TabsPage);
             } else {
               loading.dismiss();
+              this.errorMessage = data.message;
               storage.remove('user');
             }
           });
@@ -64,7 +65,7 @@ export class LoginPage {
     loading.present();
     // 发往后端进行校验
     this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
-      if (data.status == 200) {
+      if (data.state == 'success') {
         loading.dismiss();
         this.navCtrl.push(TabsPage);
         // 将用户名等信息存储到本地
@@ -74,7 +75,7 @@ export class LoginPage {
         });
       } else {
         loading.dismiss();
-        this.errorMessage = '登录失败，请检查用户名和密码';
+        this.errorMessage = data.message;
       }
     });
   }
@@ -94,13 +95,13 @@ export class LoginPage {
     loading.present();
     // 发往后端进行校验
     this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
-      if (data.status == 200) {
+      if (data.state == 'success') {
         loading.dismiss();
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
       } else {
         loading.dismiss();
-        this.errorMessage = '该用户已经存在，请更换用户名或直接登录';
+        this.errorMessage = data.message;
       }
     });
   }

@@ -29,7 +29,8 @@ export class AuthService {
     return this.http.post(this.global.serverUrl + '/api/sign-up',
                           {username: username,
                            encryptedPassword: encryptedPassword},
-                          options);
+                          options)
+                    .map(res => res.json());
   }
 
   // 登录
@@ -41,7 +42,8 @@ export class AuthService {
     return this.http.post(this.global.serverUrl + '/api/sign-in',
                           {username: username,
                            encryptedPassword: encryptedPassword},
-                          options);
+                          options)
+                    .map(res => res.json());
   }
 
   // 登出
