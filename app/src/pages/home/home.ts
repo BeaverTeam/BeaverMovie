@@ -55,7 +55,8 @@ export class HomePage {
 
   // 前往购票页面
   buyTicket(index) {
-    this.navCtrl.push(BuyTicketPage, {movieId: this.movies[index].id});
+    this.navCtrl.push(BuyTicketPage, {movieId: this.movies[index].id,
+                                      movieTitle: this.movies[index].title});
   }
 
   // 监控滚动，获取更多电影

@@ -35,7 +35,8 @@ export class MovieDetailPage {
   }
 
   gotoBuyTicket() {
-    this.navCtrl.push(BuyTicketPage, {movieName: this.movie.title});
+    this.navCtrl.push(BuyTicketPage, {movieId: this.movie.id,
+                                      movieTitle: this.movie.title});
   }
 
 }
