@@ -8,11 +8,12 @@ import { TheaterService } from '../../providers/theater/theater.service';
   templateUrl: 'buy-ticket.html',
 })
 export class BuyTicketPage {
-  movie: any;
+  title: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService) {
-    this.movie = this.theaterService.getMovie(this.navParams.get('movieName'));
+    console.log(this.navParams.get('movieId'), this.navParams.get('movieTitle'));
+    this.title = this.navParams.get('movieTitle');
   }
 
 }
