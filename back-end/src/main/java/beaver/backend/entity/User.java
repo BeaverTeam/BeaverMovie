@@ -1,5 +1,7 @@
 package beaver.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.HashSet;
@@ -22,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    private String avater;
+    private String phone;
+
 //    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
 //    private Set<Order> orders = new HashSet<>();
 
@@ -32,7 +37,23 @@ public class User {
         this.password = password;
     }
 
-//    public Set<Order> getOrders() {
+    public String getAvater() {
+        return avater;
+    }
+
+    public void setAvater(String avater) {
+        this.avater = avater;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    //    public Set<Order> getOrders() {
 //        return orders;
 //    }
 //
