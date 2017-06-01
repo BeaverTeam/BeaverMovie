@@ -13,6 +13,11 @@ page-home {
     right: -5px;
   }
 
+  .scroller {
+    height: 100%;
+    overflow: scroll;
+  }
+
   .movie-item {
     padding: 16px 0px 0px 0px !important;
 

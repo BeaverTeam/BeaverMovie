@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-scroll scrollY="true" class="movie-info-container">
+  <ion-scroll scrollY="true" class="movie-info-container" *ngIf="movie">
     <div class="bg-img" [style.background-image]="'url(' + movie.images.large + ')'"></div>
     <div class="movie-detail-container">
       <div class="poster" [style.background-image]="'url(' + movie.images.large + ')'"></div>
@@ -39,9 +39,12 @@
         </div>
       </div>
     </div>
+    <div class="divider"></div>
     <div class="discribe-container">
       <div class="title">剧情简介</div>
+      <div class="summary">{{movie.summary}}</div>
     </div>
+    <div class="place-holder"></div>
   </ion-scroll>
   <div class="buy-ticket-button" (click)="gotoBuyTicket()">立即购票</div>
 </ion-content>

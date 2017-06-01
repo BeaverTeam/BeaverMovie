@@ -27,11 +27,10 @@ export class LoginPage {
           loading.present();
           // 尝试登录
           authService.signIn(val.username, val.password).subscribe(data => {
+            loading.dismiss();
             if (data.state == 'success') {
-              loading.dismiss();
               this.navCtrl.push(TabsPage);
             } else {
-              loading.dismiss();
               this.errorMessage = data.message;
               storage.remove('user');
             }
@@ -65,8 +64,8 @@ export class LoginPage {
     loading.present();
     // 发往后端进行校验
     this.authService.signIn(formData.signInUsername, formData.signInPassword).subscribe(data => {
+      loading.dismiss();
       if (data.state == 'success') {
-        loading.dismiss();
         this.navCtrl.push(TabsPage);
         // 将用户名等信息存储到本地
         this.storage.ready().then(() => {
@@ -74,7 +73,6 @@ export class LoginPage {
                                     password: formData.signInPassword});
         });
       } else {
-        loading.dismiss();
         this.errorMessage = data.message;
       }
     });
@@ -95,12 +93,11 @@ export class LoginPage {
     loading.present();
     // 发往后端进行校验
     this.authService.signUp(formData.signUpUsername, formData.signUpPassword).subscribe(data => {
+      loading.dismiss();
       if (data.state == 'success') {
-        loading.dismiss();
         this.gotoLogin();
         this.presentToast('注册成功，请登录账号');
       } else {
-        loading.dismiss();
         this.errorMessage = data.message;
       }
     });
