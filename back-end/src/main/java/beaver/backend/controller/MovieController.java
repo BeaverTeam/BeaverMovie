@@ -3,6 +3,7 @@ package beaver.backend.controller;
 import beaver.backend.entity.Movie;
 import beaver.backend.entity.responseType.Info;
 import beaver.backend.exception.BadRequest;
+import beaver.backend.repository.CinemaRepository;
 import beaver.backend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public ResponseEntity getMovie(@PathVariable long id) {
-         return movieService.getMovie(id);
+         return movieService.getMovieDetail(id);
     }
 
     @GetMapping("/lastest/{page}")
@@ -39,5 +40,10 @@ public class MovieController {
         if (page <= 0)
             throw new BadRequest("Request not valid");
         return new ResponseEntity<Info>(new Info<>("success", "Retrive Success", movieService.getLastest((page - 1) * 10)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/showtimes/{page}")
+    public ResponseEntity<Info> getShowtimes(@PathVariable int id, @PathVariable int page) throws Exception {
+        return new ResponseEntity<Info>(new Info("success", "Retrive Showtimes", movieService.getShowtimes(id, (page - 1)*10)), HttpStatus.OK);
     }
 }

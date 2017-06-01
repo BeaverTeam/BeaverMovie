@@ -1,13 +1,13 @@
 package beaver.backend.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Created by on 2017/5/20.
@@ -22,6 +22,10 @@ public class Movie {
     private String title;
     private String original_title;
     private String image;
+
+    @OneToMany(mappedBy = "movie")
+    @JsonIgnore
+    private Set<Showtime> showtimes = new HashSet<>();
 
     public Movie() { }
 
@@ -71,5 +75,13 @@ public class Movie {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Set<Showtime> getShowtimes() {
+        return showtimes;
+    }
+
+    public void setShowtimes(Set<Showtime> showtimes) {
+        this.showtimes = showtimes;
     }
 }
