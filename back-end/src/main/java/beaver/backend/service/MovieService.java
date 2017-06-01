@@ -59,7 +59,7 @@ public class MovieService {
                 });
         return list.stream()
                 .skip(startNum)
-                .limit(5)
+                .limit(10)
                 .collect(Collectors.toList());
     }
 }

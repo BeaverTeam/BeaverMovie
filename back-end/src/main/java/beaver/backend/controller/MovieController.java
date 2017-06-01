@@ -38,6 +38,6 @@ public class MovieController {
     public ResponseEntity<Info> getLastestMovies(@PathVariable int page) throws BadRequest {
         if (page <= 0)
             throw new BadRequest("Request not valid");
-        return new ResponseEntity<Info>(new Info<>("success", "Retrive Success", movieService.getLastest((page - 1) * 5)), HttpStatus.OK);
+        return new ResponseEntity<Info>(new Info<>("success", "Retrive Success", movieService.getLastest((page - 1) * 10)), HttpStatus.OK);
     }
 }
