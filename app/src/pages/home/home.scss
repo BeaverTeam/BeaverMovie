@@ -1,4 +1,18 @@
 page-home {
+  .badge {
+    height: 20px;
+    min-width: 20px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+
   .movie-item {
     padding: 16px 0px 0px 0px !important;
 

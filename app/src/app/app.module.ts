@@ -16,6 +16,7 @@ import { RecommendPage } from '../pages/recommend/recommend';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BuyTicketPage } from '../pages/buy-ticket/buy-ticket';
+import { NotePage } from '../pages/note/note';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -32,7 +33,8 @@ import { UserService } from '../providers/user/user.service';
     ContactPage,
     SettingPage,
     TabsPage,
-    BuyTicketPage
+    BuyTicketPage,
+    NotePage
   ],
   imports: [
     HttpModule,
@@ -51,7 +53,8 @@ import { UserService } from '../providers/user/user.service';
     ContactPage,
     SettingPage,
     TabsPage,
-    BuyTicketPage
+    BuyTicketPage,
+    NotePage
   ],
   providers: [
     AuthService,

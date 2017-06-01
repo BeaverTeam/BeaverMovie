@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { BuyTicketPage } from '../buy-ticket/buy-ticket';
+import { NotePage } from '../note/note';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -12,6 +13,7 @@ import { TheaterService } from '../../providers/theater/theater.service';
 })
 export class HomePage {
   movies: any = [];
+  noteNum: string;
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService) {
     this.movies = this.theaterService.getMovies();
@@ -27,11 +29,12 @@ export class HomePage {
       while (stars.length < 5) stars.push(0);
       movie.stars = stars;
     }
+    this.noteNum = "5";
   }
 
   // 前往消息中心
   gotoNotes() {
-    // TODO 页面跳转
+    this.navCtrl.push(NotePage);
   }
 
   // 前往电影详情页面

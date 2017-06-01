@@ -1,9 +1,10 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="primary" padding-right>
     <ion-title>首页</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="gotoNotes()">
         <ion-icon name="notifications" color="text-primary"></ion-icon>
+        <div *ngIf ="noteNum != 0" class="badge">{{noteNum}}</div>
       </button>
     </ion-buttons>
   </ion-navbar>
