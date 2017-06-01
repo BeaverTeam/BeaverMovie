@@ -24,6 +24,9 @@ page-home {
     .title {
       font-size: 18px;
       color: black;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     .rate {
