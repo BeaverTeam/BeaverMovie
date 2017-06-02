@@ -1,6 +1,7 @@
 package beaver.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -28,8 +29,9 @@ public class Showtime {
     @JoinColumn(name="movie_id")
     private Movie movie;
 
-//    @OneToMany(mappedBy = "showtime", cascade = {CascadeType.ALL})
-//    private Set<Ticket> tickets = new HashSet<>();
+    @OneToMany(mappedBy = "showtime")
+    @JsonIgnore
+    private Set<Ticket> tickets = new HashSet<>();
 
     public Showtime() {
     }
@@ -72,11 +74,11 @@ public class Showtime {
         this.startTime = startTime;
     }
 
-//    public Set<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(Set<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 }

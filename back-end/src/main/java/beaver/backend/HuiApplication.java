@@ -26,7 +26,7 @@ public class HuiApplication {
 	@Bean
 	public CommandLineRunner runner(CinemaRepository cinemaRepository) {
 		return args -> {
-			Arrays.asList("大学城影院,科技中心影院,天河城影院".split(","))
+			Arrays.asList("大学城影院,科技中心影院,天河城影院,".split(","))
 					.forEach(name -> {
 						cinemaRepository.save(new Cinema(name, "xx街道xx号"));
 					});

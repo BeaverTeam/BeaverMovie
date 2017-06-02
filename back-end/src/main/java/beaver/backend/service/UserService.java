@@ -6,6 +6,8 @@ import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * Created by parda on 2017/6/2.
  */
@@ -13,6 +15,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+
+    public Optional<User> getOne(long id) {
+        return Optional.of(userRepository.findOne(id));
+    }
 
     public UserDetail getUserDetail(long id) {
         return new UserDetail(userRepository.findOne(id));

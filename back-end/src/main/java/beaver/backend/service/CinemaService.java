@@ -26,4 +26,12 @@ public class CinemaService {
                 .limit(10)
                 .collect(Collectors.toSet());
     }
+
+    public Set<Cinema> getCinemas(int startCount) {
+        return cinemaRepository.findAll()
+                .stream()
+                .skip(startCount)
+                .limit(10)
+                .collect(Collectors.toSet());
+    }
 }

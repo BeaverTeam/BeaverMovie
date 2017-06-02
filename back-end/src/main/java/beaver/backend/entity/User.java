@@ -27,8 +27,8 @@ public class User {
     private String avater;
     private String phone;
 
-//    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
-//    private Set<Order> orders = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    private Set<TicketOrder> orders = new HashSet<>();
 
     public User() { }
 
@@ -53,13 +53,13 @@ public class User {
         this.phone = phone;
     }
 
-    //    public Set<Order> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(Set<Order> orders) {
-//        this.orders = orders;
-//    }
+    public Set<TicketOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<TicketOrder> orders) {
+        this.orders = orders;
+    }
 
     public long getId() {
         return id;

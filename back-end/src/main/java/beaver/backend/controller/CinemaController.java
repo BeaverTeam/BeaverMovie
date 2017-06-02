@@ -19,14 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CinemaController {
 
     @Autowired
-    private CinemaRepository cinemaRepository;
-
-    @Autowired
     private CinemaService cinemaService;
 
-    @GetMapping
-    public ResponseEntity<Info> getCinemas() throws Exception {
-        return new ResponseEntity<Info>(new Info("success", "Get Cinema", cinemaRepository.findAll()), HttpStatus.OK);
+    @GetMapping("/all/{page}")
+    public ResponseEntity<Info> getCinemas(@PathVariable int page) throws Exception {
+        return new ResponseEntity<Info>(new Info("success", "Get Cinema", cinemaService.getCinemas((page - 1)*10)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/showtimes/{page}")

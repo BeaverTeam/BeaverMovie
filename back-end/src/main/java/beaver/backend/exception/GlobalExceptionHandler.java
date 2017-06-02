@@ -37,6 +37,11 @@ public class GlobalExceptionHandler {
         return new Info("failed", e.getMessage());
     }
 
+    @ExceptionHandler(SeatUnavaliable.class)
+    public Info seatUnavailable(HttpServletRequest req, SeatUnavaliable e) {
+        return new Info("failed", e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public Info unkownException(HttpServletRequest req) {
         return new Info("failed", "Unkown Failure");
