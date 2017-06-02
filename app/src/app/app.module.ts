@@ -10,13 +10,13 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
-import { ContactPage } from '../pages/contact/contact';
+import { ProfilePage } from '../pages/profile/profile';
 import { HistoryPage } from '../pages//history/history';
 import { RecommendPage } from '../pages/recommend/recommend';
 import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
-import { BuyTicketPage } from '../pages/buy-ticket/buy-ticket';
-import { NotePage } from '../pages/note/note';
+import { ShowtimePage } from '../pages/showtime/showtime';
+import { NotificationPage } from '../pages/notification/notification';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -30,11 +30,11 @@ import { UserService } from '../providers/user/user.service';
     MovieDetailPage,
     RecommendPage,
     HistoryPage,
-    ContactPage,
+    ProfilePage,
     SettingPage,
     TabsPage,
-    BuyTicketPage,
-    NotePage
+    ShowtimePage,
+    NotificationPage
   ],
   imports: [
     HttpModule,
@@ -50,11 +50,11 @@ import { UserService } from '../providers/user/user.service';
     MovieDetailPage,
     RecommendPage,
     HistoryPage,
-    ContactPage,
+    ProfilePage,
     SettingPage,
     TabsPage,
-    BuyTicketPage,
-    NotePage
+    ShowtimePage,
+    NotificationPage
   ],
   providers: [
     AuthService,

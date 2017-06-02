@@ -4,10 +4,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
-  selector: 'page-buy-ticket',
-  templateUrl: 'buy-ticket.html',
+  selector: 'page-showtime',
+  templateUrl: 'showtime.html',
 })
-export class BuyTicketPage {
+export class ShowtimePage {
   title: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

@@ -9,10 +9,10 @@ import { UserService } from '../../providers/user/user.service';
 import { User } from '../../providers/user/user';
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-profile',
+  templateUrl: 'profile.html'
 })
-export class ContactPage {
+export class ProfilePage {
   private user: User;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

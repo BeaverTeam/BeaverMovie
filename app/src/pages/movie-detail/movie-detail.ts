@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { BuyTicketPage } from '../buy-ticket/buy-ticket';
-
+import { ShowtimePage } from '../showtime/showtime';
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -35,8 +34,8 @@ export class MovieDetailPage {
   }
 
   gotoBuyTicket() {
-    this.navCtrl.push(BuyTicketPage, {movieId: this.movie.id,
-                                      movieTitle: this.movie.title});
+    this.navCtrl.push(ShowtimePage, {movieId: this.movie.id,
+                                     movieTitle: this.movie.title});
   }
 
 }

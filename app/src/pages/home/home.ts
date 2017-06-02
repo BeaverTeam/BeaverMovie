@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
-import { BuyTicketPage } from '../buy-ticket/buy-ticket';
-import { NotePage } from '../note/note';
+import { ShowtimePage } from '../showtime/showtime';
+import { NotificationPage } from '../notification/notification';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -14,11 +14,11 @@ import { TheaterService } from '../../providers/theater/theater.service';
 export class HomePage {
   movies: any = [];
   pageNum: number = 1;  // 当前获取的电影页数
-  noteNum: string;
+  notifNum: string;
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
               public loadingCtrl: LoadingController) {
-    this.noteNum = "5";
+    this.notifNum = "5";
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
@@ -44,8 +44,8 @@ export class HomePage {
   }
 
   // 前往消息中心
-  gotoNotes() {
-    this.navCtrl.push(NotePage);
+  gotoNotifications() {
+    this.navCtrl.push(NotificationPage);
   }
 
   // 前往电影详情页面
@@ -55,8 +55,8 @@ export class HomePage {
 
   // 前往购票页面
   buyTicket(index) {
-    this.navCtrl.push(BuyTicketPage, {movieId: this.movies[index].id,
-                                      movieTitle: this.movies[index].title});
+    this.navCtrl.push(ShowtimePage, {movieId: this.movies[index].id,
+                                     movieTitle: this.movies[index].title});
   }
 
   // 监控滚动，获取更多电影
