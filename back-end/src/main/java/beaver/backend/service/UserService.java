@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public boolean checkNameExist(String name) {
-        return userRepository.findByUsername(name) == null;
+        return userRepository.findByUsername(name) != null;
     }
 
     public String getName(long id) {

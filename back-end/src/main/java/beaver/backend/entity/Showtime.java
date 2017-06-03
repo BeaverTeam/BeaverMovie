@@ -25,6 +25,8 @@ public class Showtime {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
     private Date startTime;
 
+    private int cost = 30;
+
     @ManyToOne
     @JoinColumn(name="movie_id")
     private Movie movie;
@@ -80,5 +82,13 @@ public class Showtime {
 
     public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }
