@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
+import { Http, RequestOptions } from '@angular/http';
 
-import { User } from './user';
+import { Global } from '../global';
 
 @Injectable()
 export class UserService {
-  private user: User;
+  private global = new Global();
+  options: any = new RequestOptions({withCredentials: true});
 
-  constructor() {
-    // 在构造函数中创建假数据
-    this.user = new User('刘忍', '../../assets/images/avatar.jpg', '18826073587');
-  }
+  constructor(public http: Http) {}
 
   // 获取用户
   getUser() {
-    return this.user;
+    return this.http.get(this.global.serverUrl + '/user/get-user', this.options)
+                    .map(res => res.json());
+  }
+
+  // 更新用户
+  updateUser(user) {
+    console.log(user);
+    return this.http.post(this.global.serverUrl + '/user/update-user',
+                          {username: user.username,
+                           avatar: user.avatar,
+                           phone: user.phone},
+                          this.options)
+                    .map(res => res.json());
   }
 
 }

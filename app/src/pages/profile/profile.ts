@@ -13,12 +13,21 @@ import { User } from '../../providers/user/user';
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
-  private user: User;
+  user: User;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public appCtrl: App, public authService: AuthService,
               public userService: UserService) {
-    this.user = userService.getUser();
+    userService.getUser().subscribe((data) => {
+      if (data.state == 'success') {
+        let temp = data.data;
+        if (temp.avatar == null) temp.avatar = '../../assets/images/avatar.jpg';
+        if (temp.phone == null) temp.phone = '未设定手机';
+        this.user = new User(temp.username, temp.avatar, temp.phone);
+      } else {
+        // TODO 异常处理，未取回用户信息
+      }
+    });
   }
 
   gotoSetting() {

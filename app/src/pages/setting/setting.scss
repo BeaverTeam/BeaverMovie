@@ -40,9 +40,19 @@ page-setting {
       background-color: #fafafa !important;
     }
 
-    .signOut {
+    .bottom-line {
+      border-bottom: 1px solid #dddddd !important;
+      box-shadow: none !important;
+
+      .item-inner {
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    .update-button {
       text-align: center;
-      color: #f53d3d;
+      color: #2196f3;
     }
   }
 }
