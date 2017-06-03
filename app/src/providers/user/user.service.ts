@@ -18,7 +18,6 @@ export class UserService {
 
   // 更新用户
   updateUser(user) {
-    console.log(user);
     return this.http.post(this.global.serverUrl + '/user/update-user',
                           {username: user.username,
                            avatar: user.avatar,

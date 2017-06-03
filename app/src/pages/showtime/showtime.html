@@ -9,7 +9,7 @@
     <div>
       <ion-item>
         <ion-label>选择日期</ion-label>
-        <ion-datetime displayFormat="M 月 D 日" pickerFormat="YYYY M D" min="{{today}}" max="{{future}}" [(ngModel)]="today"></ion-datetime>
+        <ion-datetime displayFormat="M 月 D 日" pickerFormat="YYYY M D" min="{{today}}" max="{{future}}" [(ngModel)]="today" cancelText="取消" doneText="完成"></ion-datetime>
       </ion-item>
     </div>
     <div *ngFor="let showtime of showtimes; let i = index">
