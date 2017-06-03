@@ -10,12 +10,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-group class="bottom-line">
+  <ion-item-group class="bottom-line" *ngIf="user">
     <ion-item-divider>个人信息</ion-item-divider>
     <ion-list no-margin>
       <ion-item>
         <div class="user-info-container">
-          <div class="avatar" [style.background-image]="'url(' + user.avatarUrl + ')'"></div>
+          <div class="avatar" [style.background-image]="'url(' + user.avatar + ')'"></div>
           <div class="text-info-container">
             <div class="username">{{user.username}}</div>
             <div class="phone">{{user.phone}}</div>
@@ -34,7 +34,7 @@
   <ion-item-group class="bottom-line">
     <ion-item-divider></ion-item-divider>
     <ion-list no-margin>
-      <button ion-item class="signOut" (click)="gotoLogin()">退出登录</button>
+      <button ion-item class="sign-out" (click)="gotoLogin()">退出登录</button>
     </ion-list>
   </ion-item-group>
 </ion-content>

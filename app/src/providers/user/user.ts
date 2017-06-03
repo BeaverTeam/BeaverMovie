@@ -1,11 +1,11 @@
 export class User {
   username: string;
-  avatarUrl: string;
+  avatar: string;
   phone: string;
 
-  constructor(username: string, avatarUrl: string, phone: string) {
+  constructor(username: string, avatar: string, phone: string) {
     this.username = username;
-    this.avatarUrl = avatarUrl;
+    this.avatar = avatar;
     this.phone = phone;
   }
 

@@ -5,22 +5,30 @@
 </ion-header>
 
 <ion-content>
-  <input type="file" accept="image/*" id="user-avartar" class="image-input" (change)="avatarChange($event)">
-  <div class="avatar" [style.background-image]="'url(' + user.avatarUrl + ')'">
-    <label for="user-avartar" class="user-avartar-cover"></label>
-    <div class="avatar-hint">编 辑</div>
+  <div *ngIf="user">
+    <input type="file" accept="image/*" id="user-avartar" class="image-input" (change)="avatarChange($event)">
+    <div class="avatar" [style.background-image]="'url(' + user.avatar + ')'">
+      <label for="user-avartar" class="user-avartar-cover"></label>
+      <div class="avatar-hint">编 辑</div>
+    </div>
+    <ion-item-group>
+      <ion-item-divider>个人信息</ion-item-divider>
+      <ion-list>
+        <ion-item class="bottom-line">
+          <ion-label fixed>用户名</ion-label>
+          <ion-input type="text" [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+        <ion-item class="bottom-line">
+          <ion-label fixed>电话</ion-label>
+          <ion-input type="number" [(ngModel)]="user.phone"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-item-group>
+    <ion-item-group class="bottom-line">
+      <ion-item-divider></ion-item-divider>
+      <ion-list no-margin>
+        <button ion-item class="update-button" (click)="update()">更新信息</button>
+      </ion-list>
+    </ion-item-group>
   </div>
-  <ion-item-group>
-    <ion-item-divider>个人信息</ion-item-divider>
-    <ion-list>
-      <ion-item>
-        <ion-label fixed>用户名</ion-label>
-        <ion-input type="text" value="{{user.username}}"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label fixed>电话</ion-label>
-        <ion-input type="number" value="{{user.phone}}"></ion-input>
-      </ion-item>
-    </ion-list>
-  </ion-item-group>
 </ion-content>
