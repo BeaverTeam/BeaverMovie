@@ -32,11 +32,12 @@ public class UserController {
 
     @PostMapping("/update-user")
     public ResponseEntity<Info> updateUser(@RequestBody UserDetail userDetail, HttpSession session) throws NotLogin, DuplicatedUserName, Exception {
-        if (session.getAttribute("currentUser") == null)
+        Long userId = (Long)session.getAttribute("currentUser");
+        if (userId == null)
             throw new NotLogin();
-        if (userDetail.getUsername() != null && userDetail.getUsername() != userService.getName((long)session.getAttribute("currentUser")) && userService.checkNameExist(userDetail.getUsername()))
-            throw new DuplicatedUserName();
         System.out.println(userDetail);
+        if (userDetail.getUsername() != null && !userDetail.getUsername().equals(userService.getName(userId)) && userService.checkNameExist(userDetail.getUsername()))
+            throw new DuplicatedUserName();
         userService.update((long)session.getAttribute("currentUser"), userDetail);
         return new ResponseEntity<Info>(new Info("success", "Update User Success"), HttpStatus.OK);
     }

@@ -36,8 +36,8 @@ public class UserService {
         User u = userRepository.findOne(id);
         if (userDetail.getUsername() != null)
             u.setUsername(userDetail.getUsername());
-        if (userDetail.getAvater() != null)
-            u.setAvater(userDetail.getAvater());
+        if (userDetail.getAvatar() != null)
+            u.setAvatar(userDetail.getAvatar());
         if (userDetail.getPhone() != null)
             u.setPhone(userDetail.getPhone());
         userRepository.save(u);

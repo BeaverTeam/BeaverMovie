@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String avater;
+    private String avatar;
     private String phone;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
@@ -37,12 +37,12 @@ public class User {
         this.password = password;
     }
 
-    public String getAvater() {
-        return avater;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvater(String avater) {
-        this.avater = avater;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {

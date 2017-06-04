@@ -7,7 +7,7 @@ import beaver.backend.entity.User;
  */
 public class UserDetail {
     private String username;
-    private String avater;
+    private String avatar;
     private String phone;
 
     public UserDetail() {
@@ -15,7 +15,7 @@ public class UserDetail {
 
     public UserDetail(User user) {
         this.username = user.getUsername();
-        this.avater = user.getAvater();
+        this.avatar = user.getAvatar();
         this.phone = user.getPhone();
     }
 
@@ -27,12 +27,12 @@ public class UserDetail {
         this.username = username;
     }
 
-    public String getAvater() {
-        return avater;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvater(String avater) {
-        this.avater = avater;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {
@@ -47,7 +47,7 @@ public class UserDetail {
     public String toString() {
         return "UserDetail{" +
                 "username='" + username + '\'' +
-                ", avater='" + avater + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }
