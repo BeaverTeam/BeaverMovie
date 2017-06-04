@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
-import { ShowtimePage } from '../showtime/showtime';
+import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
 
 import { TheaterService } from '../../providers/theater/theater.service';
@@ -55,7 +55,7 @@ export class HomePage {
 
   // 前往购票页面
   buyTicket(index) {
-    this.navCtrl.push(ShowtimePage, {movieId: this.movies[index].id,
+    this.navCtrl.push(CinemaPage, {movieId: this.movies[index].id,
                                      movieTitle: this.movies[index].title});
   }
 

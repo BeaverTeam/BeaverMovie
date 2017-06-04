@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-showtime',
-  templateUrl: 'showtime.html',
+  selector: 'page-webview',
+  templateUrl: 'webview.html',
 })
-export class ShowtimePage {
+export class WebviewPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -17,6 +17,8 @@ import { SettingPage } from '../pages/setting/setting';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ShowtimePage } from '../pages/showtime/showtime';
 import { NotificationPage } from '../pages/notification/notification';
+import { WebviewPage } from '../pages/webview/webview';
+import { CinemaPage } from '../pages/cinema/cinema';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -34,7 +36,9 @@ import { UserService } from '../providers/user/user.service';
     SettingPage,
     TabsPage,
     ShowtimePage,
-    NotificationPage
+    NotificationPage,
+    WebviewPage,
+    CinemaPage
   ],
   imports: [
     HttpModule,
@@ -54,7 +58,9 @@ import { UserService } from '../providers/user/user.service';
     SettingPage,
     TabsPage,
     ShowtimePage,
-    NotificationPage
+    NotificationPage,
+    WebviewPage,
+    CinemaPage
   ],
   providers: [
     AuthService,
