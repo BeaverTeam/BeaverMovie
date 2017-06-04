@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { CinemaPage } from '../cinema/cinema';
+import { WebviewPage } from '../webview/webview';
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -35,7 +36,11 @@ export class MovieDetailPage {
 
   gotoBuyTicket() {
     this.navCtrl.push(CinemaPage, {movieId: this.movie.id,
-                                     movieTitle: this.movie.title});
+                                   movieTitle: this.movie.title});
+  }
+
+  gotoWebview(name: string) {
+    this.navCtrl.push(WebviewPage, {name: name});
   }
 
 }
