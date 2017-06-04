@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 
 import { Global } from '../global';
 
 @Injectable()
 export class UserService {
-  private global = new Global();
-  options: any = new RequestOptions({withCredentials: true});
+  global = new Global();
+  headers = new Headers({'Content-Type': 'multipart/form-data'});
+  options = new RequestOptions({withCredentials: true});
+  fileOptions = new RequestOptions({
+    withCredentials: true,
+    headers: this.headers
+  });
 
   constructor(public http: Http) {}
 

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="scroller" (scroll)="scroll($event)">
+    <div>
+      <ion-segment [(ngModel)]="todayDate">
+        <ion-segment-button *ngFor="let date of fourDate" value="{{date}}">
+          {{date}}
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="todayDate" *ngFor="let date of fourDate">
+      <ion-list *ngSwitchCase="date">
+        <button ion-item *ngFor="let showtime of showtimes" (click)="gotoShowtime(showtime.cinema.id)">
+          <div class="cinema-name">{{showtime.cinema.name}}</div>
+          <div class="cinema-info">地址：{{showtime.cinema.location}}</div>
+          <div class="cinema-info">近期场次：{{showtime.startTime}}</div>
+        </button>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

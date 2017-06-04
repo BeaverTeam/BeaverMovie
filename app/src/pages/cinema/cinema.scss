@@ -1,0 +1,17 @@
+page-cinema {
+  .scroller {
+    height: 100%;
+    overflow: scroll;
+
+    .cinema-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .cinema-info {
+      color: #727272;
+      font-size: 14px;
+      padding-top: 4px;
+    }
+  }
+}

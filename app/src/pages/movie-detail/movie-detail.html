@@ -29,12 +29,12 @@
       <div class="title">演职人员</div>
       <div>
         <div class="cast" *ngFor="let director of movie.directors">
-          <div class="cast-avatar" [style.background-image]="'url(' + director.avatars.medium + ')'"></div>
+          <div class="cast-avatar" [style.background-image]="'url(' + director.avatars.medium + ')'" (click)="gotoWebview(director.name)"></div>
           <div class="name">{{director.name}}</div>
           <div class="identity">导演</div>
         </div>
         <div class="cast" *ngFor="let cast of movie.casts">
-          <div class="cast-avatar" [style.background-image]="'url(' + cast.avatars.medium + ')'"></div>
+          <div class="cast-avatar" [style.background-image]="'url(' + cast.avatars.medium + ')'" (click)="gotoWebview(cast.name)"></div>
           <div class="name">{{cast.name}}</div>
         </div>
       </div>
