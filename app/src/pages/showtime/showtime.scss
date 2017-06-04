@@ -1,3 +1,43 @@
 page-showtime {
+  .scroller {
+    height: 100%;
+    overflow: scroll;
 
+    .select-movie {
+      height: 160px;
+      overflow-x: scroll;
+      white-space: nowrap;
+
+      .movie {
+        width: 96px;
+        height: 128px;
+        display: inline-block;
+        margin: 16px 0px 16px 16px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .subtitle {
+      color: #727272;
+      font-size: 14px;
+      padding-top: 8px;
+    }
+
+    .cost {
+      font-size: 24px;
+      color: #00bcd4;
+    }
+
+    .yuan {
+      font-size: 14px;
+      color: #00bcd4;
+    }
+  }
 }

@@ -31,4 +31,11 @@ export class TheaterService {
                     .map(res => res.json());
   }
 
+  // 根据影院 id 获取场次信息
+  getCinemaShowtimes(cinemaId: number, page: number) {
+    return this.http.get(this.global.serverUrl + '/cinema/' + cinemaId + '/showtimes/' + page,
+                         this.options)
+                    .map(res => res.json());
+  }
+
 }

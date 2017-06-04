@@ -27,8 +27,6 @@ export class CinemaPage {
       tempDate.setDate(tempDate.getDate() + 1);
       this.fourDate.push((tempDate.getMonth()+1) + "月" + tempDate.getDate() + "日");
     }
-    console.log(this.fourDate);
-
 
     // 获取信息
     this.movieId = this.navParams.get('movieId');
@@ -48,7 +46,6 @@ export class CinemaPage {
           showtime.startTime = parts[0] + ' ' + parts[1];
           this.showtimes.push(showtime);
         }
-        console.log(this.showtimes);
       } else {
         // TODO 异常处理，未取回场次数据
       }
@@ -64,7 +61,6 @@ export class CinemaPage {
       this.theaterService.getShowtimes(this.movieId, this.pageNum).subscribe((data) => {
         if (data.state == 'success') {
           this.showtimes = data.data;
-          console.log(this.showtimes);
         } else {
           // TODO 异常处理，未取回电影数据
         }
