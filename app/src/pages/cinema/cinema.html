@@ -7,17 +7,20 @@
 <ion-content>
   <div class="scroller" (scroll)="scroll($event)">
     <div>
-      <ion-item>
-        <ion-label>选择日期</ion-label>
-        <ion-datetime displayFormat="M 月 D 日" pickerFormat="YYYY M D" min="{{today}}" max="{{future}}" [(ngModel)]="today" cancelText="取消" doneText="完成"></ion-datetime>
-      </ion-item>
+      <ion-segment [(ngModel)]="todayDate">
+        <ion-segment-button *ngFor="let date of fourDate" value="{{date}}">
+          {{date}}
+        </ion-segment-button>
+      </ion-segment>
     </div>
-    <div *ngFor="let showtime of showtimes; let i = index">
-      <button ion-item>
-        <div class="cinema-name">{{showtime.cinema.name}}</div>
-        <div class="cinema-info">地址：{{showtime.cinema.location}}</div>
-        <div class="cinema-info">近期场次：{{showtime.startTime}}</div>
-      </button>
+    <div [ngSwitch]="todayDate" *ngFor="let date of fourDate">
+      <ion-list *ngSwitchCase="date">
+        <button ion-item *ngFor="let showtime of showtimes" (click)="gotoShowtime(showtime.cinema.id)">
+          <div class="cinema-name">{{showtime.cinema.name}}</div>
+          <div class="cinema-info">地址：{{showtime.cinema.location}}</div>
+          <div class="cinema-info">近期场次：{{showtime.startTime}}</div>
+        </button>
+      </ion-list>
     </div>
   </div>
 </ion-content>

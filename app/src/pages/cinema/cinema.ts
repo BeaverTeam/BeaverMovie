@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
+import { ShowtimePage } from '../showtime/showtime';
+
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -12,16 +14,21 @@ export class CinemaPage {
   title: string;
   showtimes: any = [];
   pageNum: number = 1;  // 当前获取的场次页数
-
-  today: string = new Date().toISOString();
-  future: string;
+  fourDate: any = [];
+  todayDate: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController) {
     // 设置最远时间
-    let future = new Date();
-    future.setDate(future.getDate() + 5);
-    this.future = future.toISOString();
+    let tempDate = new Date();
+    this.todayDate = (tempDate.getMonth()+1) + "月" + tempDate.getDate() + "日";
+    this.fourDate.push(this.todayDate);
+    for (let i = 0; i < 3; i++) {
+      tempDate.setDate(tempDate.getDate() + 1);
+      this.fourDate.push((tempDate.getMonth()+1) + "月" + tempDate.getDate() + "日");
+    }
+    console.log(this.fourDate);
+
 
     // 获取信息
     this.movieId = this.navParams.get('movieId');
@@ -63,6 +70,10 @@ export class CinemaPage {
         }
       });
     }
+  }
+
+  gotoShowtime(cinemaId) {
+    this.navCtrl.push(ShowtimePage, {movieId: this.movieId, movieTitle: this.title, cinemaId: cinemaId});
   }
 
 }
