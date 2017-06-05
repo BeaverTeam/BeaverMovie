@@ -1,25 +1,34 @@
 page-recommend {
-  ion-card {
-    position: relative;
-    text-align: center;
-    .poster {
-      width: 100%;
-      height: 40vh;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-      filter: grayscale(30%);
-      -webkit-filter: grayscale(30%);
-      -moz-filter: grayscale(30%);
-      -ms-filter: grayscale(30%);
 
-      .title {
-        position: absolute;
-        top: 18vh;
-        font-size: 2.0em;
+  .container {
+    background-color: #fafafa;
+    padding-top: 16px;
+
+    ion-card {
+      position: relative;
+      text-align: center;
+      margin: 0px 16px 16px 16px !important;
+      width: calc(100% - 32px) !important;
+
+      .poster {
         width: 100%;
-        font-weight: bold;
-        color: #fff;
+        height: 40vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        filter: grayscale(30%);
+        -webkit-filter: grayscale(30%);
+        -moz-filter: grayscale(30%);
+        -ms-filter: grayscale(30%);
+
+        .title {
+          position: absolute;
+          top: 18vh;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #fff;
+        }
       }
     }
   }

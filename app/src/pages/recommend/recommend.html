@@ -5,9 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let movie of movies">
-    <div class="poster" [style.background-image]="'url(' + movie.image + ')'">
-      <div class="title">{{movie.title}}</div>
-    </div>
-  </ion-card>
+  <div class="container">
+    <ion-card *ngFor="let movie of movies">
+      <div class="poster" [style.background-image]="'url(' + movie.image + ')'">
+        <div class="title">{{movie.title}}</div>
+      </div>
+    </ion-card>
+  </div>
 </ion-content>
