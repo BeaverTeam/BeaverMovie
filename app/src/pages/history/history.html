@@ -18,8 +18,8 @@
     <div [ngSwitch]="tickets">
       <ion-list *ngSwitchCase="'type1'">
         <div class="type-container">
-          <div *ngFor="let movie of movies">
-            <ion-card>
+          <div *ngFor="let movie of movies; let i = index">
+            <ion-card padding [style.background-color]="getColor(i)">
               <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
               <div class="info">
                 <div class="title">{{movie.title}}</div>
@@ -34,8 +34,8 @@
 
       <ion-list *ngSwitchCase="'type2'">
         <div class="type-container">
-          <div *ngFor="let movie of futureMovies">
-            <ion-card>
+          <div *ngFor="let movie of futureMovies; let i = index">
+            <ion-card padding [style.background-color]="getColor(i)">
               <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
               <div class="info">
                 <div class="title">{{movie.title}}</div>
