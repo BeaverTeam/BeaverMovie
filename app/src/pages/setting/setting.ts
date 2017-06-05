@@ -43,7 +43,7 @@ export class SettingPage {
     if (fileList.length > 0) {
       let file = fileList[0];
       this.avatarFormData = new FormData();
-      this.avatarFormData.append('uploadFile', file, file.name);
+      this.avatarFormData.append('avatar', file);
     }
   }
 
@@ -100,15 +100,19 @@ export class SettingPage {
     } else {
       // 更新信息到后端
       let that = this;
-      this.userService.updateUser(this.user, this.avatarFormData).subscribe((data) => {
+      this.userService.getFileServerUrl(this.avatarFormData).subscribe((data) => {
         if (data.state == 'success') {
-          that.presentToast('成功更新用户信息');
-        } else {
-          let alert = that.alertCtrl.create({
-            subTitle: data.message,
-            buttons: ['好的']
+          this.userService.updateUser(this.user, data.fileurl, this.avatarFormData).subscribe((data_) => {
+            if (data_.state == 'success') {
+              that.presentToast('成功更新用户信息');
+            } else {
+              let alert = that.alertCtrl.create({
+                subTitle: data.message,
+                buttons: ['好的']
+              });
+              alert.present();
+            }
           });
-          alert.present();
         }
       });
     }

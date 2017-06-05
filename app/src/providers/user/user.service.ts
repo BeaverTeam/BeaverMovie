@@ -9,7 +9,7 @@ export class UserService {
   headers = new Headers({'Content-Type': 'multipart/form-data'});
   options = new RequestOptions({withCredentials: true});
   fileOptions = new RequestOptions({
-    withCredentials: true,
+    // withCredentials: true,
     headers: this.headers
   });
 
@@ -21,15 +21,15 @@ export class UserService {
                     .map(res => res.json());
   }
 
+  getFileServerUrl(avatarFormData) {
+    return  this.http.post(this.global.fileServerUrl + '/save-file/avatar',
+                     avatarFormData)
+               .map(res => res.json());
+  }
+
   // 更新用户
-  updateUser(user, avatarFormData) {
-    // this.http.post(this.global.fileServerUrl + '/save-file/avatar',
-    //                {avatar: avatarFormData},
-    //                this.fileOptions)
-    //          .map(res => res.json())
-    //          .subscribe((data) => {
-    //            console.log(data);
-    //          });
+  updateUser(user, fileUrl, avatarFormData) {
+    user.avatar = this.global.fileServerUrl + fileUrl;
     return this.http.post(this.global.serverUrl + '/user/update-user',
                           {username: user.username,
                            avatar: user.avatar,

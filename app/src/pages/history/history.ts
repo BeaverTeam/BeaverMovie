@@ -9,7 +9,7 @@ import { TheaterService } from '../../providers/theater/theater.service';
 })
 export class HistoryPage {
   movies: any = [];
-  colors: any = ['rgb(33, 68, 89)', 'rgb(25, 98, 115)', 'rgb(115, 1, 88)','rgb(154, 0, 68)'];
+  colors: any = ['rgb(33, 68, 89)', 'rgb(25, 98, 115)', 'rgb(115, 1, 88)', 'rgb(154, 0, 68)'];
   futureMovies: any = [];
   pageNum: number = 1;
   tickets: string = 'type1';
