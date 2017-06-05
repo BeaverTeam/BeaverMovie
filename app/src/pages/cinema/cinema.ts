@@ -21,11 +21,11 @@ export class CinemaPage {
               public theaterService: TheaterService, public loadingCtrl: LoadingController) {
     // 设置最远时间
     let tempDate = new Date();
-    this.todayDate = (tempDate.getMonth()+1) + "月" + tempDate.getDate() + "日";
+    this.todayDate = (tempDate.getMonth() + 1) + "月" + tempDate.getDate() + "日";
     this.fourDate.push(this.todayDate);
     for (let i = 0; i < 3; i++) {
       tempDate.setDate(tempDate.getDate() + 1);
-      this.fourDate.push((tempDate.getMonth()+1) + "月" + tempDate.getDate() + "日");
+      this.fourDate.push((tempDate.getMonth() + 1) + "月" + tempDate.getDate() + "日");
     }
 
     // 获取信息
@@ -68,8 +68,8 @@ export class CinemaPage {
     }
   }
 
-  gotoShowtime(cinemaId) {
-    this.navCtrl.push(ShowtimePage, {movieId: this.movieId, movieTitle: this.title, cinemaId: cinemaId});
+  gotoShowtime(cinemaId, cinemaName) {
+    this.navCtrl.push(ShowtimePage, {movieId: this.movieId, cinemaName: cinemaName, cinemaId: cinemaId});
   }
 
 }

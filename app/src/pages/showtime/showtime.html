@@ -1,16 +1,27 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>影院排片</ion-title>
+    <ion-title>{{cinemaName}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <div class="scroller" (scroll)="scroll($event)">
-    <div class="movies">
-      <div class="movie" *ngFor="let movie of movies" [style.background-image]="'url(' + movie.image + ')'"></div>
+    <div class="movies-container">
+      <div class="movies" id="movies">
+        <div class="movie-container" *ngFor="let movie of movies">
+          <div class="movie-bg" [style.background-image]="'url(' + movie.image + ')'"></div>
+          <div class="movie" [style.background-image]="'url(' + movie.image + ')'"></div>
+        </div>
+      </div>
+      <button ion-fab mini class="left-button" (click)="changeFilm(false)" *ngIf="position > 0">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <button ion-fab mini class="right-button" (click)="changeFilm(true)" *ngIf="position < movies.length - 1">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
     </div>
     <div *ngFor="let showtime of showtimes; let i = index">
-      <button ion-item>
+      <button ion-item *ngIf="showtime.movie.id == movies[position].id">
         <div class="title">{{showtime.preciseTime}}</div>
         <div class="subtitle">{{showtime.date}}</div>
         <div item-right>

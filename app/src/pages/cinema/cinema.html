@@ -15,7 +15,7 @@
     </div>
     <div [ngSwitch]="todayDate" *ngFor="let date of fourDate">
       <ion-list *ngSwitchCase="date">
-        <button ion-item *ngFor="let showtime of showtimes" (click)="gotoShowtime(showtime.cinema.id)">
+        <button ion-item *ngFor="let showtime of showtimes" (click)="gotoShowtime(showtime.cinema.id, showtime.cinema.name)">
           <div class="cinema-name">{{showtime.cinema.name}}</div>
           <div class="cinema-info">地址：{{showtime.cinema.location}}</div>
           <div class="cinema-info">近期场次：{{showtime.startTime}}</div>
