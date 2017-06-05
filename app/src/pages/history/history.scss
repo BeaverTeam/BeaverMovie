@@ -1,3 +1,28 @@
 page-history {
+  ion-card {
+    position: relative;
 
+    .poster {
+      width: 144px;
+      height: 192px;
+      display: inline-block;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: -5px;
+    }
+
+    .info {
+      position: absolute;
+      display: inline-block;
+      top: 50px;
+      padding-left: 12px;
+
+      .title {
+        font-size: 1.6em;
+        color: #212121;
+      }
+
+    }
+  }
 }

@@ -1,9 +1,48 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>观影历史</ion-title>
+    <ion-title>我的影券</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是观影历史页面！
+<ion-content>
+  <div class="container">
+    <ion-segment [(ngModel)]="tickets">
+      <ion-segment-button value="type1">
+        我看过的
+      </ion-segment-button>
+      <ion-segment-button value="type2">
+        待使用
+      </ion-segment-button>
+    </ion-segment>
+
+    <div [ngSwitch]="tickets">
+      <ion-list *ngSwitchCase="'type1'">
+        <div *ngFor="let movie of movies">
+          <ion-card>
+            <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+            <div class="info">
+              <div class="title">{{movie.title}}</div>
+              <div class="cinema">金逸国际影城</div>
+              <div class="seat">11排5号</div>
+              <div class="time">2017年6月5日 13:58-15:47</div>
+            </div>
+          </ion-card>
+        </div>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'type2'">
+        <div *ngFor="let movie of futureMovies">
+          <ion-card>
+            <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+            <div class="info">
+              <div class="title">{{movie.title}}</div>
+              <div class="cinema">金逸国际影城</div>
+              <div class="seat">11排5号</div>
+              <div class="time">2017年6月5日 13:58-15:47</div>
+            </div>
+          </ion-card>
+        </div>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

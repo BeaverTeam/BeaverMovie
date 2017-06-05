@@ -4,6 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是推荐页面！
+<ion-content>
+  <ion-card *ngFor="let movie of movies">
+    <div class="poster" [style.background-image]="'url(' + movie.image + ')'">
+      <div class="title">{{movie.title}}</div>
+    </div>
+  </ion-card>
 </ion-content>
