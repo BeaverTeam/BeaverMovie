@@ -1,28 +1,40 @@
 page-history {
-  ion-card {
-    position: relative;
 
-    .poster {
-      width: 144px;
-      height: 192px;
-      display: inline-block;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      margin-bottom: -5px;
-    }
+  .type-container {
+    background-color: #fafafa;
+    padding-top: 16px;
 
-    .info {
-      position: absolute;
-      display: inline-block;
-      top: 50px;
-      padding-left: 12px;
+    ion-card {
+      position: relative;
+      margin: 0px 16px 16px 16px !important;
+      width: calc(100% - 32px) !important;
 
-      .title {
-        font-size: 1.6em;
-        color: #212121;
+      .poster {
+        width: 144px;
+        height: 192px;
+        display: inline-block;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-bottom: -5px;
       }
 
+      .info {
+        position: absolute;
+        display: inline-block;
+        padding-left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .title {
+          font-size: 22px;
+          color: #212121;
+        }
+
+        .sub-title {
+          padding-top: 8px;
+        }
+      }
     }
   }
 }
