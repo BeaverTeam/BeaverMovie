@@ -10,8 +10,8 @@ page-history {
       width: calc(100% - 32px) !important;
 
       .poster {
-        width: 144px;
-        height: 192px;
+        width: 99px;
+        height: 132px;
         display: inline-block;
         background-position: center;
         background-repeat: no-repeat;
@@ -22,17 +22,19 @@ page-history {
       .info {
         position: absolute;
         display: inline-block;
-        padding-left: 16px;
+        padding: 0px 16px;
         top: 50%;
         transform: translateY(-50%);
 
         .title {
-          font-size: 22px;
+          font-size: 18px;
           color: #212121;
         }
 
         .sub-title {
-          padding-top: 8px;
+          padding-top: 4px;
+          color: #757575;
+          font-size: 12px;
         }
       }
     }
