@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { ShowseatPage } from '../showseat/showseat';
+
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -106,6 +108,10 @@ export class ShowtimePage {
         }
       });
     }
+  }
+
+  gotoSeat(showtime) {
+    this.navCtrl.push(ShowseatPage);
   }
 
 }

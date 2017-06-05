@@ -35,7 +35,7 @@
       </div>
     </div>
     <div *ngFor="let showtime of showtimes; let i = index">
-      <button ion-item *ngIf="showtime.movie.id == movies[position].id">
+      <button ion-item *ngIf="showtime.movie.id == movies[position].id" (click)="gotoSeat(showtime)">
         <div class="title">{{showtime.preciseTime}}</div>
         <div class="subtitle">{{showtime.date}}</div>
         <div item-right>
