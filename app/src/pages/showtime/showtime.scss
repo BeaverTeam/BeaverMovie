@@ -3,16 +3,18 @@ page-showtime {
     height: 100%;
     overflow: scroll;
 
-    .select-movie {
+    .movies {
       height: 160px;
       overflow-x: scroll;
+      overflow-y: hidden;
       white-space: nowrap;
+      padding-left: calc(50vw - 48px);
 
       .movie {
         width: 96px;
         height: 128px;
         display: inline-block;
-        margin: 16px 0px 16px 16px;
+        margin: 16px 16px 16px 0px;
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;

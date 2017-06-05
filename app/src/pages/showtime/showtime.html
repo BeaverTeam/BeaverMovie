@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="scroller" (scroll)="scroll($event)">
-    <div class="select-movie">
+    <div class="movies">
       <div class="movie" *ngFor="let movie of movies" [style.background-image]="'url(' + movie.image + ')'"></div>
     </div>
     <div *ngFor="let showtime of showtimes; let i = index">
