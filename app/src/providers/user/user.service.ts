@@ -22,7 +22,14 @@ export class UserService {
   }
 
   // 更新用户
-  updateUser(user) {
+  updateUser(user, avatarFormData) {
+    // this.http.post(this.global.fileServerUrl + '/save-file/avatar',
+    //                {avatar: avatarFormData},
+    //                this.fileOptions)
+    //          .map(res => res.json())
+    //          .subscribe((data) => {
+    //            console.log(data);
+    //          });
     return this.http.post(this.global.serverUrl + '/user/update-user',
                           {username: user.username,
                            avatar: user.avatar,

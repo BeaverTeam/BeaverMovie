@@ -20,6 +20,20 @@
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </div>
+    <div ion-item *ngIf="movies[position]">
+      <div class="movie-title">{{movies[position].title}}</div>
+      <div class="stars-container" *ngIf="movies[position].rating > 0">
+        <span class="stars" *ngFor="let star of movies[position].stars">
+          <ion-icon name="star" *ngIf="star == 2"></ion-icon>
+          <ion-icon name="star-half" *ngIf="star == 1"></ion-icon>
+          <ion-icon name="star-outline" *ngIf="star == 0"></ion-icon>
+        </span>
+        <span class="rate-val">{{movies[position].rating}}</span>
+      </div>
+      <div class="stars-container" *ngIf="movies[position].rating == 0">
+        <div class="no-rate">暂无评分</div>
+      </div>
+    </div>
     <div *ngFor="let showtime of showtimes; let i = index">
       <button ion-item *ngIf="showtime.movie.id == movies[position].id">
         <div class="title">{{showtime.preciseTime}}</div>

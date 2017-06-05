@@ -59,6 +59,30 @@ page-showtime {
       }
     }
 
+    .movie-title {
+      text-align: center;
+    }
+
+    .stars-container {
+      text-align: center;
+      padding-top: 4px;
+
+      .stars {
+        color: #ff9800;
+      }
+
+      .rate-val {
+        color: #ff9800;
+        padding-left: 8px;
+      }
+
+      .no-rate {
+        color: #757575;
+        font-size: 14px;
+        padding-top: 4px;
+      }
+    }
+
     .title {
       font-size: 20px;
       font-weight: 500;

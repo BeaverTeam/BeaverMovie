@@ -10,6 +10,7 @@ import { User } from '../../providers/user/user';
 })
 export class SettingPage {
   user: User;
+  avatarFormData: FormData;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public userService: UserService, public alertCtrl: AlertController,
@@ -37,6 +38,13 @@ export class SettingPage {
 
     if (event.target.files[0] != undefined)
       reader.readAsDataURL(event.target.files[0]);
+
+    let fileList = event.target.files;
+    if (fileList.length > 0) {
+      let file = fileList[0];
+      this.avatarFormData = new FormData();
+      this.avatarFormData.append('uploadFile', file, file.name);
+    }
   }
 
   // 显示 toast
@@ -92,7 +100,7 @@ export class SettingPage {
     } else {
       // 更新信息到后端
       let that = this;
-      this.userService.updateUser(this.user).subscribe((data) => {
+      this.userService.updateUser(this.user, this.avatarFormData).subscribe((data) => {
         if (data.state == 'success') {
           that.presentToast('成功更新用户信息');
         } else {

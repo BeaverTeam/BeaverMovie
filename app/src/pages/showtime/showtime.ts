@@ -38,6 +38,15 @@ export class ShowtimePage {
           for (let movie of this.movies)
             if (movie.id == showtime.movie.id)
               continue;
+          // 计算星星
+          let stars: any[] = [0, 0, 0, 0, 0];
+          // 计算全星星的数目
+          stars = Array(Math.floor(Math.round(showtime.movie.rating) / 2)).fill(2);
+          // 计算半星星的数目
+          if (Math.round(showtime.movie.rating) % 2) stars.push(1);
+          // 补空星星
+          while (stars.length < 5) stars.push(0);
+          showtime.movie.stars = stars;
           this.movies.push(showtime.movie);
           counter++;
         }
@@ -81,6 +90,15 @@ export class ShowtimePage {
             for (let movie of this.movies)
               if (movie.id == showtime.movie.id)
                 continue;
+            // 计算星星
+            let stars: any[] = [0, 0, 0, 0, 0];
+            // 计算全星星的数目
+            stars = Array(Math.floor(Math.round(showtime.movie.rating) / 2)).fill(2);
+            // 计算半星星的数目
+            if (Math.round(showtime.movie.rating) % 2) stars.push(1);
+            // 补空星星
+            while (stars.length < 5) stars.push(0);
+            showtime.movie.stars = stars;
             this.movies.push(showtime.movie);
           }
         } else {
