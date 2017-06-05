@@ -9,6 +9,7 @@ import beaver.backend.exception.BadRequest;
 import beaver.backend.exception.DuplicatedUserName;
 import beaver.backend.exception.NotLogin;
 import beaver.backend.exception.UserNotFound;
+import beaver.backend.exception.UserPasswordNotMatch;
 import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,9 +48,12 @@ public class AuthController {
 
     @RequestMapping("/sign-in")
     public ResponseEntity<Info> signIn(@RequestBody SignRequest request, HttpSession session) throws UserNotFound, Exception {
-        User u = userRepository.findByUsernameAndPassword(request.getUsername(), request.getEncryptedPassword());
+        User u = userRepository.findByUsername(request.getUsername());
         if (u == null)
             throw new UserNotFound();
+        u = userRepository.findByUsernameAndPassword(request.getUsername(), request.getEncryptedPassword());
+        if (u == null)
+            throw new UserPasswordNotMatch();
 
         session.setMaxInactiveInterval(5 * 60);
         session.setAttribute("currentUser", u.getId());
