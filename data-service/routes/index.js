@@ -31,6 +31,7 @@ router.get('/', (req, res, next) => {
           original_title: element.original_title,
           title: element.title,
           image: element.images.medium,
+          largeImage: element.images.large,
           id: element.id
         })
       }, this);

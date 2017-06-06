@@ -44,10 +44,10 @@ public class MovieService {
                     .map(movie -> {
                         movieRepository.save(movie);
                         cinemaRepository.findAll().forEach(cinema -> {
-                            if (Math.random() > 0.5) {
+                            for (int i = 0; i < 3; i++) {
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.add(Calendar.DAY_OF_MONTH, (int)Math.random()*3 + 1);
-                                calendar.add(Calendar.HOUR_OF_DAY, (int)Math.random()*5 + 1);
+                                calendar.add(Calendar.DAY_OF_MONTH, (int)Math.random()*8 + 1);
+                                calendar.add(Calendar.HOUR_OF_DAY, (int)Math.random()*6 + 1);
                                 showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie));
                             }
                         });

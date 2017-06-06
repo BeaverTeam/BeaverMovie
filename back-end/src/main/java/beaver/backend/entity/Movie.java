@@ -22,6 +22,7 @@ public class Movie {
     private String title;
     private String original_title;
     private String image;
+    private String largeImage;
 
     @OneToMany(mappedBy = "movie")
     @JsonIgnore
@@ -83,5 +84,13 @@ public class Movie {
 
     public void setShowtimes(Set<Showtime> showtimes) {
         this.showtimes = showtimes;
+    }
+
+    public String getLargeImage() {
+        return largeImage;
+    }
+
+    public void setLargeImage(String largeImage) {
+        this.largeImage = largeImage;
     }
 }

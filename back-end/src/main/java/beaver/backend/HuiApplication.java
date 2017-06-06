@@ -2,10 +2,13 @@ package beaver.backend;
 
 import beaver.backend.entity.Cinema;
 import beaver.backend.repository.CinemaRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.session.data.mongo.JdkMongoSessionConverter;
 import org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +16,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 @EnableMongoHttpSession
@@ -26,10 +31,16 @@ public class HuiApplication {
 	@Bean
 	public CommandLineRunner runner(CinemaRepository cinemaRepository) {
 		return args -> {
-			Arrays.asList("大学城影院,科技中心影院,天河城影院,".split(","))
-					.forEach(name -> {
-						cinemaRepository.save(new Cinema(name, "xx街道xx号"));
-					});
+			ObjectMapper mapper = new ObjectMapper();
+			TypeReference<List<Cinema>> mapType = new TypeReference<List<Cinema>>() {};
+			ClassPathResource resource = new ClassPathResource("cinema.json");
+			InputStream is = resource.getInputStream();
+			try {
+				List<Cinema> cinemas = mapper.readValue(is, mapType);
+				cinemaRepository.save(cinemas);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		};
 	}
 
