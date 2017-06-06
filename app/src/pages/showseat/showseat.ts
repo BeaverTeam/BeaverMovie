@@ -92,7 +92,8 @@ export class ShowseatPage {
   // 前往确认订单页
   gotoConfirm() {
     if (this.selectedSeats.length != 0)
-      this.navCtrl.push(ConfirmPage);
+      this.navCtrl.push(ConfirmPage, {showtime: this.showtime,
+                                      selectedSeats: this.selectedSeats});
   }
 
 }
