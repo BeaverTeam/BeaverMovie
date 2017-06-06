@@ -5,3 +5,5 @@ target
 .project
 beaver.iml
 sqlmod.xml
+.idea
+.idea/
