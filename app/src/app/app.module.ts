@@ -20,6 +20,8 @@ import { NotificationPage } from '../pages/notification/notification';
 import { WebviewPage } from '../pages/webview/webview';
 import { CinemaPage } from '../pages/cinema/cinema';
 import { ShowseatPage } from '../pages/showseat/showseat';
+import { FriendsPage } from '../pages/friends/friends';
+import { ConfirmPage } from '../pages/confirm/confirm';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -40,7 +42,9 @@ import { UserService } from '../providers/user/user.service';
     NotificationPage,
     WebviewPage,
     CinemaPage,
-    ShowseatPage
+    ShowseatPage,
+    FriendsPage,
+    ConfirmPage
   ],
   imports: [
     HttpModule,
@@ -63,7 +67,9 @@ import { UserService } from '../providers/user/user.service';
     NotificationPage,
     WebviewPage,
     CinemaPage,
-    ShowseatPage
+    ShowseatPage,
+    FriendsPage,
+    ConfirmPage
   ],
   providers: [
     AuthService,

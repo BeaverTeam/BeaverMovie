@@ -5,11 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <ion-card *ngFor="let movie of movies">
-      <div class="poster" [style.background-image]="'url(' + movie.image + ')'">
-        <div class="title">{{movie.title}}</div>
-      </div>
+  <div class="poster-container">
+    <ion-slides pager>
+      <ion-slide *ngFor="let movie of movies">
+        <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="article-container">
+    <ion-card padding>
+      <p class="title">
+        一个英雄的背影
+      </p>
+      <p class="content">他离开的那一天，风很大，树上的梧桐叶被吹得沙沙作响。</p>
     </ion-card>
   </div>
 </ion-content>
