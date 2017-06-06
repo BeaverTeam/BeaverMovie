@@ -1,3 +1,22 @@
 page-confirm {
+  .container {
+    background-color: #fafafa;
+    height: 100%;
 
+    .card {
+      margin: 16px;
+      width: calc(100% - 32px);
+
+      .movie-title {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .sub-title {
+        color: #727272;
+        font-size: 14px;
+        padding-top: 4px;
+      }
+    }
+  }
 }

@@ -5,6 +5,13 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <div class="container">
+    <ion-card class="card" padding>
+      <div class="movie-title">{{showtime.movie.title}}</div>
+      <div class="sub-title">{{showtime.startTime}}</div>
+      <div class="sub-title">{{showtime.cinema.name}}</div>
+      <div class="sub-title" *ngFor="let position of selectedPositions">第 {{position[0] + 1}} 行第 {{position[1] + 1}} 列</div>
+    </ion-card>
+  </div>
 </ion-content>
