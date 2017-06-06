@@ -12,10 +12,11 @@
     <div class="seats-container">
       <div class="screen">银 幕</div>
       <div class="seats">
-        <div class="row" *ngFor="let row of seatsInfo">
-          <div class="seat" *ngFor="let seat of row"></div>
+        <div class="row" *ngFor="let row of seatsInfo; let i = index">
+          <div class="seat" [class.no-seat]="seat == -1" [class.occupied]="seat == 1" [class.selected]="seat == 2" *ngFor="let seat of row; let j = index" (click)="select(i, j)"></div>
         </div>
       </div>
     </div>
   </div>
+  <div class="confirm-button" [class.disable]="selectedSeats.length == 0 || selectedSeats.length == 4">确认支付</div>
 </ion-content>

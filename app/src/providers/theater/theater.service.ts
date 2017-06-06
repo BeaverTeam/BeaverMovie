@@ -41,10 +41,7 @@ export class TheaterService {
   // 获取影院的座位
   getSeats(showtimeId: number) {
     return this.http.get(this.global.serverUrl + '/showtime/' + showtimeId + '/unavailableSeats')
-                    .map(res => res.json())
-                    .subscribe((data) => {
-                      console.log(data);
-                    })
+                    .map(res => res.json());
   }
 
 }

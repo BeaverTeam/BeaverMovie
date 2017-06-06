@@ -2,7 +2,8 @@ page-showseat {
 
   .container {
     background-color: #fafafa;
-    height: 100%;
+    height: calc(100% - 56px);
+    overflow: scroll;
 
     .cinema-name {
       font-size: 18px;
@@ -34,18 +35,52 @@ page-showseat {
 
         .row {
           text-align: center;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
           display: block;
 
           .seat {
             display: inline-block;
-            height: 36px;
-            width: 36px;
+            height: 32px;
+            width: 32px;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
             background-color: #ffffff;
-            margin-right: 12px;
+            margin-right: 14px;
+            border: 1px solid #e0e0e0;
+          }
+
+          .no-seat {
+            opacity: 0;
+          }
+
+          .occupied {
+            background-color: #f44336;
+          }
+
+          .selected {
+            background-color: #4caf50;
           }
         }
       }
     }
+  }
+
+  .confirm-button {
+    width: 100%;
+    height: 56px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    background-color: #00bcd4;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 56px;
+    letter-spacing: 2px;
+  }
+
+  .disable {
+    background-color: #999999;
   }
 }
