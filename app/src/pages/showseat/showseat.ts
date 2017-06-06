@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { TheaterService } from '../../providers/theater/theater.service';
+import { ConfirmPage } from '../confirm/confirm';
+import { FriendsPage } from '../friends/friends';
 
 @Component({
   selector: 'page-showseat',
@@ -79,6 +81,18 @@ export class ShowseatPage {
       let index = this.selectedSeats.indexOf(this.seatsIndices[row][col]);
       this.selectedSeats.splice(index, 1);
     }
+  }
+
+  // 前往 AA 付款
+  gotoAA() {
+    if (this.selectedSeats.length != 0)
+      this.navCtrl.push(FriendsPage);
+  }
+
+  // 前往确认订单页
+  gotoConfirm() {
+    if (this.selectedSeats.length != 0)
+      this.navCtrl.push(ConfirmPage);
   }
 
 }
