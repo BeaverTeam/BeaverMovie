@@ -12,12 +12,14 @@
       </ion-slide>
     </ion-slides>
   </div>
-  <div class="article-container">
-    <ion-card padding>
-      <p class="title">
-        一个英雄的背影
-      </p>
-      <p class="content">他离开的那一天，风很大，树上的梧桐叶被吹得沙沙作响。</p>
+  <div class="article-container" *ngFor="let movie of movies">
+    <ion-card>
+      <div class="article-header">
+        <p class="label">影评</p>
+        <p class="title">一个英雄的背影</p>
+        <div class="article-img" [style.background-image]="'url(' + movie.image + ')'"></div>
+      </div>
+      <p class="content">他的身上还带着茶马古道的风尘，巨大的包裹遮住了马的大半身体，远远望去，好像是牵着长了四条腿的行李。</p>
     </ion-card>
   </div>
 </ion-content>

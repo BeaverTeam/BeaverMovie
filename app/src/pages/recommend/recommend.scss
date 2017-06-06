@@ -2,6 +2,7 @@ page-recommend {
 
   .poster-container {
     background-color: #fafafa;
+    padding-bottom: 16px;
 
     .poster {
       width: 100%;
@@ -18,12 +19,42 @@ page-recommend {
   }
 
   .article-container {
+    background-color: #fafafa;
+    padding: 0px 16px 16px 16px;
 
     ion-card {
+      margin: 0px !important;
+      width: 100% !important;
       padding: 16px;
 
-      .title {
-        font-size: 24px;
+      .article-header {
+        height: 96px;
+        position: relative;
+
+        .label {
+          font-size: 16px;
+          color: rgb(114, 114, 114);
+        }
+
+        .title {
+          font-size: 24px;
+          padding-bottom: 6px;
+        }
+
+        .article-img {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          width: 80px;
+          height: 80px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
+      }
+
+      .content {
+        font-size: 16px;
       }
     }
 
