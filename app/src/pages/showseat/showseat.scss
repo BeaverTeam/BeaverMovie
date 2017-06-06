@@ -1,3 +1,50 @@
 page-showseat {
 
+  .container {
+    background-color: #fafafa;
+    height: 100%;
+
+    .cinema-name {
+      font-size: 18px;
+      font-weight: 500;
+      padding: 16px 16px 8px 16px;
+    }
+
+    .start-time {
+      padding-top: 8px;
+      color: #757575;
+      padding: 0px 16px 16px 16px;
+    }
+
+    .seats-container {
+      background-color: #eeeeee;
+      overflow: scroll;
+
+      .screen {
+        background: #e0e0e0;
+        width: 24vw;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        margin: 0 auto 8px auto;
+      }
+
+      .seats {
+        padding: 16px;
+
+        .row {
+          text-align: center;
+          margin-bottom: 12px;
+
+          .seat {
+            display: inline-block;
+            height: 36px;
+            width: 36px;
+            background-color: #ffffff;
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
 }

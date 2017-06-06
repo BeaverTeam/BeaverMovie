@@ -111,7 +111,7 @@ export class ShowtimePage {
   }
 
   gotoSeat(showtime) {
-    this.navCtrl.push(ShowseatPage);
+    this.navCtrl.push(ShowseatPage, {showtime: showtime});
   }
 
 }

@@ -1,9 +1,21 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>选择座次</ion-title>
+    <ion-title>{{showtime.movie.title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="container">
+    <div class="cinema-name">{{showtime.cinema.name}}</div>
+    <div class="start-time">{{showtime.startTime}}</div>
+    <div class="seats-container">
+      <div class="screen">银 幕</div>
+      <div class="seats">
+        <div class="row" *ngFor="let row of seatsInfo">
+          <div class="seat" *ngFor="let seat of row"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
