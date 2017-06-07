@@ -39,9 +39,14 @@ export class CinemaPage {
       if (data.state == 'success') {
         for (let showtime of data.data) {
           // 不放入重复的影院
-          for (let exist of this.showtimes)
-            if (exist.cinema.name == showtime.cinema.name)
-              continue;
+          let flag = true;
+          for (let exist of this.showtimes) {
+            if (exist.cinema.id == showtime.cinema.id) {
+              flag = false;
+              break;
+            }
+          }
+          if (!flag) continue;
           let parts = showtime.startTime.split(' ');
           showtime.startTime = parts[0] + ' ' + parts[1];
           this.showtimes.push(showtime);
@@ -62,9 +67,14 @@ export class CinemaPage {
         if (data.state == 'success') {
           for (let showtime of data.data) {
             // 不放入重复的影院
-            for (let exist of this.showtimes)
-              if (exist.cinema.name == showtime.cinema.name)
-                continue;
+            let flag = true;
+            for (let exist of this.showtimes) {
+              if (exist.cinema.id == showtime.cinema.id) {
+                flag = false;
+                break;
+              }
+            }
+            if (!flag) continue;
             let parts = showtime.startTime.split(' ');
             showtime.startTime = parts[0] + ' ' + parts[1];
             this.showtimes.push(showtime);
