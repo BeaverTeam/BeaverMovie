@@ -19,6 +19,9 @@ export class HistoryPage {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
+    if (navParams.get("tickets") != undefined && navParams.get("tickets") != null) {
+      this.tickets = navParams.get("tickets");
+    }
     theaterService.getMovies(this.pageNum).subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {

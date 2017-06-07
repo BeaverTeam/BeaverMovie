@@ -1,3 +1,37 @@
 page-pay {
 
+  ion-content {
+    background-color: #fafafa !important;
+    text-align: center;
+
+    ion-card {
+      margin: 16px !important;
+      padding: 16px;
+      width: calc(100% - 32px) !important;
+      text-align: center;
+
+      .symbol {
+        font-size: 56px;
+        color: #00bcd4;
+      }
+
+      .cost {
+        font-size: 72px;
+        padding: 16px;
+        color: #00bcd4;
+      }
+
+      hr {
+        margin: 24px 0px 20px 0px;
+      }
+    }
+
+    button {
+      height: 56px !important;
+      font-size: 2rem !important;
+      display: block;
+      margin: 16px;
+      width: calc(100% - 32px);
+    }
+  }
 }

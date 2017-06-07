@@ -56,11 +56,11 @@ export class ConfirmPage {
   changeFood(op: number) {
     if (op == 1 && this.cokeNum > 0)
       this.cokeNum--;
-    if (op == 2)
+    if (op == 2 && this.cokeNum < 9)
       this.cokeNum++;
     if (op == 3 && this.popcornNum > 0)
       this.popcornNum--;
-    if (op == 4)
+    if (op == 4 && this.popcornNum < 9)
       this.popcornNum++;
     this.foodCost = 4 * this.cokeNum + 8 * this.popcornNum;
   }
