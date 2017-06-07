@@ -32,6 +32,16 @@ public class TicketOrderService {
     @Autowired
     UserRepository userRepository;
 
+    public boolean checkOrderAvailable(long orderId) {
+        return ticketOrderRepository.exists(orderId);
+    }
+
+    public void changePayment(long orderId) {
+        TicketOrder order = ticketOrderRepository.findOne(orderId);
+        order.setPaid(true);
+        ticketOrderRepository.save(order);
+    }
+
     public void addOrder(long userId, long showtimeId, Set<Integer> seats) {
         TicketOrder ticketOrder = ticketOrderRepository.save(new TicketOrder(userRepository.findOne(userId), Calendar.getInstance().getTime(), false));
         Showtime showtime = showtimeRepository.findOne(showtimeId);

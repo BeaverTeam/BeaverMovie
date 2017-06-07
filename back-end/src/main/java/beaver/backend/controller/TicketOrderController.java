@@ -50,4 +50,12 @@ public class TicketOrderController {
         ticketOrderService.addOrder((long)session.getAttribute("currentUser"), orderRequest.getShowtimeId(), orderRequest.getSeats());
         return new ResponseEntity<Info>(new Info("success", "Order Success"), HttpStatus.OK);
     }
+
+    @GetMapping("/pay/{id}")
+    public ResponseEntity<Info> payOrder(@PathVariable long id) {
+        if (!ticketOrderService.checkOrderAvailable(id))
+            return new ResponseEntity<Info>(new Info("failed", "Order Deleted"), HttpStatus.OK);
+        ticketOrderService.changePayment(id);
+        return new ResponseEntity<Info>(new Info("success", "Pay Success"), HttpStatus.OK);
+    }
 }
