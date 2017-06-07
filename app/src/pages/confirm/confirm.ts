@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { TheaterService } from '../../providers/theater/theater.service';
+
 @Component({
   selector: 'page-confirm',
   templateUrl: 'confirm.html',
@@ -18,8 +20,12 @@ export class ConfirmPage {
     [24, 25, 26, 27, 28, 29]
   ];
   cost: number;
+  foodCost: number = 0;
+  cokeNum: number = 0;
+  popcornNum: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public theaterService: TheaterService) {
     // 获取场次信息
     this.showtime = navParams.get('showtime');
     let temp = this.showtime.startTime.split(' ');
@@ -37,6 +43,24 @@ export class ConfirmPage {
       }
     }
     this.cost = this.showtime.cost * this.selectedSeats.length;
+  }
+
+  changeFood(op: number) {
+    if (op == 1 && this.cokeNum > 0)
+      this.cokeNum--;
+    if (op == 2)
+      this.cokeNum++;
+    if (op == 3 && this.popcornNum > 0)
+      this.popcornNum--;
+    if (op == 4)
+      this.popcornNum++;
+    this.foodCost = 4 * this.cokeNum + 8 * this.popcornNum;
+  }
+
+  confirm() {
+    this.theaterService.sendOrder(this.showtime.id, this.selectedSeats).subscribe((data) => {
+      // TODO 判断订单提交状态，成功则跳转到付款页面
+    })
   }
 
 }

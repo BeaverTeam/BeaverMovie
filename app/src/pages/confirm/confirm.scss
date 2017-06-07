@@ -1,7 +1,8 @@
 page-confirm {
   .container {
     background-color: #fafafa;
-    height: 100%;
+    height: calc(100% - 56px);
+    overflow: scroll;
 
     .card {
       margin: 16px;
@@ -20,17 +21,103 @@ page-confirm {
 
       .cost-container {
         text-align: right;
+
+        .text {
+          color: #727272;
+        }
+
+        .cost {
+          color: #00bcd4;
+          font-size: 28px;
+          padding: 0px 4px;
+        }
       }
 
-      .text {
-        color: #727272;
+      .padding {
+        padding: 16px 18px 16px 0px;
       }
 
-      .cost {
-        color: #00bcd4;
-        font-size: 28px;
-        padding: 0px 4px;
+      .item {
+        height: 112px;
+        margin-left: 16px;
+        padding: 16px 16px 0px 0px;
+        position: relative;
+        border-bottom: 1px solid #dedede;
+
+        .img {
+          width: 80px;
+          height: 80px;
+          margin-right: 16px;
+          display: inline-block;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: cover;
+        }
+
+        .coke {
+          background-image: url(../../assets/images/coke.jpg);
+        }
+
+        .popcorn {
+          background-image: url(../../assets/images/popcorn.jpg);
+        }
+
+        .info {
+          display: inline-block;
+          vertical-align: top;
+
+          .title {
+            font-size: 16px;
+          }
+
+          .left-align {
+            bottom: 16px;
+            position: absolute;
+          }
+
+          .amount-container {
+            bottom: 16px;
+            right: 16px;
+            position: absolute;
+
+            .button {
+              width: 24px;
+              height: 24px;
+              line-height: 24px;
+              text-align: center;
+              color: #ffffff;
+              font-size: 1.2em;
+              background-color: #00bcd4;
+              border-radius: 12px;
+              vertical-align: top;
+            }
+
+            .amount {
+              line-height: 24px;
+              height: 24px;
+              width: 16px;
+              font-size: 1.2em;
+              display: inline-block;
+              text-align: center;
+            }
+          }
+        }
       }
     }
+  }
+
+  .confirm-button {
+    width: 100%;
+    height: 56px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    background-color: #00bcd4;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 56px;
+    letter-spacing: 2px;
   }
 }

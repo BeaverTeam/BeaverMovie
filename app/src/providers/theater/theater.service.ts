@@ -40,7 +40,17 @@ export class TheaterService {
 
   // 获取影院的座位
   getSeats(showtimeId: number) {
-    return this.http.get(this.global.serverUrl + '/showtime/' + showtimeId + '/unavailableSeats')
+    return this.http.get(this.global.serverUrl + '/showtime/' + showtimeId + '/unavailableSeats',
+                         this.options)
+                    .map(res => res.json());
+  }
+
+  // 发送订单
+  sendOrder(showtimeId: number, seats: number[]) {
+    return this.http.post(this.global.serverUrl + '/order',
+                          {showtimeId: showtimeId,
+                           seats: seats},
+                          this.options)
                     .map(res => res.json());
   }
 

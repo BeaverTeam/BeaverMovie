@@ -81,14 +81,14 @@ page-showseat {
 
   .aa-pay {
     color: #00bcd4;
-    width: 49%;
+    width: calc(50% - 4px);
     display: inline-block;
   }
 
   .direct-pay {
     background-color: #00bcd4;
     color: #ffffff;
-    width: 49%;
+    width: calc(50% - 4px);
     display: inline-block;
   }
 
