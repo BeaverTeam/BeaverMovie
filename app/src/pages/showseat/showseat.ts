@@ -85,7 +85,7 @@ export class ShowseatPage {
 
   // 前往 AA 付款
   gotoAA() {
-    if (this.selectedSeats.length != 0)
+    if (this.selectedSeats.length >= 2)
       this.navCtrl.push(FriendsPage);
   }
 

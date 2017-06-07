@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="confirm-button">
-    <div class="aa-pay" [class.aa-disable]="selectedSeats.length == 0" (click)="gotoAA()">AA 付款</div>
+    <div class="aa-pay" [class.aa-disable]="selectedSeats.length <= 1" (click)="gotoAA()">AA 付款</div>
     <div class="direct-pay" [class.direct-disable]="selectedSeats.length == 0" (click)="gotoConfirm()">直接支付</div>
   </div>
 </ion-content>
