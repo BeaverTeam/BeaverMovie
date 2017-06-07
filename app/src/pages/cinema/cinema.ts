@@ -60,7 +60,15 @@ export class CinemaPage {
       this.pageNum++;
       this.theaterService.getShowtimes(this.movieId, this.pageNum).subscribe((data) => {
         if (data.state == 'success') {
-          this.showtimes = data.data;
+          for (let showtime of data.data) {
+            // 不放入重复的影院
+            for (let exist of this.showtimes)
+              if (exist.cinema.name == showtime.cinema.name)
+                continue;
+            let parts = showtime.startTime.split(' ');
+            showtime.startTime = parts[0] + ' ' + parts[1];
+            this.showtimes.push(showtime);
+          }
         } else {
           // TODO 异常处理，未取回电影数据
         }

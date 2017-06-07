@@ -25,6 +25,7 @@ page-history {
         padding: 0px 16px;
         top: 50%;
         transform: translateY(-50%);
+        max-width: calc(100% - 124px);
 
         .title {
           font-size: 24px;
@@ -32,13 +33,15 @@ page-history {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
-          max-width: calc(100% - 30px);
         }
 
         .sub-title {
           padding-top: 4px;
           color: white;
           font-size: 14px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
     }

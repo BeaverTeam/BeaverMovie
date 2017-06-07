@@ -7,8 +7,8 @@
 <ion-content>
   <div class="poster-container">
     <ion-slides pager>
-      <ion-slide *ngFor="let movie of movies">
-        <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+      <ion-slide *ngFor="let movie of movies; let i = index">
+        <div class="poster" [style.background-image]="'url(' + movie.largeImage + ')'"></div>
       </ion-slide>
     </ion-slides>
   </div>

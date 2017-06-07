@@ -15,6 +15,10 @@ page-cinema {
         color: #727272;
         font-size: 14px;
         padding-top: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
       }
     }
   }
