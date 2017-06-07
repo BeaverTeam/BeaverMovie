@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { ShowseatPage } from '../showseat/showseat';
 
@@ -20,13 +20,17 @@ export class ShowtimePage {
   position: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private theaterService: TheaterService) {
+              private theaterService: TheaterService, public loadingCtrl: LoadingController) {
+    // 显示 loading
+    let loading = loadingCtrl.create({content: '正在加载...'});
+    loading.present();
     // 获取信息
     this.movieId = this.navParams.get('movieId');
     this.cinemaName = this.navParams.get('cinemaName');
     this.cinemaId = this.navParams.get('cinemaId');
     // 请求场次信息
     this.theaterService.getCinemaShowtimes(this.cinemaId).subscribe((data) => {
+      loading.dismiss();
       if (data.state == 'success') {
         let counter = 0;
         for (let showtime of data.data) {
@@ -73,7 +77,7 @@ export class ShowtimePage {
       this.position--;
     movies.style.left = '-' + this.position + '00%';
   }
-  
+
   gotoSeat(showtime) {
     this.navCtrl.push(ShowseatPage, {showtime: showtime});
   }

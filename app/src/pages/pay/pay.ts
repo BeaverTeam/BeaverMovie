@@ -8,6 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class PayPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams.get('cost'));
   }
 
 }

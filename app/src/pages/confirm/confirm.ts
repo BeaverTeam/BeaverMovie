@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { PayPage } from '../pay/pay';
+
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -23,6 +25,7 @@ export class ConfirmPage {
   foodCost: number = 0;
   cokeNum: number = 0;
   popcornNum: number = 0;
+  isAA: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService) {
@@ -30,19 +33,24 @@ export class ConfirmPage {
     this.showtime = navParams.get('showtime');
     let temp = this.showtime.startTime.split(' ');
     this.showtime.startTime = temp[0] + ' ' + temp[1];
-    // 获取座位信息
-    this.selectedSeats = navParams.get('selectedSeats');
-    for (let seat of this.selectedSeats) {
-      for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 6; j++) {
-          if (this.seatsIndices[i][j] == seat) {
-            let newPosition = [i, j];
-            this.selectedPositions.push(newPosition);
+    if (navParams.get('selectedFriends') != undefined || navParams.get('selectedFriends') != null) {
+      this.isAA = true;
+      this.cost = this.showtime.cost;
+    } else {
+      // 获取座位信息
+      this.selectedSeats = navParams.get('selectedSeats');
+      for (let seat of this.selectedSeats) {
+        for (let i = 0; i < 6; i++) {
+          for (let j = 0; j < 6; j++) {
+            if (this.seatsIndices[i][j] == seat) {
+              let newPosition = [i, j];
+              this.selectedPositions.push(newPosition);
+            }
           }
         }
       }
+      this.cost = this.showtime.cost * this.selectedSeats.length;
     }
-    this.cost = this.showtime.cost * this.selectedSeats.length;
   }
 
   changeFood(op: number) {
@@ -58,9 +66,13 @@ export class ConfirmPage {
   }
 
   confirm() {
-    this.theaterService.sendOrder(this.showtime.id, this.selectedSeats).subscribe((data) => {
-      // TODO 判断订单提交状态，成功则跳转到付款页面
-    })
+    this.theaterService.sendOrder(this.showtime.id, this.navParams.get('selectedSeats')).subscribe((data) => {
+      if (data.state == 'success') {
+        this.navCtrl.push(PayPage, {showtime: this.showtime.id, selectedSeats: this.navParams.get('selectedSeats'), cost: this.cost + this.foodCost});
+      } else {
+        // TODO 异常处理
+      }
+    });
   }
 
 }
