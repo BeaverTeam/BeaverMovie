@@ -16,7 +16,7 @@ export class RecommendPage {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
-    theaterService.getMovies(this.pageNum).subscribe((data) => {
+    theaterService.getRecommendMovies().subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {
         this.movies = data.data;

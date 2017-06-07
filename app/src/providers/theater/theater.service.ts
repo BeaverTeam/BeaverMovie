@@ -54,4 +54,10 @@ export class TheaterService {
                     .map(res => res.json());
   }
 
+  // 获取推荐信息
+  getRecommendMovies() {
+    return this.http.get(this.global.serverUrl + '/recommend')
+                    .map(res => res.json());
+  }
+
 }

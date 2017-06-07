@@ -22,6 +22,8 @@ import { CinemaPage } from '../pages/cinema/cinema';
 import { ShowseatPage } from '../pages/showseat/showseat';
 import { FriendsPage } from '../pages/friends/friends';
 import { ConfirmPage } from '../pages/confirm/confirm';
+import { PayPage } from '../pages/pay/pay';
+import { SearchPage } from '../pages/search/search';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { TheaterService } from '../providers/theater/theater.service';
@@ -44,7 +46,9 @@ import { UserService } from '../providers/user/user.service';
     CinemaPage,
     ShowseatPage,
     FriendsPage,
-    ConfirmPage
+    ConfirmPage,
+    PayPage,
+    SearchPage
   ],
   imports: [
     HttpModule,
@@ -69,7 +73,9 @@ import { UserService } from '../providers/user/user.service';
     CinemaPage,
     ShowseatPage,
     FriendsPage,
-    ConfirmPage
+    ConfirmPage,
+    PayPage,
+    SearchPage
   ],
   providers: [
     AuthService,

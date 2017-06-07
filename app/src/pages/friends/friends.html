@@ -4,7 +4,20 @@
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      好友列表
+    </ion-list-header>
+    <ion-item *ngFor="let friend of friends">
+      <ion-label>
+        <h2>{{friend.name}}</h2>
+      </ion-label>
+      <ion-checkbox></ion-checkbox>
+      <ion-avatar item-start><img src="{{friend.avatar}}"></ion-avatar>
+    </ion-item>
+  </ion-list>
+  <button ion-button class="button">
+    确认
+  </button>
 </ion-content>
