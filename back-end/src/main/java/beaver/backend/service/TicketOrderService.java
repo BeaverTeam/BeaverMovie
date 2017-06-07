@@ -42,7 +42,7 @@ public class TicketOrderService {
         ticketOrderRepository.save(order);
     }
 
-    public void addOrder(long userId, long showtimeId, Set<Integer> seats) {
+    public TicketOrder addOrder(long userId, long showtimeId, Set<Integer> seats) {
         TicketOrder ticketOrder = ticketOrderRepository.save(new TicketOrder(userRepository.findOne(userId), Calendar.getInstance().getTime(), false));
         Showtime showtime = showtimeRepository.findOne(showtimeId);
 
@@ -55,5 +55,6 @@ public class TicketOrderService {
                     ticket.setShowtime(showtime);
                     return ticket;
                 }).collect(Collectors.toSet()));
+        return ticketOrder;
     }
 }

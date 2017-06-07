@@ -1,5 +1,6 @@
 package beaver.backend.controller;
 
+import beaver.backend.entity.TicketOrder;
 import beaver.backend.entity.User;
 import beaver.backend.entity.requestType.OrderRequest;
 import beaver.backend.entity.responseType.Info;
@@ -47,8 +48,8 @@ public class TicketOrderController {
         if (orderRequest.getSeats().stream().anyMatch(seat -> seat <= 0 || seat > 30) || !showtimeService.checkSeatsAvailable(orderRequest.getShowtimeId(), orderRequest.getSeats()))
             throw new SeatUnavaliable();
         // Todo: 检查场次是否已开始
-        ticketOrderService.addOrder((long)session.getAttribute("currentUser"), orderRequest.getShowtimeId(), orderRequest.getSeats());
-        return new ResponseEntity<Info>(new Info("success", "Order Success"), HttpStatus.OK);
+        TicketOrder order = ticketOrderService.addOrder((long)session.getAttribute("currentUser"), orderRequest.getShowtimeId(), orderRequest.getSeats());
+        return new ResponseEntity<Info>(new Info("success", "Order Success", order.getId()), HttpStatus.OK);
     }
 
     @GetMapping("/pay/{id}")
