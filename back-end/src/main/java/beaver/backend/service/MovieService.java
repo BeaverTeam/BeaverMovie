@@ -46,8 +46,8 @@ public class MovieService {
                         cinemaRepository.findAll().forEach(cinema -> {
                             for (int i = 0; i < 3; i++) {
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.add(Calendar.DAY_OF_MONTH, (int)Math.random()*7 + 1);
-                                calendar.add(Calendar.HOUR_OF_DAY, (int)Math.random()*6 + 1);
+                                calendar.add(Calendar.DAY_OF_MONTH, (int)Math.random()*3 + 1);
+                                calendar.add(Calendar.HOUR_OF_DAY, (int)Math.random()*5 + 1);
                                 showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie));
                             }
                         });

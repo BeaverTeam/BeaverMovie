@@ -26,8 +26,8 @@ public class CinemaController {
         return new ResponseEntity<Info>(new Info("success", "Get Cinema", cinemaService.getCinemas((page - 1)*10)), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/showtimes/{page}")
-    public ResponseEntity<Info> getShowtimes(@PathVariable long id, @PathVariable int page) throws Exception {
-        return new ResponseEntity<Info>(new Info("success", "Get Showtimes", cinemaService.getShowtimes(id, (page - 1)*10)), HttpStatus.OK);
+    @GetMapping("/{id}/showtimes")
+    public ResponseEntity<Info> getShowtimes(@PathVariable long id) throws Exception {
+        return new ResponseEntity<Info>(new Info("success", "Get Showtimes", cinemaService.getShowtimes(id)), HttpStatus.OK);
     }
 }
