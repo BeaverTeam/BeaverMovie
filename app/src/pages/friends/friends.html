@@ -6,18 +6,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
-      好友列表
-    </ion-list-header>
+    <ion-list-header>好友列表</ion-list-header>
     <ion-item *ngFor="let friend of friends">
       <ion-label>
-        <h2>{{friend.name}}</h2>
+        <span class="username">{{friend.username}}</span>
       </ion-label>
-      <ion-checkbox></ion-checkbox>
+      <ion-checkbox disabled="{{selectedFriends.length == selectedSeats.length && selectedFriends.indexOf(friend.username) == -1}}" (click)="select(friend.username)"></ion-checkbox>
       <ion-avatar item-start><img src="{{friend.avatar}}"></ion-avatar>
     </ion-item>
   </ion-list>
-  <button ion-button class="button">
-    确认
-  </button>
+  <button ion-button class="button" (click)="gotoConfirm()">确认</button>
 </ion-content>

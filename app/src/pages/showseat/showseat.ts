@@ -86,7 +86,8 @@ export class ShowseatPage {
   // 前往 AA 付款
   gotoAA() {
     if (this.selectedSeats.length >= 2)
-      this.navCtrl.push(FriendsPage);
+      this.navCtrl.push(FriendsPage, {showtime: this.showtime,
+                                      selectedSeats: this.selectedSeats});
   }
 
   // 前往确认订单页
