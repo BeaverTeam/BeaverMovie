@@ -4,7 +4,18 @@
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-card>
+    <span class="symbol">¥</span>
+    <span class="cost">{{cost}}</span>
+    <hr/>
+    <ion-item>
+      <ion-label>支付方式</ion-label>
+      <ion-select [(ngModel)]="pay">
+        <ion-option value="alipay">支付宝</ion-option>
+        <ion-option value="weixin">微信</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <button ion-button (click)="gotoHistory()">确认支付</button>
 </ion-content>
