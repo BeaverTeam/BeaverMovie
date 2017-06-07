@@ -7,19 +7,19 @@
 <ion-content>
   <div class="poster-container">
     <ion-slides pager>
-      <ion-slide *ngFor="let movie of movies; let i = index">
-        <div class="poster" [style.background-image]="'url(' + movie.largeImage + ')'"></div>
+      <ion-slide *ngFor="let article of articles; let i = index">
+        <div class="poster" [style.background-image]="'url(' + article.imgUrl + ')'"></div>
       </ion-slide>
     </ion-slides>
   </div>
-  <div class="article-container" *ngFor="let movie of movies">
+  <div class="article-container" *ngFor="let article of articles">
     <ion-card>
       <div class="article-header">
-        <p class="label">影评</p>
-        <p class="title">一个英雄的背影</p>
-        <div class="article-img" [style.background-image]="'url(' + movie.image + ')'"></div>
+        <p class="label">{{article.label}}</p>
+        <p class="title">{{article.title}}</p>
+        <div class="article-img" [style.background-image]="'url(' + article.imgUrl + ')'"></div>
       </div>
-      <p class="content">他的身上还带着茶马古道的风尘，巨大的包裹遮住了马的大半身体，远远望去，好像是牵着长了四条腿的行李。</p>
+      <p class="content">{{article.summary}}</p>
     </ion-card>
   </div>
 </ion-content>
