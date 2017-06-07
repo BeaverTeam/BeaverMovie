@@ -68,7 +68,7 @@ export class ConfirmPage {
   confirm() {
     this.theaterService.sendOrder(this.showtime.id, this.navParams.get('selectedSeats')).subscribe((data) => {
       if (data.state == 'success') {
-        this.navCtrl.push(PayPage, {showtime: this.showtime.id, selectedSeats: this.navParams.get('selectedSeats'), cost: this.cost + this.foodCost});
+        this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
       } else {
         // TODO 异常处理
       }

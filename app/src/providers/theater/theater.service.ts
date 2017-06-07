@@ -96,4 +96,11 @@ export class TheaterService {
     return this.articles;
   }
 
+  // 完成付款
+  makePayment(orderId) {
+    return this.http.get(this.global.serverUrl + '/order/pay/' + orderId,
+                          this.options)
+                    .map(res => res.json());
+  }
+
 }
