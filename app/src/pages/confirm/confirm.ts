@@ -17,6 +17,7 @@ export class ConfirmPage {
     [-1, -1, 20, 21, 22, 23],
     [24, 25, 26, 27, 28, 29]
   ];
+  cost: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // 获取场次信息
@@ -35,6 +36,7 @@ export class ConfirmPage {
         }
       }
     }
+    this.cost = this.showtime.cost * this.selectedSeats.length;
   }
 
 }
