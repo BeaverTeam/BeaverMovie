@@ -39,6 +39,10 @@ page-recommend {
         .title {
           font-size: 24px;
           padding-bottom: 6px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: calc(100% - 86px);
         }
 
         .article-img {
