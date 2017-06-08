@@ -6,59 +6,61 @@
 
 
 <ion-content>
-  <ion-scroll scrollY="true" class="container">
-    <ion-card class="card" padding>
-      <div class="movie-title">{{showtime.movie.title}}</div>
-      <div class="sub-title">{{showtime.startTime}}</div>
-      <div class="sub-title">{{showtime.cinema.name}}</div>
-      <div class="sub-title" *ngIf="isAA">AA 付款</div>
-      <div class="sub-title" *ngFor="let position of selectedPositions">第 {{position[0] + 1}} 行第 {{position[1] + 1}} 列</div>
-      <div class="cost-container">
-        <span class="text" *ngIf="isAA">各</span>
-        <span class="text" *ngIf="!isAA">共</span>
-        <span class="cost">{{cost}}</span>
-        <span class="text">元</span>
-      </div>
-    </ion-card>
-    <ion-card class="card">
-      <div class="item coke-item">
-        <div class="img" [style.background-image]="'url(assets/images/coke.jpg)'"></div>
-        <div class="info">
-          <div class="title">500 ml 可乐一杯</div>
-          <div class="cost-container left-align">
-            <span class="text">每杯</span>
-            <span class="cost">4</span>
-            <span class="text">元</span>
-          </div>
-          <div class="amount-container">
-            <span class="button" (click)="changeFood(1)">－</span>
-            <span class="amount">{{cokeNum}}</span>
-            <span class="button" (click)="changeFood(2)">＋</span>
+  <ion-scroll scrollY="true" class="outer-container">
+    <div class="container">
+      <ion-card class="card" padding>
+        <div class="movie-title">{{showtime.movie.title}}</div>
+        <div class="sub-title">{{showtime.startTime}}</div>
+        <div class="sub-title">{{showtime.cinema.name}}</div>
+        <div class="sub-title" *ngIf="isAA">AA 付款</div>
+        <div class="sub-title" *ngFor="let position of selectedPositions">第 {{position[0] + 1}} 行第 {{position[1] + 1}} 列</div>
+        <div class="cost-container">
+          <span class="text" *ngIf="isAA">各</span>
+          <span class="text" *ngIf="!isAA">共</span>
+          <span class="cost">{{cost}}</span>
+          <span class="text">元</span>
+        </div>
+      </ion-card>
+      <ion-card class="card">
+        <div class="item coke-item">
+          <div class="img" [style.background-image]="'url(assets/images/coke.jpg)'"></div>
+          <div class="info">
+            <div class="title">500 ml 可乐一杯</div>
+            <div class="cost-container left-align">
+              <span class="text">每杯</span>
+              <span class="cost">4</span>
+              <span class="text">元</span>
+            </div>
+            <div class="amount-container">
+              <span class="button" (click)="changeFood(1)">－</span>
+              <span class="amount">{{cokeNum}}</span>
+              <span class="button" (click)="changeFood(2)">＋</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="img" [style.background-image]="'url(assets/images/popcorn.jpg)'"></div>
-        <div class="info">
-          <div class="title">400 g 爆米花一份</div>
-          <div class="cost-container left-align">
-            <span class="text">每份</span>
-            <span class="cost">8</span>
-            <span class="text">元</span>
-          </div>
-          <div class="amount-container">
-            <span class="button" (click)="changeFood(3)">－</span>
-            <span class="amount">{{popcornNum}}</span>
-            <span class="button" (click)="changeFood(4)">＋</span>
+        <div class="item">
+          <div class="img" [style.background-image]="'url(assets/images/popcorn.jpg)'"></div>
+          <div class="info">
+            <div class="title">400 g 爆米花一份</div>
+            <div class="cost-container left-align">
+              <span class="text">每份</span>
+              <span class="cost">8</span>
+              <span class="text">元</span>
+            </div>
+            <div class="amount-container">
+              <span class="button" (click)="changeFood(3)">－</span>
+              <span class="amount">{{popcornNum}}</span>
+              <span class="button" (click)="changeFood(4)">＋</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="cost-container padding">
-        <span class="text">共</span>
-        <span class="cost">{{foodCost}}</span>
-        <span class="text">元</span>
-      </div>
-    </ion-card>
+        <div class="cost-container padding">
+          <span class="text">共</span>
+          <span class="cost">{{foodCost}}</span>
+          <span class="text">元</span>
+        </div>
+      </ion-card>
+    </div>
   </ion-scroll>
   <div class="confirm-button" (click)="confirm()">立即支付</div>
 </ion-content>

@@ -1,9 +1,12 @@
 page-confirm {
+  .outer-container {
+    height: 100%;
+  }
+
   .container {
     background-color: #fafafa;
-    height: 100%;
+    height: calc(100% - 56px);
     overflow: scroll;
-    padding-bottom: 56px;
 
     .card {
       margin: 16px;
