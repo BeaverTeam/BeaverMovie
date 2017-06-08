@@ -38,10 +38,11 @@ public class Showtime {
     public Showtime() {
     }
 
-    public Showtime(Cinema cinema, Date startTime, Movie movie) {
+    public Showtime(Cinema cinema, Date startTime, Movie movie, int cost) {
         this.cinema = cinema;
         this.startTime = startTime;
         this.movie = movie;
+        this.cost = cost;
     }
 
     public Movie getMovie() {

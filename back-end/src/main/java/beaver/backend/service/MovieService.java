@@ -42,13 +42,14 @@ public class MovieService {
                     .stream()
                     .filter(movie -> movieRepository.findOne(movie.getId()) == null)
                     .map(movie -> {
+                        int cost = (int)(Math.random()*15) + 30;
                         movieRepository.save(movie);
                         cinemaRepository.findAll().forEach(cinema -> {
                             for (int i = 0; i < 3; i++) {
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.add(Calendar.DAY_OF_MONTH, (int)Math.random()*3 + 1);
-                                calendar.add(Calendar.HOUR_OF_DAY, (int)Math.random()*5 + 1);
-                                showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie));
+                                calendar.add(Calendar.DAY_OF_MONTH, (int)(Math.random()*4));
+                                calendar.add(Calendar.HOUR_OF_DAY, (int)(Math.random()*5 + 1));
+                                showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie, cost));
                             }
                         });
                         return movie;
