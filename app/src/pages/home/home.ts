@@ -4,6 +4,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
+import { SearchPage } from '../search/search';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -14,11 +15,11 @@ import { TheaterService } from '../../providers/theater/theater.service';
 export class HomePage {
   movies: any = [];
   pageNum: number = 1;  // 当前获取的电影页数
-  notifNum: string;
+  notifNum: number;
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
               public loadingCtrl: LoadingController) {
-    this.notifNum = "5";
+    this.notifNum = 3;
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
@@ -84,6 +85,11 @@ export class HomePage {
         }
       });
     }
+  }
+
+  // 跳转到 search 页面
+  gotoSearch() {
+    this.navCtrl.push(SearchPage);
   }
 
 }

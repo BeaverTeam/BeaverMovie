@@ -1,47 +1,54 @@
 page-history {
-
-  .type-container {
+  .container {
     background-color: #fafafa;
-    padding-top: 16px;
+    height: 100%;
 
-    ion-card {
-      position: relative;
-      margin: 0px 16px 16px 16px !important;
-      width: calc(100% - 32px) !important;
+    .segment {
+      background-color: #ffffff;
+    }
 
-      .poster {
-        width: 108px;
-        height: 148px;
-        display: inline-block;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin-bottom: -5px;
-      }
+    .type-container {
+      padding-top: 16px;
 
-      .info {
-        position: absolute;
-        display: inline-block;
-        padding: 0px 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        max-width: calc(100% - 124px);
+      ion-card {
+        position: relative;
+        margin: 0px 16px 16px 16px !important;
+        width: calc(100% - 32px) !important;
 
-        .title {
-          font-size: 24px;
-          color: white;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        .poster {
+          width: 108px;
+          height: 148px;
+          display: inline-block;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          margin-bottom: -5px;
         }
 
-        .sub-title {
-          padding-top: 4px;
-          color: white;
-          font-size: 14px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        .info {
+          position: absolute;
+          display: inline-block;
+          padding: 0px 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          max-width: calc(100% - 124px);
+
+          .title {
+            font-size: 24px;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .sub-title {
+            padding-top: 4px;
+            color: white;
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
         }
       }
     }

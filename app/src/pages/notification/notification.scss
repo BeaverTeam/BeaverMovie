@@ -1,3 +1,38 @@
 page-notif {
+  .item-block {
+    align-items: flex-start !important;
+  }
 
+  .scroller {
+    height: 100%;
+    overflow: scroll;
+
+    .item {
+      padding: 0px !important;
+
+      .image {
+        align-items: flex-start !important;
+        margin: 16px !important;
+        height: 56px;
+        width: 56px;
+        border-radius: 28px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+
+      .title {
+        font-size: 1.1em;
+      }
+
+      .content {
+        color: #757575;
+        white-space: normal !important;
+      }
+
+      .actions {
+        text-align: right;
+      }
+    }
+  }
 }

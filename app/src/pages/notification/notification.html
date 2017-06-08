@@ -4,6 +4,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  欢迎使用Beaver Movie！这是推荐页面！
+<ion-content>
+  <div class="scroller">
+    <div *ngFor="let notification of notifications" ion-item class="item">
+      <div class="image" [style.background-image]="'url(' + notification.image + ')'" item-left></div>
+      <div>
+        <div class="title" *ngIf="notification.type == 'system'">系统消息</div>
+        <div class="title" *ngIf="notification.type == 'invitation'">好友邀请</div>
+        <div class="title" *ngIf="notification.type == 'friend'">好友申请</div>
+        <span class="content">{{notification.message}}</span>
+      </div>
+      <div class="actions" *ngIf="notification.type != 'system'">
+        <button ion-button clear>同意</button>
+        <button ion-button clear>拒绝</button>
+      </div>
+    </div>
+  </div>
 </ion-content>
