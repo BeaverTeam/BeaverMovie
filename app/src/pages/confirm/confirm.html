@@ -6,7 +6,7 @@
 
 
 <ion-content>
-  <div class="container">
+  <ion-scroll scrollY="true" class="container">
     <ion-card class="card" padding>
       <div class="movie-title">{{showtime.movie.title}}</div>
       <div class="sub-title">{{showtime.startTime}}</div>
@@ -59,6 +59,6 @@
         <span class="text">元</span>
       </div>
     </ion-card>
-  </div>
+  </ion-scroll>
   <div class="confirm-button" (click)="confirm()">立即支付</div>
 </ion-content>
