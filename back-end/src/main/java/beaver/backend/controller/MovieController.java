@@ -42,8 +42,8 @@ public class MovieController {
         return new ResponseEntity<Info>(new Info<>("success", "Retrive Success", movieService.getLastest((page - 1) * 10)), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/showtimes/{page}")
-    public ResponseEntity<Info> getShowtimes(@PathVariable int id, @PathVariable int page) throws Exception {
-        return new ResponseEntity<Info>(new Info("success", "Retrive Showtimes", movieService.getShowtimes(id, (page - 1)*10)), HttpStatus.OK);
+    @GetMapping("/{id}/showtimes")
+    public ResponseEntity<Info> getShowtimes(@PathVariable int id) throws Exception {
+        return new ResponseEntity<Info>(new Info("success", "Retrive Showtimes", movieService.getShowtimes(id)), HttpStatus.OK);
     }
 }

@@ -80,12 +80,10 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    public Set<Showtime> getShowtimes(long id, int startCount) {
+    public Set<Showtime> getShowtimes(long id) {
         return movieRepository.findOne(id).getShowtimes()
                 .stream()
                 .filter(showtime -> showtime.getStartTime().after(Calendar.getInstance().getTime()))
-                .skip(startCount)
-                .limit(10)
                 .collect(Collectors.toSet());
     }
 }

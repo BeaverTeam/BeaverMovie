@@ -12,7 +12,7 @@ import { TheaterService } from '../../providers/theater/theater.service';
 export class CinemaPage {
   movieId: number;
   title: string;
-  showtimes: any = [];
+  showtimesByDay: any = [[], [], [], []];
   pageNum: number = 1;  // 当前获取的场次页数
   fourDate: any = [];
   todayDate: string;
@@ -34,41 +34,35 @@ export class CinemaPage {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
-    this.theaterService.getShowtimes(this.movieId, this.pageNum).subscribe((data) => {
+    this.theaterService.getShowtimes(this.movieId).subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {
-        for (let showtime of data.data) {
-          // 不放入重复的影院
-          let flag = true;
-          for (let exist of this.showtimes) {
-            if (exist.cinema.id == showtime.cinema.id) {
-              flag = false;
-              break;
-            }
-          }
-          if (!flag) continue;
-          let parts = showtime.startTime.split(' ');
-          showtime.startTime = parts[0] + ' ' + parts[1];
-          this.showtimes.push(showtime);
+        // 给场次按时间顺序排序
+        let tempShowtimes = data.data;
+        tempShowtimes.sort(function(a, b) {
+          let startTimeA = a.startTime.split(" ");
+          let startDateA = new Date(startTimeA[0] + "T" + startTimeA[1] + ":00");
+          let startTimeB = b.startTime.split(" ");
+          let startDateB = new Date(startTimeB[0] + "T" + startTimeB[1] + ":00");
+          if (startDateA > startDateB) return 1
+          else if (startDateA < startDateB) return -1;
+          else return 0;
+        });
+        // 装进不同的时间数组
+        let tempShowtimesByDay = [[], [], [], []];
+        for (let showtime of tempShowtimes) {
+          let startTime = showtime.startTime.split(" ");
+          let startDate = new Date(startTime[0] + "T" + startTime[1] + ":00");
+          let oneDay = 24 * 60 * 60 * 1000;
+          let diffDays = Math.round(Math.abs((startDate.getTime() - new Date().getTime())/(oneDay)));
+          tempShowtimesByDay[diffDays].push(showtime);
         }
-      } else {
-        // TODO 异常处理，未取回场次数据
-      }
-    });
-  }
-
-  // 监控滚动，获取更多场次
-  scroll(event: any) {
-    let tracker = event.target;
-    let limit = tracker.scrollHeight - tracker.clientHeight;
-    if (event.target.scrollTop === limit) {
-      this.pageNum++;
-      this.theaterService.getShowtimes(this.movieId, this.pageNum).subscribe((data) => {
-        if (data.state == 'success') {
-          for (let showtime of data.data) {
+        // 去重
+        for (let i = 0; i < 4; i++) {
+          for (let showtime of tempShowtimesByDay[i]) {
             // 不放入重复的影院
             let flag = true;
-            for (let exist of this.showtimes) {
+            for (let exist of this.showtimesByDay[i]) {
               if (exist.cinema.id == showtime.cinema.id) {
                 flag = false;
                 break;
@@ -77,13 +71,13 @@ export class CinemaPage {
             if (!flag) continue;
             let parts = showtime.startTime.split(' ');
             showtime.startTime = parts[0] + ' ' + parts[1];
-            this.showtimes.push(showtime);
+            this.showtimesByDay[i].push(showtime);
           }
-        } else {
-          // TODO 异常处理，未取回电影数据
         }
-      });
-    }
+      } else {
+        // TODO 异常处理，未取回场次数据
+      }
+    });
   }
 
   gotoShowtime(cinemaId, cinemaName) {

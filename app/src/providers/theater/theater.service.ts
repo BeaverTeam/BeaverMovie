@@ -62,8 +62,8 @@ export class TheaterService {
   }
 
   // 根据电影 id 获取场次信息
-  getShowtimes(movieId: number, page: number) {
-    return this.http.get(this.global.serverUrl + '/movie/' + movieId + '/showtimes/' + page,
+  getShowtimes(movieId: number) {
+    return this.http.get(this.global.serverUrl + '/movie/' + movieId + '/showtimes/',
                          this.options)
                     .map(res => res.json());
   }

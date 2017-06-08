@@ -8,9 +8,9 @@
   <div class="scroller">
     <div class="movies-container">
       <div class="movies" id="movies">
-        <div class="movie-container" *ngFor="let movie of movies">
-          <div class="movie-bg" [style.background-image]="'url(' + movie.image + ')'"></div>
-          <div class="movie" [style.background-image]="'url(' + movie.image + ')'"></div>
+        <div class="movie-container" *ngIf="movies[position]">
+          <div class="movie-bg" [style.background-image]="'url(' + movies[position].image + ')'"></div>
+          <div class="movie" [style.background-image]="'url(' + movies[position].image + ')'"></div>
         </div>
       </div>
       <button ion-fab mini class="left-button" (click)="changeFilm(false)" *ngIf="position > 0">
