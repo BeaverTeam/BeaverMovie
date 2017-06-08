@@ -21,6 +21,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -28,6 +29,7 @@ public class User {
     private String phone;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    @JsonIgnore
     private Set<TicketOrder> orders = new HashSet<>();
 
     public User() { }
