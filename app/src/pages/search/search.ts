@@ -17,7 +17,7 @@ export class SearchPage {
     let val = ev.target.value;
     let names = ['刘忍', '南瓜粥', '鲜虾', '拉肠', '酸菜', '爆炒', '水煮', '火锅'];
     for (let i = 0; i < 8; i++)
-      this.userList.push(new User(names[i], './../assets/svgs/' + i + '.svg', ''));
+      this.userList.push(new User(names[i], 'assets/svgs/' + i + '.svg', ''));
   }
 
   addFriend(username) {}
