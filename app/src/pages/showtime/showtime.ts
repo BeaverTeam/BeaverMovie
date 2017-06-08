@@ -34,15 +34,15 @@ export class ShowtimePage {
       if (data.state == 'success') {
         let counter = 0;
         for (let showtime of data.data) {
-          if (showtime.movie.id == this.movieId)
-            this.position = counter;
           showtime.preciseTime = showtime.startTime.split(' ')[1];
           showtime.date = showtime.startTime.split(' ')[0];
           this.showtimes.push(showtime);
           // 计算出现过的电影
+          let flag = true;
           for (let movie of this.movies)
             if (movie.id == showtime.movie.id)
-              continue;
+              flag = false;
+          if (!flag) continue;
           // 计算星星
           let stars: any[] = [0, 0, 0, 0, 0];
           // 计算全星星的数目
@@ -53,6 +53,8 @@ export class ShowtimePage {
           while (stars.length < 5) stars.push(0);
           showtime.movie.stars = stars;
           this.movies.push(showtime.movie);
+          if (showtime.movie.id == this.movieId)
+            this.position = counter;
           counter++;
         }
         // 设置初始位置
@@ -70,12 +72,10 @@ export class ShowtimePage {
   }
 
   changeFilm(direction: boolean) {
-    let movies = document.getElementById('movies');
     if (direction)
       this.position++;
     else
       this.position--;
-    movies.style.left = '-' + this.position + '00%';
   }
 
   gotoSeat(showtime) {
