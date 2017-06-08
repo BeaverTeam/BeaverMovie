@@ -24,7 +24,6 @@ export class HistoryPage {
     }
     theaterService.getPaidOrder().subscribe((data) => {
       loading.dismiss();
-      console.log(data);
       if (data.state == 'success') {
         for (let order of data.data) {
           if (order.paid) {
