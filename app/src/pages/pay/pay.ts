@@ -13,6 +13,7 @@ export class PayPage {
   cost: number;
   pay: string = "alipay";
   orderId: string;
+  history: HistoryPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService) {
@@ -24,7 +25,7 @@ export class PayPage {
     this.theaterService.makePayment(this.orderId).subscribe((data) => {
       if (data.state == 'success') {
         this.navCtrl.popToRoot();
-        this.navCtrl.push(HistoryPage, {tickets: "type2"});
+        this.navCtrl.parent.select(2);
       }
     });
   }
