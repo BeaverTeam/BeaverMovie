@@ -4,6 +4,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
+import { SearchPage } from '../search/search';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -84,6 +85,11 @@ export class HomePage {
         }
       });
     }
+  }
+
+  // 跳转到 search 页面
+  gotoSearch() {
+    this.navCtrl.push(SearchPage);
   }
 
 }

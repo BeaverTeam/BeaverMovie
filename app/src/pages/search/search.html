@@ -5,5 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of userList">
+      {{user.username}}
+      <ion-avatar item-start><img src="{{user.avatar}}"></ion-avatar>
+      <button ion-button clear icon-only  (click)="addFriend(user.username)">
+       <ion-icon name='add' is-active="false"></ion-icon>
+     </button>
+    </ion-item>
+  </ion-list>
 </ion-content>

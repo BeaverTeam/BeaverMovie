@@ -1,3 +1,17 @@
 page-search {
+  ion-searchbar {
+    padding: 0 !important;
+  }
+
+  ion-list {
+    padding: 16px 0;
+
+    button {
+      width: 24px;
+      height: 24px;
+      position: absolute !important;
+      right: 16px !important;
+    }
+  }
 
 }
