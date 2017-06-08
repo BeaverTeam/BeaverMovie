@@ -34,7 +34,7 @@ export class CinemaPage {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
-    this.theaterService.getShowtimes(this.movieId, this.pageNum).subscribe((data) => {
+    this.theaterService.getShowtimes(this.movieId).subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {
         // 给场次按时间顺序排序
@@ -51,7 +51,7 @@ export class CinemaPage {
         for (let showtime of tempShowtimes) {
           let startTime = showtime.startTime.split(" ");
           let startDate = new Date(startTime[0] + "T" + startTime[1] + ":00");
-          let oneDay = 24*60*60*1000;
+          let oneDay = 24 * 60 * 60 * 1000;
           let diffDays = Math.round(Math.abs((startDate.getTime() - new Date().getTime())/(oneDay)));
           tempShowtimesByDay[diffDays].push(showtime);
         }
