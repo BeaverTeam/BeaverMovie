@@ -8,11 +8,11 @@ import { TheaterService } from '../../providers/theater/theater.service';
   templateUrl: 'history.html'
 })
 export class HistoryPage {
-  movies: any = [];
+  tickets: any = [];
   colors: any = ['rgb(33, 68, 89)', 'rgb(25, 98, 115)', 'rgb(115, 1, 88)', 'rgb(154, 0, 68)'];
-  futureMovies: any = [];
+  futureTickets: any = [];
   pageNum: number = 1;
-  tickets: string = 'type1';
+  type: string = 'type1';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController) {
@@ -20,13 +20,26 @@ export class HistoryPage {
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
     if (navParams.get("tickets") != undefined && navParams.get("tickets") != null) {
-      this.tickets = navParams.get("tickets");
+      this.type = navParams.get("tickets");
     }
-    theaterService.getMovies(this.pageNum).subscribe((data) => {
+    theaterService.getPaidOrder().subscribe((data) => {
       loading.dismiss();
+      console.log(data);
       if (data.state == 'success') {
-        this.movies = data.data;
-        this.futureMovies = this.movies.splice(3, 2);
+        for (let order of data.data) {
+          if (order.paid) {
+            for (let tempTicket of order.tickets) {
+              let startTime = tempTicket.showtime.startTime.split(' ');
+              let startDate = new Date(startTime[0] + "T" + startTime[1] + ":00");
+              if (startDate > new Date()) {
+                this.futureTickets.push(tempTicket);
+              } else {
+                this.tickets.push(tempTicket);
+              }
+            }
+          }
+        }
+
       } else {
         // TODO 异常处理
       }
@@ -36,6 +49,16 @@ export class HistoryPage {
   getColor(i) {
     let num = i % 4;
     return this.colors[num];
+  }
+
+  changeTimeFormat(time) {
+    let tempTime = time.split(' ');
+    return tempTime[0] + " " + tempTime[1];
+  }
+
+  changeSeatFormat(seat) {
+    // TODO 将座位号从 int 类型转变成为字符串
+    return "1排1号";
   }
 
 }

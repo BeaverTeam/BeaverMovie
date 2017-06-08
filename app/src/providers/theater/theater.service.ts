@@ -103,4 +103,11 @@ export class TheaterService {
                     .map(res => res.json());
   }
 
+  // 获取待使用的票券
+  getPaidOrder() {
+    return this.http.get(this.global.serverUrl + '/order',
+                          this.options)
+                    .map(res => res.json());
+  }
+
 }

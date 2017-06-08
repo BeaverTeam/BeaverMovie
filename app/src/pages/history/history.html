@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="container">
-    <ion-segment [(ngModel)]="tickets">
+    <ion-segment [(ngModel)]="type" class="segment">
       <ion-segment-button value="type1">
         我看过的
       </ion-segment-button>
@@ -15,17 +15,17 @@
       </ion-segment-button>
     </ion-segment>
 
-    <div [ngSwitch]="tickets">
+    <div [ngSwitch]="type">
       <ion-list *ngSwitchCase="'type1'">
         <div class="type-container">
-          <div *ngFor="let movie of movies; let i = index">
+          <div *ngFor="let ticket of tickets; let i = index">
             <ion-card padding [style.background-color]="getColor(i)">
-              <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+              <div class="poster" [style.background-image]="'url(' + ticket.showtime.movie.image + ')'"></div>
               <div class="info">
-                <div class="title">{{movie.title}}</div>
-                <div class="sub-title">金逸国际影城</div>
-                <div class="sub-title">11排5号</div>
-                <div class="sub-title">2017年6月5日 13:58-15:47</div>
+                <div class="title">{{ticket.showtime.movie.title}}</div>
+                <div class="sub-title">{{ticket.showtime.cinema.name}}</div>
+                <div class="sub-title">{{changeSeatFormat(ticket.seat)}}</div>
+                <div class="sub-title">{{changeTimeFormat(ticket.showtime.startTime)}}</div>
               </div>
             </ion-card>
           </div>
@@ -34,14 +34,14 @@
 
       <ion-list *ngSwitchCase="'type2'">
         <div class="type-container">
-          <div *ngFor="let movie of futureMovies; let i = index">
+          <div *ngFor="let ticket of futureTickets; let i = index">
             <ion-card padding [style.background-color]="getColor(i)">
-              <div class="poster" [style.background-image]="'url(' + movie.image + ')'"></div>
+              <div class="poster" [style.background-image]="'url(' + ticket.showtime.movie.image + ')'"></div>
               <div class="info">
-                <div class="title">{{movie.title}}</div>
-                <div class="sub-title">金逸国际影城</div>
-                <div class="sub-title">11排5号</div>
-                <div class="sub-title">2017年6月5日 13:58-15:47</div>
+                <div class="title">{{ticket.showtime.movie.title}}</div>
+                <div class="sub-title">{{ticket.showtime.cinema.name}}</div>
+                <div class="sub-title">{{changeSeatFormat(ticket.seat)}}</div>
+                <div class="sub-title">{{changeTimeFormat(ticket.showtime.startTime)}}</div>
               </div>
             </ion-card>
           </div>
