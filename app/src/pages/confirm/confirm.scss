@@ -1,11 +1,6 @@
 page-confirm {
   .outer-container {
     height: 100%;
-  }
-
-  .container {
-    background-color: #fafafa;
-    padding-bottom: 56px;
 
     .card {
       margin: 16px;
@@ -98,6 +93,10 @@ page-confirm {
           }
         }
       }
+    }
+
+    .place-holder {
+      height: 56px;
     }
   }
 
