@@ -21,7 +21,7 @@ export class ProfilePage {
     userService.getUser().subscribe((data) => {
       if (data.state == 'success') {
         let temp = data.data;
-        if (temp.avatar == null) temp.avatar = '../../assets/images/avatar.jpg';
+        if (temp.avatar == null) temp.avatar = 'assets/images/avatar.jpg';
         if (temp.phone == null) temp.phone = '未设定手机';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {

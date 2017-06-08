@@ -18,7 +18,7 @@ export class SettingPage {
     userService.getUser().subscribe((data) => {
       if (data.state == 'success') {
         let temp = data.data;
-        if (temp.avatar == null) temp.avatar = '../../assets/images/avatar.jpg';
+        if (temp.avatar == null) temp.avatar = 'assets/images/avatar.jpg';
         if (temp.phone == null) temp.phone = '';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {
@@ -82,7 +82,7 @@ export class SettingPage {
     // 对头像进行校验
     if (avatar == null || avatar == undefined || avatar == '')
       errorMessage = '图片不符合格式规范';
-    else if (avatar.match(imageRegex) == null && avatar != '../../assets/images/avatar.jpg')
+    else if (avatar.match(imageRegex) == null && avatar != 'assets/images/avatar.jpg')
       errorMessage = '图片不符合格式规范';
 
     // 对手机进行校验

@@ -15,7 +15,7 @@ export class NotificationPage {
         message: 'shuqian 邀请你和 TA 一同观看《加勒比海盗5：死无对证》',
         time: '刚刚',
         isRead: false,
-        image: '../../assets/svgs/1.svg'
+        image: 'assets/svgs/1.svg'
         // TODO showtime 的 id
       },
       {
@@ -29,13 +29,13 @@ export class NotificationPage {
         message: 'An0nym 申请加为你的好友',
         time: '1 天前',
         isRead: false,
-        image: '../../assets/svgs/0.svg'
+        image: 'assets/svgs/0.svg'
       }
     ];
     // 为通知加上图片
     for (let notification of this.notifications) {
       if (notification.type == 'system')
-        notification.image = '../../assets/images/system.jpg';
+        notification.image = 'assets/images/system.jpg';
     }
   }
 
