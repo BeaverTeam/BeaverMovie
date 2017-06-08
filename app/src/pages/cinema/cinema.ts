@@ -44,7 +44,9 @@ export class CinemaPage {
           let startDateA = new Date(startTimeA[0] + "T" + startTimeA[1] + ":00");
           let startTimeB = b.startTime.split(" ");
           let startDateB = new Date(startTimeB[0] + "T" + startTimeB[1] + ":00");
-          return startDateA > startDateB;
+          if (startDateA > startDateB) return 1
+          else if (startDateA < startDateB) return -1;
+          else return 0;
         });
         // 装进不同的时间数组
         let tempShowtimesByDay = [[], [], [], []];
