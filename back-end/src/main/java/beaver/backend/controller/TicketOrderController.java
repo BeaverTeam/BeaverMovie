@@ -1,12 +1,10 @@
 package beaver.backend.controller;
 
 import beaver.backend.entity.TicketOrder;
-import beaver.backend.entity.User;
 import beaver.backend.entity.requestType.OrderRequest;
 import beaver.backend.entity.responseType.Info;
 import beaver.backend.exception.NotLogin;
 import beaver.backend.exception.SeatUnavaliable;
-import beaver.backend.exception.UserNotFound;
 import beaver.backend.service.ShowtimeService;
 import beaver.backend.service.TicketOrderService;
 import beaver.backend.service.UserService;

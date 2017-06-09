@@ -6,7 +6,6 @@ import beaver.backend.entity.responseType.UserDetail;
 import beaver.backend.exception.DuplicatedUserName;
 import beaver.backend.exception.NotLogin;
 import beaver.backend.exception.UserNotFound;
-import beaver.backend.repository.UserRepository;
 import beaver.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,7 @@ public class UserController {
     public ResponseEntity<Info> getDetail(HttpSession session) throws NotLogin, Exception {
         if (session.getAttribute("currentUser") == null)
             throw new NotLogin();
-        return new ResponseEntity<Info>(new Info("success", "Get User Info", userService.getUserDetail((long)session.getAttribute("currentUser"))),HttpStatus.OK);
+        return new ResponseEntity<Info>(new Info("success", "Get User Info", userService.getUserDetail((long)session.getAttribute("currentUser"))), HttpStatus.OK);
     }
 
     @PostMapping("/update-user")
@@ -46,13 +45,13 @@ public class UserController {
     }
 
     @GetMapping("search-user")
-    public ResponseEntity<Info> getLikeUsers(@RequestParam String query, HttpSession session) throws UserNotFound, Exception {
+    public ResponseEntity<Info> searchUser(@RequestParam String query, HttpSession session) throws UserNotFound, Exception {
         Long userId = (Long)session.getAttribute("currentUser");
         if (userId == null)
             throw new NotLogin();
         List<User> matchedString = userService.searchLikeUsers(query);
         if (matchedString.size() == 0)
             throw new UserNotFound();
-        return new ResponseEntity<Info>(new Info("success", "Get Users Info", matchedString), HttpStatus.OK);
+        return new ResponseEntity<Info>(new Info("success", "Get Users Info Successfully", matchedString), HttpStatus.OK);
     }
 }
