@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { PayPage } from '../pay/pay';
-
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -28,7 +27,7 @@ export class ConfirmPage {
   isAA: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public theaterService: TheaterService) {
+              public theaterService: TheaterService, public toastCtrl: ToastController) {
     // 获取场次信息
     this.showtime = navParams.get('showtime');
     let temp = this.showtime.startTime.split(' ');
@@ -53,6 +52,15 @@ export class ConfirmPage {
     }
   }
 
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   changeFood(op: number) {
     if (op == 1 && this.cokeNum > 0)
       this.cokeNum--;
@@ -70,7 +78,7 @@ export class ConfirmPage {
       if (data.state == 'success') {
         this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
       } else {
-        // TODO 异常处理
+        this.presentToast(data.message);
       }
     });
   }

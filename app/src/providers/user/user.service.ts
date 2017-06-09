@@ -28,13 +28,23 @@ export class UserService {
   }
 
   // 更新用户
-  updateUser(user, fileUrl, avatarFormData) {
-    user.avatar = this.global.fileServerUrl + fileUrl;
+  updateUser(user, fileUrl) {
+    if (fileUrl == '[default]')
+      user.avatar = 'assets/images/avatar.jpg';
+    else
+      user.avatar = this.global.fileServerUrl + fileUrl;
     return this.http.post(this.global.serverUrl + '/user/update-user',
                           {username: user.username,
                            avatar: user.avatar,
                            phone: user.phone},
                           this.options)
+                    .map(res => res.json());
+  }
+
+  // 搜索用户
+  searchUser(searchStr: string) {
+    return this.http.get(this.global.serverUrl + '/user/search-user?query=' + searchStr,
+                         this.options)
                     .map(res => res.json());
   }
 

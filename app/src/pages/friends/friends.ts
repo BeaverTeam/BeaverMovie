@@ -43,8 +43,8 @@ export class FriendsPage {
 
   // 前往确认订单页
   gotoConfirm() {
-    if (this.selectedSeats.length != this.selectedFriends.length) {
-      this.presentToast('请选择 ' + this.selectedSeats.length + ' 位好友或退回重新选择座位');
+    if (this.selectedSeats.length != (this.selectedFriends.length + 1)) {
+      this.presentToast('请选择 ' + (this.selectedSeats.length - 1) + ' 位好友或退回重新选择座位');
     } else {
       this.navCtrl.push(ConfirmPage, {showtime: this.showtime,
                                       selectedSeats: this.selectedSeats,

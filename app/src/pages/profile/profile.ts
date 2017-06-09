@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { App } from 'ionic-angular';
 
 import { SettingPage }  from '../setting/setting';
@@ -17,7 +17,7 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public appCtrl: App, public authService: AuthService,
-              public userService: UserService) {
+              public userService: UserService, public toastCtrl: ToastController) {
     userService.getUser().subscribe((data) => {
       if (data.state == 'success') {
         let temp = data.data;
@@ -25,9 +25,18 @@ export class ProfilePage {
         if (temp.phone == null) temp.phone = '未设定手机';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {
-        // TODO 异常处理，未取回用户信息
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   gotoSetting() {

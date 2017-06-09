@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { ShowtimePage } from '../showtime/showtime';
-
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -18,7 +17,8 @@ export class CinemaPage {
   todayDate: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public theaterService: TheaterService, public loadingCtrl: LoadingController) {
+              public theaterService: TheaterService, public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController) {
     // 设置最远时间
     let tempDate = new Date();
     this.todayDate = (tempDate.getMonth() + 1) + "月" + tempDate.getDate() + "日";
@@ -75,9 +75,18 @@ export class CinemaPage {
           }
         }
       } else {
-        // TODO 异常处理，未取回场次数据
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   gotoShowtime(cinemaId, cinemaName) {

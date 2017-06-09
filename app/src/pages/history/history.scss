@@ -10,6 +10,10 @@ page-history {
     .type-container {
       padding-top: 16px;
 
+      .no-ticket {
+        text-align: center;
+      }
+
       ion-card {
         position: relative;
         margin: 0px 16px 16px 16px !important;

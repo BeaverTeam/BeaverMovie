@@ -22,7 +22,7 @@ export class SettingPage {
         if (temp.phone == null) temp.phone = '';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {
-        // TODO 异常处理，未取回用户信息
+        this.presentToast(data.message);
       }
     });
   }
@@ -100,21 +100,41 @@ export class SettingPage {
     } else {
       // 更新信息到后端
       let that = this;
-      this.userService.getFileServerUrl(this.avatarFormData).subscribe((data) => {
-        if (data.state == 'success') {
-          this.userService.updateUser(this.user, data.fileurl, this.avatarFormData).subscribe((data_) => {
-            if (data_.state == 'success') {
-              that.presentToast('成功更新用户信息');
-            } else {
-              let alert = that.alertCtrl.create({
-                subTitle: data.message,
-                buttons: ['好的']
-              });
-              alert.present();
-            }
-          });
-        }
-      });
+      if (this.avatarFormData != undefined) {
+        this.userService.getFileServerUrl(this.avatarFormData).subscribe((data) => {
+          if (data.state == 'success') {
+            this.userService.updateUser(this.user, data.fileurl).subscribe((data_) => {
+              if (data_.state == 'success') {
+                that.presentToast('成功更新用户信息');
+              } else {
+                let alert = that.alertCtrl.create({
+                  subTitle: data_.message,
+                  buttons: ['好的']
+                });
+                alert.present();
+              }
+            });
+          } else {
+            let alert = that.alertCtrl.create({
+              subTitle: data.message,
+              buttons: ['好的']
+            });
+            alert.present();
+          }
+        });
+      } else {
+        this.userService.updateUser(this.user, '[default]').subscribe((data_) => {
+          if (data_.state == 'success') {
+            that.presentToast('成功更新用户信息');
+          } else {
+            let alert = that.alertCtrl.create({
+              subTitle: data_.message,
+              buttons: ['好的']
+            });
+            alert.present();
+          }
+        });
+      }
     }
   }
 
