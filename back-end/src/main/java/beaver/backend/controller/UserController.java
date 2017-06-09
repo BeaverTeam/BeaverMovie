@@ -1,9 +1,11 @@
 package beaver.backend.controller;
 
+import beaver.backend.entity.User;
 import beaver.backend.entity.responseType.Info;
 import beaver.backend.entity.responseType.UserDetail;
 import beaver.backend.exception.DuplicatedUserName;
 import beaver.backend.exception.NotLogin;
+import beaver.backend.exception.UserNotFound;
 import beaver.backend.repository.UserRepository;
 import beaver.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by parda on 2017/6/2.
@@ -40,5 +43,16 @@ public class UserController {
             throw new DuplicatedUserName();
         userService.update((long)session.getAttribute("currentUser"), userDetail);
         return new ResponseEntity<Info>(new Info("success", "Update User Success"), HttpStatus.OK);
+    }
+
+    @GetMapping("search-user")
+    public ResponseEntity<Info> getLikeUsers(@RequestParam String query, HttpSession session) throws UserNotFound, Exception {
+        Long userId = (Long)session.getAttribute("currentUser");
+        if (userId == null)
+            throw new NotLogin();
+        List<User> matchedString = userService.searchLikeUsers(query);
+        if (matchedString.size() == 0)
+            throw new UserNotFound();
+        return new ResponseEntity<Info>(new Info("success", "Get Users Info", matchedString), HttpStatus.OK);
     }
 }
