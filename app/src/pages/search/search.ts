@@ -18,9 +18,12 @@ export class SearchPage {
   getItems(ev: any) {
     let val = ev.target.value;
     this.userService.searchUser(val).subscribe((data) => {
+      this.userList = [];
       if (data.state == 'success') {
-        for (let user of data.data)
+        for (let user of data.data) {
+          if (user.avatar == null) user.avatar = 'assets/images/avatar.jpg';
           this.userList.push(new User(user.username, user.avatar, ''));
+        }
       } else {
         // TODO 未取回用户信息
       }
