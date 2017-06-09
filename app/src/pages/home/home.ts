@@ -19,8 +19,11 @@ export class HomePage {
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
               public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.notifNum = 3;
+  }
+
+  ionViewWillEnter() {
     // 显示 loading
-    let loading = loadingCtrl.create({content: '正在加载...'});
+    let loading = this.loadingCtrl.create({content: '正在加载...'});
     loading.present();
     this.theaterService.getMovies(this.pageNum).subscribe((data) => {
       loading.dismiss();

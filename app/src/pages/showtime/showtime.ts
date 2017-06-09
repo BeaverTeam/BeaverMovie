@@ -22,13 +22,18 @@ export class ShowtimePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private theaterService: TheaterService, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController) {
-    // 显示 loading
-    let loading = loadingCtrl.create({content: '正在加载...'});
-    loading.present();
     // 获取信息
     this.movieId = this.navParams.get('movieId');
     this.cinemaName = this.navParams.get('cinemaName');
     this.cinemaId = this.navParams.get('cinemaId');
+  }
+
+  ionViewWillEnter() {
+    this.showtimes = [];
+    this.movies = [];
+    // 显示 loading
+    let loading = this.loadingCtrl.create({content: '正在加载...'});
+    loading.present();
     // 请求场次信息
     this.theaterService.getCinemaShowtimes(this.cinemaId).subscribe((data) => {
       loading.dismiss();

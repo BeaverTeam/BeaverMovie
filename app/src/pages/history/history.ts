@@ -25,13 +25,18 @@ export class HistoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController) {
-    // 显示 loading
-    let loading = loadingCtrl.create({content: '正在加载...'});
-    loading.present();
-    if (navParams.get("tickets") != undefined && navParams.get("tickets") != null) {
-      this.type = navParams.get("tickets");
+    if (this.navParams.get("tickets") != undefined && this.navParams.get("tickets") != null) {
+      this.type = this.navParams.get("tickets");
     }
-    theaterService.getPaidOrder().subscribe((data) => {
+  }
+
+  ionViewWillEnter() {
+    this.tickets = [];
+    this.futureTickets = [];
+    // 显示 loading
+    let loading = this.loadingCtrl.create({content: '正在加载...'});
+    loading.present();
+    this.theaterService.getPaidOrder().subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {
         for (let order of data.data) {

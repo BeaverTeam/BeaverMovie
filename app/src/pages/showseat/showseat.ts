@@ -31,11 +31,14 @@ export class ShowseatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private theaterService: TheaterService, public toastCtrl: ToastController) {
-    this.showtime = navParams.get('showtime');
+    this.showtime = this.navParams.get('showtime');
     let temp = this.showtime.startTime.split(' ');
     this.showtime.startTime = temp[0] + ' ' + temp[1];
+  }
+
+  ionViewWillEnter() {
     // 请求座位信息
-    theaterService.getSeats(this.showtime.id).subscribe((data) => {
+    this.theaterService.getSeats(this.showtime.id).subscribe((data) => {
       if (data.state == 'success') {
         for (let selectedSeat of data.data) {
           let count = 0;

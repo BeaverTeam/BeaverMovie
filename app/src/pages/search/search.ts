@@ -12,8 +12,7 @@ export class SearchPage {
   userList: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private userService: UserService, public toastCtrl: ToastController) {
-  }
+              private userService: UserService, public toastCtrl: ToastController) {}
 
   // 显示 toast
   presentToast(message: string) {

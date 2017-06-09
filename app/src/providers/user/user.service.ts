@@ -29,9 +29,7 @@ export class UserService {
 
   // 更新用户
   updateUser(user, fileUrl) {
-    if (fileUrl == '[default]')
-      user.avatar = 'assets/images/avatar.jpg';
-    else
+    if (fileUrl.indexOf('http://') == -1)
       user.avatar = this.global.fileServerUrl + fileUrl;
     return this.http.post(this.global.serverUrl + '/user/update-user',
                           {username: user.username,

@@ -17,18 +17,20 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public appCtrl: App, public authService: AuthService,
-              public userService: UserService, public toastCtrl: ToastController) {
-    userService.getUser().subscribe((data) => {
-      if (data.state == 'success') {
-        let temp = data.data;
-        if (temp.avatar == null) temp.avatar = 'assets/images/avatar.jpg';
-        if (temp.phone == null) temp.phone = '未设定手机';
-        this.user = new User(temp.username, temp.avatar, temp.phone);
-      } else {
-        this.presentToast(data.message);
-      }
-    });
-  }
+              public userService: UserService, public toastCtrl: ToastController) {}
+
+ ionViewWillEnter() {
+   this.userService.getUser().subscribe((data) => {
+     if (data.state == 'success') {
+       let temp = data.data;
+       if (temp.avatar == null) temp.avatar = 'assets/images/avatar.jpg';
+       if (temp.phone == null) temp.phone = '未设定手机';
+       this.user = new User(temp.username, temp.avatar, temp.phone);
+     } else {
+       this.presentToast(data.message);
+     }
+   });
+ }
 
   // 显示 toast
   presentToast(message: string) {

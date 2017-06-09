@@ -11,18 +11,21 @@ import { TheaterService } from '../../providers/theater/theater.service';
 })
 export class MovieDetailPage {
   movie: any;
-  stars: any[] = [0, 0, 0, 0, 0];
+  stars: any = [0, 0, 0, 0, 0];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController) {}
+
+  ionViewWillEnter() {
     // 显示 loading
-    let loading = loadingCtrl.create({content: '正在加载...'});
+    let loading = this.loadingCtrl.create({content: '正在加载...'});
     loading.present();
     this.theaterService.getMovie(this.navParams.get('movieId')).subscribe((data) => {
       loading.dismiss();
       if (data.state == 'success') {
         this.movie = data.data;
+        this.stars = [0, 0, 0, 0, 0];
         // 计算全星星的数目
         this.stars = Array(Math.floor(Math.round(this.movie.rating.average) / 2)).fill(2);
         // 计算半星星的数目

@@ -31,8 +31,12 @@ export class CinemaPage {
     // 获取信息
     this.movieId = this.navParams.get('movieId');
     this.title = this.navParams.get('movieTitle');
+  }
+
+  ionViewWillEnter() {
+    this.showtimesByDay = [[], [], [], []];
     // 显示 loading
-    let loading = loadingCtrl.create({content: '正在加载...'});
+    let loading = this.loadingCtrl.create({content: '正在加载...'});
     loading.present();
     this.theaterService.getShowtimes(this.movieId).subscribe((data) => {
       loading.dismiss();

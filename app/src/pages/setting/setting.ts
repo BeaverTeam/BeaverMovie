@@ -14,8 +14,10 @@ export class SettingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public userService: UserService, public alertCtrl: AlertController,
-              public toastCtrl: ToastController) {
-    userService.getUser().subscribe((data) => {
+              public toastCtrl: ToastController) {}
+
+  ionViewWillEnter() {
+    this.userService.getUser().subscribe((data) => {
       if (data.state == 'success') {
         let temp = data.data;
         if (temp.avatar == null) temp.avatar = 'assets/images/avatar.jpg';
@@ -68,7 +70,6 @@ export class SettingPage {
 
     // 定义校验规则
     let usernameRegex = /^[a-zA-Z0-9]+$/;
-    let imageRegex = /^(?:data:image\/([a-zA-Z]*);base64,)?(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/;
     let phoneRegex = /^1[34578]\d{9}$/;
 
     // 对用户名进行校验
@@ -81,8 +82,6 @@ export class SettingPage {
 
     // 对头像进行校验
     if (avatar == null || avatar == undefined || avatar == '')
-      errorMessage = '图片不符合格式规范';
-    else if (avatar.match(imageRegex) == null && avatar != 'assets/images/avatar.jpg')
       errorMessage = '图片不符合格式规范';
 
     // 对手机进行校验
@@ -123,7 +122,7 @@ export class SettingPage {
           }
         });
       } else {
-        this.userService.updateUser(this.user, '[default]').subscribe((data_) => {
+        this.userService.updateUser(this.user, this.user.avatar).subscribe((data_) => {
           if (data_.state == 'success') {
             that.presentToast('成功更新用户信息');
           } else {
