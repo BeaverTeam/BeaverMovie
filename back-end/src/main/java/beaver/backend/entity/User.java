@@ -3,7 +3,9 @@ package beaver.backend.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -34,11 +36,11 @@ public class User {
 
     @OneToMany(mappedBy = "poster")
     @JsonIgnore
-   private Set<FriendInvitation> asPoster = new HashSet<>();
+    private List<FriendInvitation> asPoster = new ArrayList<>();
 
     @OneToMany(mappedBy = "receiver")
     @JsonIgnore
-    private Set<FriendInvitation> asReceiver = new HashSet<>();
+    private List<FriendInvitation> asReceiver = new ArrayList<>();
 
     public User() { }
 
@@ -103,19 +105,19 @@ public class User {
         this.password = password;
     }
 
-    public Set<FriendInvitation> getAsPoster() {
+    public List<FriendInvitation> getAsPoster() {
         return asPoster;
     }
 
-    public void setAsPoster(Set<FriendInvitation> asPoster) {
+    public void setAsPoster(List<FriendInvitation> asPoster) {
         this.asPoster = asPoster;
     }
 
-    public Set<FriendInvitation> getAsReceiver() {
+    public List<FriendInvitation> getAsReceiver() {
         return asReceiver;
     }
 
-    public void setAsReceiver(Set<FriendInvitation> asReceiver) {
+    public void setAsReceiver(List<FriendInvitation> asReceiver) {
         this.asReceiver = asReceiver;
     }
 }
