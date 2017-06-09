@@ -1,6 +1,9 @@
 package beaver.backend.entity.responseType;
 
 import beaver.backend.entity.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 /**
  * Created by parda on 2017/6/9.
@@ -10,19 +13,22 @@ public class FriendInvitationItem {
     private String username;
     private String avatar;
     private String phone;
-    boolean isPoster;
-    boolean isAck;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z", timezone="GMT+8")
+    private Date latestAlterTime;
+    private boolean accepted;
+    private boolean rejected;
 
     public FriendInvitationItem() {}
 
-    public FriendInvitationItem(long id, User user, boolean isPoster, boolean isAck) {
+    public FriendInvitationItem(long id, User user, boolean accepted, boolean rejected, Date latestAlterTime) {
         this.invitationId = id;
         this.username = user.getUsername();
         this.avatar = user.getAvatar();
         this.phone = user.getPhone();
-        this.isPoster = isPoster;
-        this.isAck = isAck;
-
+        this.accepted = accepted;
+        this.rejected = rejected;
+        this.latestAlterTime = latestAlterTime;
     }
 
     public long getInvitationId() {
@@ -57,19 +63,27 @@ public class FriendInvitationItem {
         this.phone = phone;
     }
 
-    public boolean isPoster() {
-        return isPoster;
+    public boolean isAccepted() {
+        return accepted;
     }
 
-    public void setPoster(boolean poster) {
-        isPoster = poster;
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 
-    public boolean isAck() {
-        return isAck;
+    public Date getLatestAlterTime() {
+        return latestAlterTime;
     }
 
-    public void setAck(boolean ack) {
-        isAck = ack;
+    public void setLatestAlterTime(Date latestAlterTime) {
+        this.latestAlterTime = latestAlterTime;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 }

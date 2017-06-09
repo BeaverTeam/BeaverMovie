@@ -19,9 +19,13 @@ public class CinemaService {
     CinemaRepository cinemaRepository;
 
     public Set<Showtime> getShowtimes(long id) {
+//        System.out.println(Calendar.getInstance().getTime());
         return cinemaRepository.findOne(id).getShowtimes()
                 .stream()
-                .filter(showtime -> showtime.getStartTime().after(Calendar.getInstance().getTime()))
+                .filter(showtime -> {
+//                    System.out.println(showtime.getStartTime() + " " + showtime.getStartTime().after(Calendar.getInstance().getTime()));
+                    return showtime.getStartTime().after(Calendar.getInstance().getTime());
+                })
                 .collect(Collectors.toSet());
     }
 

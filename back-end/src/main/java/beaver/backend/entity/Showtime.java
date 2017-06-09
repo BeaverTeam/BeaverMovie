@@ -22,7 +22,7 @@ public class Showtime {
     @JoinColumn(name="cinema_id")
     private Cinema cinema;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z", timezone="GMT+8")
     private Date startTime;
 
     private int cost = 30;

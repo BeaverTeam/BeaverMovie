@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by parda on 2017/3/29.
  */
 @Repository
-public interface FriendshipRepository extends JpaRepository<FriendInvitation, Long> {
+public interface FriendInvitationRepository extends JpaRepository<FriendInvitation, Long> {
 }

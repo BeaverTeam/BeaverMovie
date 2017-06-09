@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by parda on 2017/6/2.
@@ -45,4 +47,8 @@ public class UserService {
     }
 
     public List<User> searchLikeUsers(String query) { return userRepository.findUsersWithPartOfName(query); }
+
+    public Set<User> getFriends(long userId) {
+        return userRepository.findOne(userId).getFriends();
+    }
 }

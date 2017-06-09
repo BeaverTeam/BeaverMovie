@@ -15,6 +15,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue
+    @JsonIgnore
     private long id;
 
     @Column(nullable = false, unique = true)
@@ -31,8 +32,9 @@ public class User {
     @JsonIgnore
     private Set<TicketOrder> orders = new HashSet<>();
 
-//    @JsonIgnore
-//    private Set<Integer> friends = new HashSet<>();
+    @ManyToMany
+    @JsonIgnore
+    private Set<User> friends = new HashSet<>();
 
     @OneToMany(mappedBy = "poster")
     @JsonIgnore
@@ -44,13 +46,13 @@ public class User {
 
     public User() { }
 
-//    public Set<Integer> getFriends() {
-//        return friends;
-//    }
+    public Set<User> getFriends() {
+        return friends;
+    }
 
-//    public void setFriends(Set<Integer> friends) {
-//        this.friends = friends;
-//    }
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
+    }
 
     public User(String username, String password) {
         this.username = username;

@@ -3,12 +3,13 @@ package beaver.backend.service;
 import beaver.backend.entity.FriendInvitation;
 import beaver.backend.entity.User;
 import beaver.backend.entity.responseType.FriendInvitationItem;
-import beaver.backend.repository.FriendshipRepository;
+import beaver.backend.repository.FriendInvitationRepository;
 import beaver.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,21 +22,54 @@ public class FriendshipService {
     UserRepository userRepository;
 
     @Autowired
-    FriendshipRepository friendshipRepository;
+    FriendInvitationRepository friendInvitationRepository;
 
-    public boolean addFriendship(long posterId, String receiverName) {
+    public void acceptInvitation(long userId, long invitationId) {
+        FriendInvitation invitation = friendInvitationRepository.findOne(invitationId);
+
+        User receiver = userRepository.findOne(userId);
+        User poster = invitation.getPoster();
+
+        receiver.getFriends().add(poster);
+        userRepository.save(receiver);
+
+        poster.getFriends().add(receiver);
+        userRepository.save(receiver);
+
+        invitation.setAccepted(true);
+        invitation.setLatestAlterTime(Calendar.getInstance().getTime());
+        friendInvitationRepository.save(invitation);
+    }
+
+    public void rejectInvitation(long invitationId) {
+        FriendInvitation invitation = friendInvitationRepository.findOne(invitationId);
+        invitation.setRejected(true);
+        invitation.setLatestAlterTime(Calendar.getInstance().getTime());
+        friendInvitationRepository.save(invitation);
+    }
+
+    public boolean addFriendInvitation(long posterId, String receiverName) {
         User poster = userRepository.findOne(posterId);
         if(userRepository.findByUsername(receiverName) == null) return false;
+
         User receiver = userRepository.findByUsername(receiverName);
-        FriendInvitation f = new FriendInvitation(poster, receiver);
-        friendshipRepository.save(f);
+        FriendInvitation invitation = new FriendInvitation(poster, receiver);
+        invitation.setLatestAlterTime(Calendar.getInstance().getTime());
+        friendInvitationRepository.save(invitation);
         return true;
     }
 
-    public List<FriendInvitationItem> getInvitationItem(long id) {
-        return userRepository.findOne(id).getAsReceiver()
-                .stream()
-                .map(item -> new FriendInvitationItem(item.getId(), item.getPoster(), item.isAck()))
+    public List<FriendInvitationItem> getReceivedButUnhandledInvitation(long id) {
+        return userRepository.findOne(id).getAsReceiver().stream()
+                .filter(item -> !item.isAccepted() && !item.isRejected())
+                .map(item -> new FriendInvitationItem(item.getId(), item.getPoster(), item.isAccepted(), item.isRejected(), item.getLatestAlterTime()))
+                .collect(Collectors.toList());
+    }
+
+    public List<FriendInvitationItem> getPostedAndHandledInvitation(long id) {
+        return userRepository.findOne(id).getAsPoster().stream()
+                .filter(item -> item.isAccepted() || item.isRejected())
+                .map(item -> new FriendInvitationItem(item.getId(), item.getReceiver(), item.isAccepted(), item.isRejected(), item.getLatestAlterTime()))
                 .collect(Collectors.toList());
     }
 }

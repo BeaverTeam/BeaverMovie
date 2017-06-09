@@ -1,6 +1,7 @@
 package beaver.backend.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by parda on 2017/6/9.
@@ -19,14 +20,17 @@ public class FriendInvitation {
     @ManyToOne(optional = false)
     private User receiver;
 
-    private boolean isAck;
+    private Date latestAlterTime;
+
+    private boolean accepted;
+    private boolean rejected;
 
     public FriendInvitation() {}
 
     public FriendInvitation(User poster, User receiver) {
         this.poster = poster;
         this.receiver = receiver;
-        isAck = false;
+        accepted = false;
     }
 
     public long getId() {
@@ -53,11 +57,27 @@ public class FriendInvitation {
         this.receiver = receiver;
     }
 
-    public boolean isAck() {
-        return isAck;
+    public boolean isAccepted() {
+        return accepted;
     }
 
-    public void setAck(boolean ack) {
-        isAck = ack;
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public Date getLatestAlterTime() {
+        return latestAlterTime;
+    }
+
+    public void setLatestAlterTime(Date latestAlterTime) {
+        this.latestAlterTime = latestAlterTime;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 }
