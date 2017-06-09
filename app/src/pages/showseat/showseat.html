@@ -4,21 +4,19 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-scroll scrollY="true" class="info-container">
-    <div class="container">
-      <div class="cinema-name">{{showtime.cinema.name}}</div>
-      <div class="start-time">{{showtime.startTime}}</div>
-      <div class="seats-container">
-        <div class="screen">银 幕</div>
-        <div class="seats">
-          <div class="row" *ngFor="let row of seatsInfo; let i = index">
-            <div class="seat" [class.no-seat]="seat == -1" [class.occupied]="seat == 1" [class.selected]="seat == 2" *ngFor="let seat of row; let j = index" (click)="select(i, j)"></div>
-          </div>
+  <ion-scroll scrollY="true" class="container">
+    <div class="cinema-name">{{showtime.cinema.name}}</div>
+    <div class="start-time">{{showtime.startTime}}</div>
+    <div class="seats-container">
+      <div class="screen">银 幕</div>
+      <div class="seats">
+        <div class="row" *ngFor="let row of seatsInfo; let i = index">
+          <div class="seat" [class.no-seat]="seat == -1" [class.occupied]="seat == 1" [class.selected]="seat == 2" *ngFor="let seat of row; let j = index" (click)="select(i, j)"></div>
         </div>
       </div>
     </div>
+    <div class="place-holder"></div>
   </ion-scroll>
   <div class="confirm-button">
     <div class="aa-pay" [class.aa-disable]="selectedSeats.length <= 1" (click)="gotoAA()">AA 付款</div><div class="direct-pay" [class.direct-disable]="selectedSeats.length == 0" (click)="gotoConfirm()">直接支付</div>

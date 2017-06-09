@@ -1,13 +1,11 @@
 page-showseat {
-  overflow: hidden;
-
-  .info-container {
-    height: 100%;
+  .scroll-content {
+    overflow: hidden;
   }
 
   .container {
     background-color: #fafafa;
-    padding-bottom: 56px;
+    height: 100%;
 
     .cinema-name {
       font-size: 18px;
@@ -67,6 +65,10 @@ page-showseat {
         }
       }
     }
+  }
+
+  .place-holder {
+    height: 56px;
   }
 
   .confirm-button {
