@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by parda on 2017/6/9.
@@ -32,20 +33,9 @@ public class FriendshipService {
     }
 
     public List<FriendInvitationItem> getInvitationItem(long id) {
-        User u = userRepository.findOne(id);
-        List<FriendInvitationItem> result = new ArrayList<>();
-        List<FriendInvitation> asPoster = u.getAsPoster();
-        for(FriendInvitation item : asPoster) {
-            User receiver = item.getReceiver();
-            FriendInvitationItem toAdd = new FriendInvitationItem(item.getId(), receiver, true, item.isAck());
-            result.add(toAdd);
-        }
-        List<FriendInvitation> asReceiver = u.getAsReceiver();
-        for(FriendInvitation item : asReceiver) {
-            User poster = item.getPoster();
-            FriendInvitationItem toAdd = new FriendInvitationItem(item.getId(), poster, false, item.isAck());
-            result.add(toAdd);
-        }
-        return result;
+        return userRepository.findOne(id).getAsReceiver()
+                .stream()
+                .map(item -> new FriendInvitationItem(item.getId(), item.getPoster(), item.isAck()))
+                .collect(Collectors.toList());
     }
 }

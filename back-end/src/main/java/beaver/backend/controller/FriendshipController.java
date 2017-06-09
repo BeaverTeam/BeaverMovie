@@ -36,7 +36,7 @@ public class FriendshipController {
             return new ResponseEntity<Info>(new Info("success", "Invitation Sent"), HttpStatus.OK);
     }
 
-    @GetMapping("/get-invitatioin")
+    @GetMapping("/get-invitation")
     public ResponseEntity<Info> InvitationItem(HttpSession session) throws NotLogin, Exception {
         if (session.getAttribute("currentUser") == null)
             throw new NotLogin();
