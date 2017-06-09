@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ToastController } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
 import { SearchPage } from '../search/search';
-
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class HomePage {
   notifNum: number;
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
     this.notifNum = 3;
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
@@ -39,9 +38,18 @@ export class HomePage {
           movie.stars = stars;
         }
       } else {
-        // TODO 异常处理，未取回电影数据
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   // 前往消息中心
@@ -81,7 +89,7 @@ export class HomePage {
             this.movies.push(movie);
           }
         } else {
-          // TODO 异常处理，未取回电影数据
+          this.presentToast(data.message);
         }
       });
     }

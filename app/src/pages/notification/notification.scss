@@ -7,6 +7,11 @@ page-notif {
     height: 100%;
     overflow: scroll;
 
+    .no-notifications {
+      text-align: center;
+      padding-top: 16px;
+    }
+
     .item {
       padding: 0px !important;
 

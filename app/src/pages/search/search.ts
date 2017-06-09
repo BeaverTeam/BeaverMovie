@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers/user/user';
 import { UserService } from '../../providers/user/user.service';
@@ -12,7 +12,16 @@ export class SearchPage {
   userList: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private userService: UserService) {
+              private userService: UserService, public toastCtrl: ToastController) {
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   getItems(ev: any) {
@@ -26,7 +35,7 @@ export class SearchPage {
           this.userList.push(new User(user.username, user.avatar, ''));
         }
       } else {
-        // TODO 未取回用户信息
+        this.presentToast(data.message);
       }
     });
   }

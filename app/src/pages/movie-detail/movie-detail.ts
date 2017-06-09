@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { CinemaPage } from '../cinema/cinema';
 import { WebviewPage } from '../webview/webview';
@@ -14,7 +14,8 @@ export class MovieDetailPage {
   stars: any[] = [0, 0, 0, 0, 0];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public theaterService: TheaterService, public loadingCtrl: LoadingController) {
+              public theaterService: TheaterService, public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController) {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
@@ -29,9 +30,18 @@ export class MovieDetailPage {
         // 补空星星
         while (this.stars.length < 5) this.stars.push(0);
       } else {
-        // TODO 异常处理，未请求回电影信息
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   gotoBuyTicket() {

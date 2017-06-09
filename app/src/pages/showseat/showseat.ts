@@ -50,7 +50,7 @@ export class ShowseatPage {
           }
         }
       } else {
-        // TODO 异常处理，未取回座位信息
+        this.presentToast(data.message);
       }
     });
   }

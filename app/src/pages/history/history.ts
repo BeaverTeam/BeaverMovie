@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -23,7 +23,8 @@ export class HistoryPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public theaterService: TheaterService, public loadingCtrl: LoadingController) {
+              public theaterService: TheaterService, public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController) {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
@@ -48,9 +49,18 @@ export class HistoryPage {
         }
 
       } else {
-        // TODO 异常处理
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   getColor(i) {

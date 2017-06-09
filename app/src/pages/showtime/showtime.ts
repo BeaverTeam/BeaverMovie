@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { ShowseatPage } from '../showseat/showseat';
 
@@ -20,7 +20,8 @@ export class ShowtimePage {
   position: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private theaterService: TheaterService, public loadingCtrl: LoadingController) {
+              private theaterService: TheaterService, public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController) {
     // 显示 loading
     let loading = loadingCtrl.create({content: '正在加载...'});
     loading.present();
@@ -75,9 +76,18 @@ export class ShowtimePage {
           }
         }, 100);
       } else {
-        // TODO 异常处理，未取回场次信息
+        this.presentToast(data.message);
       }
     });
+  }
+
+  // 显示 toast
+  presentToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   changeFilm(direction: boolean) {

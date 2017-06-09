@@ -22,7 +22,7 @@ export class SettingPage {
         if (temp.phone == null) temp.phone = '';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {
-        // TODO 异常处理，未取回用户信息
+        this.presentToast(data.message);
       }
     });
   }
