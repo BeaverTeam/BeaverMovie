@@ -17,8 +17,9 @@ export class SearchPage {
 
   getItems(ev: any) {
     let val = ev.target.value;
+    this.userList = [];
+    if (val == '') return;
     this.userService.searchUser(val).subscribe((data) => {
-      this.userList = [];
       if (data.state == 'success') {
         for (let user of data.data) {
           if (user.avatar == null) user.avatar = 'assets/images/avatar.jpg';
