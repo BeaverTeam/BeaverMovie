@@ -13,6 +13,14 @@ export class HistoryPage {
   futureTickets: any = [];
   pageNum: number = 1;
   type: string = 'type1';
+  seatsInfo = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [-1, -1, 0, 0, 0, 0],
+    [-1, -1, 0, 0, 0, 0],
+    [-1, -1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0]
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController) {
@@ -55,9 +63,17 @@ export class HistoryPage {
     return tempTime[0] + " " + tempTime[1];
   }
 
+  // 将座位号从 int 类型转变成为字符串
   changeSeatFormat(seat) {
-    // TODO 将座位号从 int 类型转变成为字符串
-    return "1排1号";
+    let count = 0;
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+        if (this.seatsInfo[i][j] != -1) {
+          if (seat == count) return (i + 1) + ' 排 ' + (j + 1) + ' 列';
+          count++;
+        }
+      }
+    }
   }
 
 }

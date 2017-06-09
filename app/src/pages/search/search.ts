@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { User } from '../../providers/user/user';
+import { UserService } from '../../providers/user/user.service';
 
 @Component({
   selector: 'page-search',
@@ -10,14 +11,20 @@ import { User } from '../../providers/user/user';
 export class SearchPage {
   userList: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private userService: UserService) {
   }
 
   getItems(ev: any) {
     let val = ev.target.value;
-    let names = ['刘忍', '南瓜粥', '鲜虾', '拉肠', '酸菜', '爆炒', '水煮', '火锅'];
-    for (let i = 0; i < 8; i++)
-      this.userList.push(new User(names[i], 'assets/svgs/' + i + '.svg', ''));
+    this.userService.searchUser(val).subscribe((data) => {
+      if (data.state == 'success') {
+        for (let user of data.data)
+          this.userList.push(new User(user.username, user.avatar, ''));
+      } else {
+        // TODO 未取回用户信息
+      }
+    });
   }
 
   addFriend(username) {}

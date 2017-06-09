@@ -41,4 +41,11 @@ export class UserService {
                     .map(res => res.json());
   }
 
+  // 搜索用户
+  searchUser(searchStr: string) {
+    return this.http.get(this.global.serverUrl + '/user/search-user?query=' + searchStr,
+                         this.options)
+                    .map(res => res.json());
+  }
+
 }
