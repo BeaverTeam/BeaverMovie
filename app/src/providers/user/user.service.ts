@@ -59,4 +59,20 @@ export class UserService {
                     .map(res => res.json());
   }
 
+  // 获取好友申请
+  getFriendRequests() {
+    return this.http.get(this.global.serverUrl + '/friendship/get-invitation', this.options)
+                    .map(res => res.json());
+  }
+
+  // 处理好友申请
+  handleFriendRequest(isAgree: boolean, id: number) {
+    if (isAgree)
+      return this.http.get(this.global.serverUrl + '/friendship/accept/' + id, this.options)
+                      .map(res => res.json());
+    else
+      return this.http.get(this.global.serverUrl + '/friendship/reject/' + id, this.options)
+                      .map(res => res.json());
+  }
+
 }

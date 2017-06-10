@@ -15,8 +15,8 @@
         <span class="content">{{notification.message}}</span>
       </div>
       <div class="actions" *ngIf="notification.type != 'system'">
-        <button ion-button clear>同意</button>
-        <button ion-button clear>拒绝</button>
+        <button ion-button clear (click)="agree(notification)">同意</button>
+        <button ion-button clear (click)="reject(notification)">拒绝</button>
       </div>
     </div>
     <div class="no-notifications" *ngIf="notifications.length == 0">暂时没有任何通知...</div>
