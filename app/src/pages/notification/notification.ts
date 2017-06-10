@@ -44,7 +44,7 @@ export class NotificationPage {
           if (item.rejected == false)
             message = '你和 ' + item.username + ' 已经是好友关系了';
           else
-            message = item.username + '拒绝了你的好友申请';
+            message = item.username + ' 拒绝了你的好友申请';
           if (item.avatar == null) item.avatar = 'assets/images/system.jpg';
           this.notifications.push({
             type: 'system',

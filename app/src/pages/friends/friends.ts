@@ -23,6 +23,7 @@ export class FriendsPage {
   }
 
   ionViewWillEnter() {
+    this.selectedFriends = [];
     this.friends = [];
     this.userService.getFriends().subscribe((data) => {
       if (data.state == 'success') {
