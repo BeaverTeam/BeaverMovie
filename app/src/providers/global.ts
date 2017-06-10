@@ -3,7 +3,7 @@ export class Global {
   fileServerUrl: string;
 
   constructor() {
-    this.serverUrl = 'http://60.205.216.158:8080';
-    this.fileServerUrl = 'http://60.205.216.158:3000';
+    this.serverUrl = 'http://60.205.216.158:9582/rest';
+    this.fileServerUrl = 'http://60.205.216.158:9582/static';
   }
 }

@@ -7,11 +7,11 @@
 <ion-content padding>
   <ion-searchbar placeholder="" (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let user of userList">
-      {{user.username}}
-      <ion-avatar item-start><img src="{{user.avatar}}"></ion-avatar>
-      <button ion-button clear icon-only (click)="addFriend(user.username)">
-       <ion-icon name='add' is-active="false"></ion-icon>
+    <ion-item *ngFor="let item of userList">
+      {{item.user.username}}
+      <ion-avatar item-start><img src="{{item.user.avatar}}"></ion-avatar>
+      <button ion-button clear icon-only (click)="addFriend(item.user.username)" *ngIf="item.isAvailable">
+       <ion-icon name="add" is-active="false"></ion-icon>
      </button>
     </ion-item>
   </ion-list>

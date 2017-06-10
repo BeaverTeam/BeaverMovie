@@ -10,9 +10,28 @@ import { UserService } from '../../providers/user/user.service';
 })
 export class SearchPage {
   userList: any = [];
+  friends: any = [];
+  username: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private userService: UserService, public toastCtrl: ToastController) {}
+
+  ionViewWillEnter() {
+    // 获取用户
+    this.userService.getUser().subscribe((data) => {
+      if (data.state == 'success')
+        this.username = data.data.username;
+      else
+        this.presentToast(data.message);
+    });
+    // 获取好友
+    this.userService.getFriends().subscribe((data) => {
+      if (data.state == 'success')
+        this.friends = data.data;
+      else
+        this.presentToast(data.message);
+    });
+  }
 
   // 显示 toast
   presentToast(message: string) {
@@ -30,8 +49,22 @@ export class SearchPage {
     this.userService.searchUser(val).subscribe((data) => {
       if (data.state == 'success') {
         for (let user of data.data) {
+          // 增加默认的头像
           if (user.avatar == null) user.avatar = 'assets/images/avatar.jpg';
-          this.userList.push(new User(user.username, user.avatar, ''));
+          // 判断是否可被加好友
+          let isAvailable = true;
+          if (user.username == this.username)
+            isAvailable = false;
+          for (let friend of this.friends) {
+            if (user.username == friend.username) {
+              isAvailable = false;
+              break;
+            }
+          }
+          this.userList.push({
+            user: new User(user.username, user.avatar, ''),
+            isAvailable: isAvailable
+          });
         }
       } else {
         this.presentToast(data.message);
@@ -39,6 +72,11 @@ export class SearchPage {
     });
   }
 
-  addFriend(username) {}
+  addFriend(username) {
+    this.userService.sendFriendRequest(username).subscribe((data) => {
+      if (data.state == 'success')
+        this.presentToast('邀请已成功发出！');
+    });
+  }
 
 }

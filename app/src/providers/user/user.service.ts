@@ -46,4 +46,17 @@ export class UserService {
                     .map(res => res.json());
   }
 
+  // 获取用户的好友
+  getFriends() {
+    return this.http.get(this.global.serverUrl + '/friendship', this.options)
+                    .map(res => res.json());
+  }
+
+  // 申请加好友
+  sendFriendRequest(username: string) {
+    return this.http.get(this.global.serverUrl + '/friendship/invite?username=' + username,
+                         this.options)
+                    .map(res => res.json());
+  }
+
 }
