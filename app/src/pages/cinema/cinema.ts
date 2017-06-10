@@ -56,9 +56,12 @@ export class CinemaPage {
         let tempShowtimesByDay = [[], [], [], []];
         for (let showtime of tempShowtimes) {
           let startTime = showtime.startTime.split(" ");
-          let startDate = new Date(startTime[0] + "T" + startTime[1] + ":00");
+          let tempStartDate = startTime[0].split("-");
+          let startDate = new Date(tempStartDate[0], parseInt(tempStartDate[1])-1, tempStartDate[2]);
+          let now = new Date();
+          let todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
           let oneDay = 24 * 60 * 60 * 1000;
-          let diffDays = Math.round(Math.abs((startDate.getTime() - new Date().getTime())/(oneDay)));
+          let diffDays = Math.abs((startDate.getTime() - todayDate.getTime())/(oneDay));
           tempShowtimesByDay[diffDays].push(showtime);
         }
         // 去重
