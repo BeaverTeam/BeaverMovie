@@ -66,7 +66,7 @@ export class SearchPage {
             isAvailable: isAvailable
           });
         }
-      } else {
+      } else if (data.message != '用户不存在') {
         this.presentToast(data.message);
       }
     });

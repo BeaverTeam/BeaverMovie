@@ -45,6 +45,7 @@ export class NotificationPage {
             message = '你和 ' + item.username + ' 已经是好友关系了';
           else
             message = item.username + '拒绝了你的好友申请';
+          if (item.avatar == null) item.avatar = 'assets/images/system.jpg';
           this.notifications.push({
             type: 'system',
             message: message,
@@ -55,6 +56,7 @@ export class NotificationPage {
         // 在通知中加入好友申请
         let receivedNotHandled = data.data.ReceivedNotHandled;
         for (let item of receivedNotHandled) {
+          if (item.avatar == null) item.avatar = 'assets/images/system.jpg';
           this.notifications.push({
             type: 'friend',
             message: item.username + ' 申请加为你的好友',
