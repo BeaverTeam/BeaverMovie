@@ -5,7 +5,9 @@ import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
 import { SearchPage } from '../search/search';
+
 import { TheaterService } from '../../providers/theater/theater.service';
+import { UserService } from '../../providers/user/user.service';
 
 @Component({
   selector: 'page-home',
@@ -17,9 +19,8 @@ export class HomePage {
   notifNum: number;
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
-              public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-    this.notifNum = 3;
-  }
+              public loadingCtrl: LoadingController, public toastCtrl: ToastController,
+              private userService: UserService) {}
 
   ionViewWillEnter() {
     // 显示 loading
@@ -40,6 +41,17 @@ export class HomePage {
           while (stars.length < 5) stars.push(0);
           movie.stars = stars;
         }
+      } else {
+        this.presentToast(data.message);
+      }
+    });
+    // 计算通知数目
+    let that = this;
+    this.userService.getFriendRequests().subscribe((data) => {
+      if (data.state == 'success') {
+        let postAndHandled = data.data.PostAndHandled;
+        let receivedNotHandled = data.data.ReceivedNotHandled;
+        that.notifNum = postAndHandled.length + receivedNotHandled.length;
       } else {
         this.presentToast(data.message);
       }

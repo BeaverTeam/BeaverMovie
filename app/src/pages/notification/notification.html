@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="scroller">
     <div *ngFor="let notification of notifications" ion-item class="item">
       <div class="image" [style.background-image]="'url(' + notification.image + ')'" item-left></div>

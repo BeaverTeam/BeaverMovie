@@ -45,7 +45,7 @@ export class NotificationPage {
     return timeStr;
   }
 
-  getNotification() {
+  getNotification(refresher: any = null) {
     this.notifications = [];
     this.userService.getFriendRequests().subscribe((data) => {
       if (data.state == 'success') {
@@ -74,14 +74,20 @@ export class NotificationPage {
             raw: item
           });
         }
+        if (refresher) refresher.complete();
       } else {
         this.presentToast(data.message);
+        if (refresher) refresher.complete();
       }
     });
   }
 
   ionViewWillEnter() {
     this.getNotification();
+  }
+
+  doRefresh(refresher) {
+    this.getNotification(refresher);
   }
 
   // 同意
