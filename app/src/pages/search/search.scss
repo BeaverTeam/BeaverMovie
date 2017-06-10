@@ -12,6 +12,16 @@ page-search {
       position: absolute !important;
       right: 16px !important;
     }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
   }
 
 }

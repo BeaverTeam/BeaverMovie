@@ -9,7 +9,9 @@
   <ion-list>
     <ion-item *ngFor="let item of userList">
       {{item.user.username}}
-      <ion-avatar item-start><img src="{{item.user.avatar}}"></ion-avatar>
+      <ion-avatar item-start>
+        <div class="avatar" [style.background-image]="'url(' + item.user.avatar + ')'"></div>
+      </ion-avatar>
       <button ion-button clear icon-only (click)="addFriend(item.user.username)" *ngIf="item.isAvailable">
        <ion-icon name="add" is-active="false"></ion-icon>
      </button>

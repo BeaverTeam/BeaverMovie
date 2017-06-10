@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers/user/user';
 import { ConfirmPage } from '../confirm/confirm';
+import { UserService } from '../../providers/user/user.service';
 
 @Component({
   selector: 'page-friends',
@@ -15,14 +16,25 @@ export class FriendsPage {
   selectedFriends: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController, private userService: UserService) {
     // 获取前一个页面的参数
     this.showtime = navParams.get('showtime');
     this.selectedSeats = navParams.get('selectedSeats');
-    // 装载 User 假数据
-    let names = ['刘忍', '南瓜粥', '鲜虾', '拉肠', '酸菜', '爆炒', '水煮', '火锅'];
-    for (let i = 0; i < 8; i++)
-      this.friends.push(new User(names[i], 'assets/svgs/' + i + '.svg', ''));
+  }
+
+  ionViewWillEnter() {
+    this.friends = [];
+    this.userService.getFriends().subscribe((data) => {
+      if (data.state == 'success') {
+        for (let user of data.data) {
+          // 增加默认的头像
+          if (user.avatar == null) user.avatar = 'assets/images/avatar.jpg';
+          this.friends.push(new User(user.username, user.avatar, ''));
+        }
+      } else {
+        this.presentToast(data.message);
+      }
+    });
   }
 
   // 显示 toast

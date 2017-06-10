@@ -12,7 +12,9 @@
         <span class="username">{{friend.username}}</span>
       </ion-label>
       <ion-checkbox disabled="{{selectedFriends.length + 1 == selectedSeats.length && selectedFriends.indexOf(friend.username) == -1}}" (click)="select(friend.username)"></ion-checkbox>
-      <ion-avatar item-start><img src="{{friend.avatar}}"></ion-avatar>
+      <ion-avatar item-start>
+        <div class="avatar" [style.background-image]="'url(' + friend.avatar + ')'"></div>
+      </ion-avatar>
     </ion-item>
   </ion-list>
   <button ion-button class="button" (click)="gotoConfirm()">确认</button>
