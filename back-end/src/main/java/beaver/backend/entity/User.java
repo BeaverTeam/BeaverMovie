@@ -44,6 +44,14 @@ public class User {
     @JsonIgnore
     private List<FriendInvitation> asReceiver = new ArrayList<>();
 
+    @OneToMany(mappedBy = "poster")
+    @JsonIgnore
+    private List<MovieInvitation> movieInvitationAsPoster = new ArrayList<>();
+
+    @OneToMany(mappedBy = "receiver")
+    @JsonIgnore
+    private List<MovieInvitation> movieInvitationAsReceiver = new ArrayList<>();
+
     public User() { }
 
     public Set<User> getFriends() {
@@ -121,5 +129,21 @@ public class User {
 
     public void setAsReceiver(List<FriendInvitation> asReceiver) {
         this.asReceiver = asReceiver;
+    }
+
+    public List<MovieInvitation> getMovieInvitationAsPoster() {
+        return movieInvitationAsPoster;
+    }
+
+    public void setMovieInvitationAsPoster(List<MovieInvitation> movieInvitationAsPoster) {
+        this.movieInvitationAsPoster = movieInvitationAsPoster;
+    }
+
+    public List<MovieInvitation> getMovieInvitationAsReceiver() {
+        return movieInvitationAsReceiver;
+    }
+
+    public void setMovieInvitationAsReceiver(List<MovieInvitation> movieInvitationAsReceiver) {
+        this.movieInvitationAsReceiver = movieInvitationAsReceiver;
     }
 }

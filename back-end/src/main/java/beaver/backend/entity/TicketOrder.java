@@ -77,4 +77,10 @@ public class TicketOrder {
         this.createTime = createTime;
         this.paid = paid;
     }
+
+    public TicketOrder(Date createTime, boolean paid) {
+        this.createTime = createTime;
+        this.paid = paid;
+        this.user = null;
+    }
 }
