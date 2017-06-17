@@ -23,6 +23,7 @@ export class HomePage {
               private userService: UserService) {}
 
   ionViewWillEnter() {
+    this.pageNum = 1;
     // 显示 loading
     let loading = this.loadingCtrl.create({content: '正在加载...'});
     loading.present();
