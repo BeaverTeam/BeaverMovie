@@ -1,6 +1,7 @@
 package beaver.backend.controller;
 
 import beaver.backend.entity.Movie;
+import beaver.backend.entity.Showtime;
 import beaver.backend.entity.responseType.Info;
 import beaver.backend.exception.BadRequest;
 import beaver.backend.repository.CinemaRepository;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by parda on 2017/5/27.
@@ -25,11 +28,6 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
-    @GetMapping("/refresh")
-    public ResponseEntity<Info> refreshMovies() {
-        return new ResponseEntity<Info>(new Info<>("success", "Refresh Success", movieService.addMovies()), HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity getMovie(@PathVariable long id) {
          return movieService.getMovieDetail(id);
@@ -39,7 +37,11 @@ public class MovieController {
     public ResponseEntity<Info> getLastestMovies(@PathVariable int page) throws BadRequest {
         if (page <= 0)
             throw new BadRequest("Request not valid");
-        return new ResponseEntity<Info>(new Info<>("success", "Retrive Success", movieService.getLastest((page - 1) * 10)), HttpStatus.OK);
+        List<Movie> movies = movieService.getLastest((page - 1) * 10);
+        if (page == 1 && movies.isEmpty()) {
+            movies = movieService.addMovies().stream().limit(10).collect(Collectors.toList());
+        }
+        return new ResponseEntity<Info>(new Info<>("success", "Retrieve Success", movies), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/showtimes")

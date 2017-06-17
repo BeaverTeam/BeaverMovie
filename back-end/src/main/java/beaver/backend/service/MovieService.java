@@ -1,5 +1,6 @@
 package beaver.backend.service;
 
+import beaver.backend.entity.Cinema;
 import beaver.backend.entity.Movie;
 import beaver.backend.entity.Showtime;
 import beaver.backend.entity.responseType.ResponseMovies;
@@ -37,26 +38,39 @@ public class MovieService {
         ResponseEntity<ResponseMovies> responseEntity = restTemplate.exchange("http://localhost:3000/", HttpMethod.GET,
                 null, new ParameterizedTypeReference<ResponseMovies>() { });
         if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody().getState().equals("success")) {
-            return responseEntity.getBody()
-                    .getMovies()
-                    .stream()
+            List<Movie> movies = responseEntity.getBody().getMovies();
+            movies = movies.stream()
                     .filter(movie -> movieRepository.findOne(movie.getId()) == null)
-                    .map(movie -> {
-                        int cost = (int)(Math.random()*15) + 30;
-                        movieRepository.save(movie);
-                        cinemaRepository.findAll().forEach(cinema -> {
-                            for (int i = 0; i < 3; i++) {
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.add(Calendar.DAY_OF_MONTH, (int)(Math.random()*4));
-                                calendar.add(Calendar.HOUR_OF_DAY, (int)(Math.random()*5 + 1));
-                                showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie, cost));
-                            }
-                        });
-                        return movie;
-                    }).collect(Collectors.toList());
-        }
+                    .collect(Collectors.toList());
+            movieRepository.save(movies);
+            addMovieShowtimes(movies);
 
+            if (movies.size() < 8) {
+                List<Movie> old_movies = movieRepository.findAll()
+                        .stream()
+                        .skip((int)(Math.random()*5))
+                        .collect(Collectors.toList());
+                addMovieShowtimes(old_movies);
+                movies.addAll(old_movies);
+            }
+            return movies;
+        }
         return null;
+    }
+
+    private void addMovieShowtimes(List<Movie> movies) {
+        List<Cinema> cinemas = cinemaRepository.findAll();
+        movies.forEach(movie -> {
+            int cost = (int)(Math.random()*15) + 30;
+            cinemas.forEach(cinema -> {
+                for (int i = 0; i < 10; i++) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.DAY_OF_MONTH, (int)(Math.random()*8));
+                    calendar.add(Calendar.HOUR_OF_DAY, (int)(Math.random()*5 + 1));
+                    showtimeRepository.save(new Showtime(cinema, calendar.getTime(), movie, cost));
+                }
+            });
+        });
     }
 
     public ResponseEntity getMovieDetail(long id) {
@@ -72,7 +86,8 @@ public class MovieService {
         List<Movie> list = new ArrayList<>();
         movieRepository.findAll()
                 .forEach(movie -> {
-                    list.add(movie);
+                    if (!checkShowtimeEmpty(movie))
+                        list.add(movie);
                 });
         return list.stream()
                 .skip(startNum)
@@ -85,5 +100,12 @@ public class MovieService {
                 .stream()
                 .filter(showtime -> showtime.getStartTime().after(Calendar.getInstance().getTime()))
                 .collect(Collectors.toSet());
+    }
+
+    private boolean checkShowtimeEmpty(Movie movie) {
+        return movie.getShowtimes()
+                .stream()
+                .filter(showtime -> showtime.getStartTime().after(Calendar.getInstance().getTime()))
+                .count() == 0;
     }
 }
