@@ -11,13 +11,7 @@ export class NotificationPage {
   notifications: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private userService: UserService, public toastCtrl: ToastController) {
-    // 为通知加上图片
-    for (let notification of this.notifications) {
-      if (notification.type == 'system')
-        notification.image = 'assets/images/system.jpg';
-    }
-  }
+              private userService: UserService, public toastCtrl: ToastController) {}
 
   // 显示 toast
   presentToast(message: string) {
@@ -45,7 +39,7 @@ export class NotificationPage {
             message = '你和 ' + item.username + ' 已经是好友关系了';
           else
             message = item.username + ' 拒绝了你的好友申请';
-          if (item.avatar == null) item.avatar = 'assets/images/system.jpg';
+          if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
           this.notifications.push({
             type: 'system',
             message: message,
@@ -56,7 +50,7 @@ export class NotificationPage {
         // 在通知中加入好友申请
         let receivedNotHandled = data.data.ReceivedNotHandled;
         for (let item of receivedNotHandled) {
-          if (item.avatar == null) item.avatar = 'assets/images/system.jpg';
+          if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
           this.notifications.push({
             type: 'friend',
             message: item.username + ' 申请加为你的好友',
@@ -72,12 +66,23 @@ export class NotificationPage {
     });
   }
 
+  // 获取邀请信息
+  getInvitationInfo(refresher: any = null) {
+    this.userService.getInvitationInfo().subscribe((data) => {
+      if (data.state == 'success') {
+        console.log(data.data);
+      }
+    });
+  }
+
   ionViewWillEnter() {
     this.getNotification();
+    this.getInvitationInfo();
   }
 
   doRefresh(refresher) {
     this.getNotification(refresher);
+    this.getInvitationInfo(refresher);
   }
 
   // 同意
@@ -90,7 +95,7 @@ export class NotificationPage {
       });
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
-      // TODO 实现同意好友 AA 请求
+      // this.userService.accpetInvitation()
     }
   }
 

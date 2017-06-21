@@ -75,4 +75,31 @@ export class UserService {
                       .map(res => res.json());
   }
 
+  // 同意 AA 请求
+  accpetInvitation(movieInvitationId: number, seat: number) {
+
+  }
+
+  // 拒绝 AA 请求
+  rejectInvitation(movieInvitationId: number) {
+
+  }
+
+  // 获取邀请信息
+  getInvitationInfo() {
+    return this.http.get(this.global.serverUrl + '/movie-invitation', this.options)
+                    .map(res => res.json());
+  }
+
+  // 邀请好友 AA 付款
+  invite(posterSeats: number[], reciverNames: string[], receiverSeats: number[], showtimeId: number) {
+    // return this.http.post(this.global.serverUrl + '/movie-invitation/invite?',
+    //                      {posterSeats: posterSeats,
+    //                       reciverNames: reciverNames,
+    //                       receiverSeats: receiverSeats,
+    //                       showtimeId: showtimeId},
+    //                      this.options)
+    //                 .map(res => res.json());
+  }
+
 }
