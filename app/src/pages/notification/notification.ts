@@ -125,7 +125,7 @@ export class NotificationPage {
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
       // TODO 实现同意好友的 AA 请求
-      // this.userService.accpetInvitation()
+      // this.userService.acceptInvitation()
     }
   }
 
