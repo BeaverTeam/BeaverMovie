@@ -37,7 +37,7 @@ public class MovieInvitationController {
         return new ResponseEntity<Info>(new Info("success", "Get post & handled invitation and received but not handled invitation", map), HttpStatus.OK);
     }
 
-    @GetMapping("/invite")
+    @PostMapping("/invite")
     public ResponseEntity<Info> invite(@RequestBody MovieInvitationRequest movieInvitationRequest, HttpSession session) throws NotLogin, Exception {
         Long userId = (Long)session.getAttribute("currentUser");
         if (userId == null)
@@ -62,6 +62,6 @@ public class MovieInvitationController {
         if (userId == null)
             throw new NotLogin();
         movieInvitationService.rejectInvitation(id);
-        return new ResponseEntity<Info>(new Info("success", "Accept Success"), HttpStatus.OK);
+        return new ResponseEntity<Info>(new Info("success", "Reject Success"), HttpStatus.OK);
     }
 }

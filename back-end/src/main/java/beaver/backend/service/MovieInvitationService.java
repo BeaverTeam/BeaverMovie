@@ -80,16 +80,8 @@ public class MovieInvitationService {
                 .map(movieInvitation -> {
                     User poster = movieInvitation.getPoster();
                     Showtime showtime = movieInvitation.getOrder().getTickets().iterator().next().getShowtime();
-                    Set<Integer> seats = movieInvitation
-                            .getOrder()
-                            .getTickets()
-                            .stream()
-                            .map(ticket -> {
-                                int seat = ticket.getSeat();
-                                return seat;
-                            }).collect(Collectors.toSet());
 
-                    return new MovieInvitationItem(movieInvitation.getId(), poster, showtime, movieInvitation.getLatestAlterTime(), false, false, seats);
+                    return new MovieInvitationItem(movieInvitation.getId(), poster, showtime, movieInvitation.getLatestAlterTime(), false, false);
                 }).collect(Collectors.toSet());
     }
 
@@ -101,16 +93,8 @@ public class MovieInvitationService {
                 .map(movieInvitation -> {
                     User receiver = movieInvitation.getReceiver();
                     Showtime showtime = movieInvitation.getOrder().getTickets().iterator().next().getShowtime();
-                    Set<Integer> seats = movieInvitation
-                            .getOrder()
-                            .getTickets()
-                            .stream()
-                            .map(ticket -> {
-                                int seat = ticket.getSeat();
-                                return seat;
-                            }).collect(Collectors.toSet());
 
-                    return new MovieInvitationItem(movieInvitation.getId(), receiver, showtime, movieInvitation.getLatestAlterTime(), movieInvitation.isAccepted(), movieInvitation.isRejected(), seats);
+                    return new MovieInvitationItem(movieInvitation.getId(), receiver, showtime, movieInvitation.getLatestAlterTime(), movieInvitation.isAccepted(), movieInvitation.isRejected());
                 }).collect(Collectors.toSet());
     }
 
