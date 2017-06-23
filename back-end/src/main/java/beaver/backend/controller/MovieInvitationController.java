@@ -47,8 +47,8 @@ public class MovieInvitationController {
         return new ResponseEntity<Info>(new Info("success", "Invitation Sent", order.getId()), HttpStatus.OK);
     }
 
-    @GetMapping("/accept")
-    public ResponseEntity<Info> acceptInvitation(@PathVariable AcceptMovieInvitationRequest acceptMovieInvitationRequest, HttpSession session) throws NotLogin, Exception {
+    @PostMapping("/accept")
+    public ResponseEntity<Info> acceptInvitation(@RequestBody AcceptMovieInvitationRequest acceptMovieInvitationRequest, HttpSession session) throws NotLogin, Exception {
         Long userId = (Long)session.getAttribute("currentUser");
         if (userId == null)
             throw new NotLogin();
