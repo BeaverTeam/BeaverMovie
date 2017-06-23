@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { PayPage } from '../pay/pay';
 import { TheaterService } from '../../providers/theater/theater.service';
+import { UserService } from '../../providers/user/user.service';
 
 @Component({
   selector: 'page-confirm',
@@ -12,6 +13,7 @@ export class ConfirmPage {
   showtime: any;
   selectedSeats: any = [];
   selectedPositions: any = [];
+  selectedFriends: any = [];
   seatsIndices = [
     [0, 1, 2, 3, 4, 5],
     [6, 7, 8, 9, 10, 11],
@@ -25,19 +27,22 @@ export class ConfirmPage {
   cokeNum: number = 0;
   popcornNum: number = 0;
   isAA: boolean = false;
+  posterSeats: number[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public theaterService: TheaterService, public toastCtrl: ToastController) {
+              public theaterService: TheaterService, public toastCtrl: ToastController,
+              public userService: UserService) {
     // 获取场次信息
     this.showtime = navParams.get('showtime');
+    this.selectedFriends = navParams.get('selectedFriends');
+    // 获取座位信息
+    this.selectedSeats = navParams.get('selectedSeats');
     let temp = this.showtime.startTime.split(' ');
     this.showtime.startTime = temp[0] + ' ' + temp[1];
-    if (navParams.get('selectedFriends') != undefined || navParams.get('selectedFriends') != null) {
+    if (this.selectedFriends != undefined || this.selectedFriends != null) {
       this.isAA = true;
       this.cost = this.showtime.cost;
     } else {
-      // 获取座位信息
-      this.selectedSeats = navParams.get('selectedSeats');
       for (let seat of this.selectedSeats) {
         for (let i = 0; i < 6; i++) {
           for (let j = 0; j < 6; j++) {
@@ -74,13 +79,22 @@ export class ConfirmPage {
   }
 
   confirm() {
-    this.theaterService.sendOrder(this.showtime.id, this.navParams.get('selectedSeats')).subscribe((data) => {
-      if (data.state == 'success') {
-        this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
-      } else {
-        this.presentToast(data.message);
-      }
-    });
+    if (this.isAA) {
+      this.posterSeats.push(this.selectedSeats[0]);
+      this.userService.invite(this.posterSeats, this.selectedFriends, this.selectedSeats.slice(1, this.selectedSeats.length), this.showtime.id).subscribe((data) => {
+        if (data.state == 'success') {
+          this.navCtrl.push(PayPage, {orderId: data.data.id, cost: this.cost + this.foodCost});
+        }
+      });
+    } else {
+      this.theaterService.sendOrder(this.showtime.id, this.navParams.get('selectedSeats')).subscribe((data) => {
+        if (data.state == 'success') {
+          this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
+        } else {
+          this.presentToast(data.message);
+        }
+      });
+    }
   }
 
 }

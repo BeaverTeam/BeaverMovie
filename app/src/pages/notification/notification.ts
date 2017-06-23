@@ -70,7 +70,36 @@ export class NotificationPage {
   getInvitationInfo(refresher: any = null) {
     this.userService.getInvitationInfo().subscribe((data) => {
       if (data.state == 'success') {
-        console.log(data.data);
+        let postAndHandled = data.data.PostAndHandled;
+        for (let item of postAndHandled) {
+          let message;
+          if (item.rejected == false)
+            message = '你已经接受了 ' + item.username + ' AA 观影邀请';
+          else
+            message = item.username + ' 拒绝了你的 AA 观影邀请';
+          if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
+          this.notifications.push({
+            type: 'invitation',
+            message: message,
+            image: item.avatar,
+            raw: item
+          });
+        }
+        // 在通知中加入好友申请
+        let receivedNotHandled = data.data.ReceivedNotHandled;
+        for (let item of receivedNotHandled) {
+          if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
+          this.notifications.push({
+            type: 'system',
+            message: item.username + ' 邀请你参与 AA 观影',
+            image: item.avatar,
+            raw: item
+          });
+        }
+        if (refresher) refresher.complete();
+      } else {
+        this.presentToast(data.message);
+        if (refresher) refresher.complete();
       }
     });
   }
@@ -95,6 +124,7 @@ export class NotificationPage {
       });
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
+      // TODO 实现同意好友的 AA 请求
       // this.userService.accpetInvitation()
     }
   }

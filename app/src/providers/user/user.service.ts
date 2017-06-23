@@ -76,13 +76,18 @@ export class UserService {
   }
 
   // 同意 AA 请求
-  accpetInvitation(movieInvitationId: number, seat: number) {
-
+  accpetInvitation(movieInvitationId: number, seats: number) {
+    return this.http.post(this.global.serverUrl + '/movie-invitation/accept',
+                          {movieInvitationId: movieInvitationId,
+                           seats: seats},
+                          this.options)
+                    .map(res => res.json());
   }
 
   // 拒绝 AA 请求
   rejectInvitation(movieInvitationId: number) {
-
+    return this.http.get(this.global.serverUrl + '/movie-invitation/reject/' + movieInvitationId, this.options)
+                    .map(res => res.json());
   }
 
   // 获取邀请信息
@@ -92,15 +97,14 @@ export class UserService {
   }
 
   // 邀请好友 AA 付款
-  invite(posterSeats: number[], reciverNames: string[], receiverSeats: number[], showtimeId: number) {
-    // 考虑更改 get 方法为 post
-    // return this.http.post(this.global.serverUrl + '/movie-invitation/invite',
-    //                      {posterSeats: posterSeats,
-    //                       reciverNames: reciverNames,
-    //                       receiverSeats: receiverSeats,
-    //                       showtimeId: showtimeId},
-    //                      this.options)
-    //                 .map(res => res.json());
+  invite(posterSeats: number[], receiverNames: string[], receiverSeats: number[], showtimeId: number) {
+    return this.http.post(this.global.serverUrl + '/movie-invitation/invite',
+                         {posterSeats: posterSeats,
+                          receiverNames: receiverNames,
+                          receiverSeats: receiverSeats,
+                          showtimeId: showtimeId},
+                         this.options)
+                    .map(res => res.json());
   }
 
 }
