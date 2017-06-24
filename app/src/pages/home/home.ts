@@ -54,9 +54,13 @@ export class HomePage {
         let receivedNotHandled = data.data.ReceivedNotHandled;
         that.notifNum = postAndHandled.length + receivedNotHandled.length;
         this.userService.getInvitationInfo().subscribe((data_) => {
-         let postAndHandled = data_.data.PostAndHandled;
-         let receivedNotHandled = data_.data.ReceivedNotHandled;
-         that.notifNum += (postAndHandled.length + receivedNotHandled.length);
+          if (data_.state == 'success') {
+            let postAndHandled = data_.data.PostAndHandled;
+            let receivedNotHandled = data_.data.ReceivedNotHandled;
+            that.notifNum += (postAndHandled.length + receivedNotHandled.length);
+          } else {
+            this.presentToast(data_.message);
+          }
        });
       } else {
         this.presentToast(data.message);

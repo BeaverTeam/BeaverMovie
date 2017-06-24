@@ -8,32 +8,16 @@
   <div class="container">
     <ion-segment [(ngModel)]="type" class="segment">
       <ion-segment-button value="type1">
-        我看过的
-      </ion-segment-button>
-      <ion-segment-button value="type2">
         待使用
+      </ion-segment-button>
+
+      <ion-segment-button value="type2">
+        我看过的
       </ion-segment-button>
     </ion-segment>
 
     <div [ngSwitch]="type">
       <ion-list *ngSwitchCase="'type1'">
-        <div class="type-container">
-          <div *ngFor="let ticket of tickets; let i = index">
-            <ion-card padding [style.background-color]="getColor(i)">
-              <div class="poster" [style.background-image]="'url(' + ticket.showtime.movie.image + ')'"></div>
-              <div class="info">
-                <div class="title">{{ticket.showtime.movie.title}}</div>
-                <div class="sub-title">{{ticket.showtime.cinema.name}}</div>
-                <div class="sub-title">{{changeSeatFormat(ticket.seat)}}</div>
-                <div class="sub-title">{{changeTimeFormat(ticket.showtime.startTime)}}</div>
-              </div>
-            </ion-card>
-          </div>
-          <div class="no-ticket" *ngIf="tickets.length == 0">这里暂时没有任何影券</div>
-        </div>
-      </ion-list>
-
-      <ion-list *ngSwitchCase="'type2'">
         <div class="type-container">
           <div *ngFor="let ticket of futureTickets; let i = index">
             <ion-card padding [style.background-color]="getColor(i)">
@@ -47,6 +31,23 @@
             </ion-card>
           </div>
           <div class="no-ticket" *ngIf="futureTickets.length == 0">这里暂时没有任何影券</div>
+        </div>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'type2'">
+        <div class="type-container">
+          <div *ngFor="let ticket of tickets; let i = index">
+            <ion-card padding [style.background-color]="getColor(i)">
+              <div class="poster" [style.background-image]="'url(' + ticket.showtime.movie.image + ')'"></div>
+              <div class="info">
+                <div class="title">{{ticket.showtime.movie.title}}</div>
+                <div class="sub-title">{{ticket.showtime.cinema.name}}</div>
+                <div class="sub-title">{{changeSeatFormat(ticket.seat)}}</div>
+                <div class="sub-title">{{changeTimeFormat(ticket.showtime.startTime)}}</div>
+              </div>
+            </ion-card>
+          </div>
+          <div class="no-ticket" *ngIf="tickets.length == 0">这里暂时没有任何影券</div>
         </div>
       </ion-list>
     </div>

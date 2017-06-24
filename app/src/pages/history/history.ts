@@ -80,7 +80,7 @@ export class HistoryPage {
 
   // 将座位号从 int 类型转变成为字符串
   changeSeatFormat(seat) {
-    let count = 0;
+    let count = 1;
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 6; j++) {
         if (this.seatsInfo[i][j] != -1) {

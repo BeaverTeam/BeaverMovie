@@ -20,6 +20,7 @@ export class FriendsPage {
     // 获取前一个页面的参数
     this.showtime = navParams.get('showtime');
     this.selectedSeats = navParams.get('selectedSeats');
+    console.log(this.selectedSeats);
   }
 
   ionViewWillEnter() {

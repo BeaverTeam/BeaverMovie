@@ -20,12 +20,12 @@ export class ShowseatPage {
     [0, 0, 0, 0, 0, 0]
   ];
   seatsIndices = [
-    [0, 1, 2, 3, 4, 5],
-    [6, 7, 8, 9, 10, 11],
-    [-1, -1, 12, 13, 14, 15],
-    [-1, -1, 16, 17, 18, 19],
-    [-1, -1, 20, 21, 22, 23],
-    [24, 25, 26, 27, 28, 29]
+    [1, 2, 3, 4, 5, 6],
+    [7, 8, 9, 10, 11, 12],
+    [-1, -1, 13, 14, 15, 16],
+    [-1, -1, 17, 18, 19, 20],
+    [-1, -1, 21, 22, 23, 24],
+    [25, 26, 27, 28, 29, 30]
   ];
   selectedSeats: any = [];
 
@@ -41,7 +41,7 @@ export class ShowseatPage {
     this.theaterService.getSeats(this.showtime.id).subscribe((data) => {
       if (data.state == 'success') {
         for (let selectedSeat of data.data) {
-          let count = 0;
+          let count = 1;
           for (let i = 0; i < 6; i++) {
             for (let j = 0; j < 6; j++) {
               if (this.seatsInfo[i][j] != -1) {
