@@ -97,9 +97,9 @@ export class UserService {
   }
 
   // 邀请好友 AA 付款
-  invite(posterSeats: number[], receiverNames: string[], receiverSeats: number[], showtimeId: number) {
+  invite(posterSeats: number, receiverNames: string[], receiverSeats: number[], showtimeId: number) {
     return this.http.post(this.global.serverUrl + '/movie-invitation/invite',
-                         {posterSeats: posterSeats,
+                         {posterSeats: [posterSeats],
                           receiverNames: receiverNames,
                           receiverSeats: receiverSeats,
                           showtimeId: showtimeId},
