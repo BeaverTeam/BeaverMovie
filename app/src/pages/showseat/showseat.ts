@@ -39,6 +39,7 @@ export class ShowseatPage {
   }
 
   ionViewWillEnter() {
+    this.selectedSeats = [];
     // 请求座位信息
     this.theaterService.getSeats(this.showtime.id).subscribe((data) => {
       if (data.state == 'success') {
