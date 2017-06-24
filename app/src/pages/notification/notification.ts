@@ -94,7 +94,7 @@ export class NotificationPage {
           if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
           this.notifications.push({
             type: 'invitation',
-            message: item.username + ' 邀请你参与 AA 观影',
+            message: item.username + ' 邀请你 AA 观看“' + item.showtime.movie.title + '”',
             image: item.avatar,
             raw: item
           });
@@ -122,7 +122,6 @@ export class NotificationPage {
   // 同意
   agree(notification: any) {
     let raw = notification.raw;
-    console.log(raw);
     // 如果是好友申请类型
     if (notification.type == 'friend') {
       this.userService.handleFriendRequest(true, raw.invitationId).subscribe((data) => {
@@ -134,14 +133,7 @@ export class NotificationPage {
       this.userService.acceptInvitation(raw.invitationId, raw.seats[0]).subscribe((data) => {
         if (data.state == 'success') {
           this.ionViewWillEnter();
-          this.theaterService.getShowtime(raw.showtime).subscribe((data_) => {
-            console.log(data_);
-            if (data_.state == 'success') {
-              this.navCtrl.push(PayPage, {orderId: data.data, cost: data_.cost});
-            } else {
-              this.presentToast(data_.message);
-            }
-          });
+          this.navCtrl.push(PayPage, {orderId: data.data, cost: raw.showtime.cost});
         } else {
           this.presentToast(data.message);
         }
