@@ -110,4 +110,11 @@ export class TheaterService {
                     .map(res => res.json());
   }
 
+  // 根据 showtimeId 获取场次信息
+  getShowtime(showtimeId: number) {
+    return this.http.get(this.global.serverUrl + '/showtime/' + showtimeId,
+                          this.options)
+                    .map(res => res.json());
+  }
+
 }

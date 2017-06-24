@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 
+import { PayPage } from '../pay/pay';
 import { UserService } from '../../providers/user/user.service';
+import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
   selector: 'page-notif',
@@ -11,7 +13,8 @@ export class NotificationPage {
   notifications: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private userService: UserService, public toastCtrl: ToastController) {}
+              public userService: UserService, public toastCtrl: ToastController,
+              public theaterService: TheaterService) {}
 
   // 显示 toast
   presentToast(message: string) {
@@ -74,12 +77,12 @@ export class NotificationPage {
         for (let item of postAndHandled) {
           let message;
           if (item.rejected == false)
-            message = '你已经接受了 ' + item.username + ' AA 观影邀请';
+            message = item.username + ' 已经接受了你的 AA 观影邀请';
           else
-            message = item.username + ' 拒绝了你的 AA 观影邀请';
+            message = item.username + ' 已经拒绝了你的 AA 观影邀请';
           if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
           this.notifications.push({
-            type: 'invitation',
+            type: 'system',
             message: message,
             image: item.avatar,
             raw: item
@@ -90,7 +93,7 @@ export class NotificationPage {
         for (let item of receivedNotHandled) {
           if (item.avatar == null) item.avatar = 'assets/images/avatar.jpg';
           this.notifications.push({
-            type: 'system',
+            type: 'invitation',
             message: item.username + ' 邀请你参与 AA 观影',
             image: item.avatar,
             raw: item
@@ -105,11 +108,13 @@ export class NotificationPage {
   }
 
   ionViewWillEnter() {
+    this.notifications = [];
     this.getNotification();
     this.getInvitationInfo();
   }
 
   doRefresh(refresher) {
+    this.notifications = [];
     this.getNotification(refresher);
     this.getInvitationInfo(refresher);
   }
@@ -117,15 +122,30 @@ export class NotificationPage {
   // 同意
   agree(notification: any) {
     let raw = notification.raw;
+    console.log(raw);
     // 如果是好友申请类型
     if (notification.type == 'friend') {
       this.userService.handleFriendRequest(true, raw.invitationId).subscribe((data) => {
-        if (data.state == 'success') this.getNotification();
+        if (data.state == 'success') this.ionViewWillEnter();
+        else this.presentToast(data.message);
       });
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
-      // TODO 实现同意好友的 AA 请求
-      // this.userService.accpetInvitation()
+      this.userService.acceptInvitation(raw.invitationId, raw.seats[0]).subscribe((data) => {
+        if (data.state == 'success') {
+          this.ionViewWillEnter();
+          this.theaterService.getShowtime(raw.showtime).subscribe((data_) => {
+            console.log(data_);
+            if (data_.state == 'success') {
+              this.navCtrl.push(PayPage, {orderId: data.data, cost: data_.cost});
+            } else {
+              this.presentToast(data_.message);
+            }
+          });
+        } else {
+          this.presentToast(data.message);
+        }
+      });
     }
   }
 
@@ -135,11 +155,15 @@ export class NotificationPage {
     // 如果是好友申请类型
     if (notification.type == 'friend') {
       this.userService.handleFriendRequest(false, raw.invitationId).subscribe((data) => {
-        if (data.state == 'success') this.getNotification();
+        if (data.state == 'success') this.ionViewWillEnter();
       });
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
-      // TODO 实现拒绝好友 AA 请求
+      // 实现拒绝好友 AA 请求
+      this.userService.rejectInvitation(raw.invitationId).subscribe((data) => {
+        if (data.state == 'success') this.ionViewWillEnter();
+        else this.presentToast(data.message);
+      });
     }
   }
 
