@@ -134,8 +134,10 @@ public class MovieInvitationService {
                     for(Ticket ticket : tickets) {
                         if(ticket.getSeat() == seat) {
                             result = ticket;
+                            break;
                         }
                     }
+                    result.setTicketOrder(order);
                     return result;
                 }).collect(Collectors.toSet()));
 
