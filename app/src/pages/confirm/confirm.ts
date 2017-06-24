@@ -83,7 +83,7 @@ export class ConfirmPage {
       this.posterSeats.push(this.selectedSeats[0]);
       this.userService.invite(this.posterSeats, this.selectedFriends, this.selectedSeats.slice(1, this.selectedSeats.length), this.showtime.id).subscribe((data) => {
         if (data.state == 'success') {
-          this.navCtrl.push(PayPage, {orderId: data.data.id, cost: this.cost + this.foodCost});
+          this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
         }
       });
     } else {
