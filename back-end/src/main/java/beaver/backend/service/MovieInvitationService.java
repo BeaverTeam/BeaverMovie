@@ -119,10 +119,6 @@ public class MovieInvitationService {
     public TicketOrder acceptInvitation(long userId, long invitationId, Set<Integer> seats) {
         MovieInvitation invitation = movieInvitationRepository.findOne(invitationId);
 
-        invitation.setAccepted(true);
-        invitation.setLatestAlterTime(Calendar.getInstance().getTime());
-        movieInvitationRepository.save(invitation);
-
         //poster
         TicketOrder order = ticketOrderRepository.save(new TicketOrder(userRepository.findOne(userId), Calendar.getInstance().getTime(), false));
 
@@ -140,6 +136,11 @@ public class MovieInvitationService {
                     result.setTicketOrder(order);
                     return result;
                 }).collect(Collectors.toSet()));
+
+        invitation.setOrder(order);
+        invitation.setAccepted(true);
+        invitation.setLatestAlterTime(Calendar.getInstance().getTime());
+        movieInvitationRepository.save(invitation);
 
         return order;
     }
