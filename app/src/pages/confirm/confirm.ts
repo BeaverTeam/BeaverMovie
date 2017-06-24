@@ -27,7 +27,6 @@ export class ConfirmPage {
   cokeNum: number = 0;
   popcornNum: number = 0;
   isAA: boolean = false;
-  posterSeats: number[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public toastCtrl: ToastController,
@@ -80,8 +79,7 @@ export class ConfirmPage {
 
   confirm() {
     if (this.isAA) {
-      this.posterSeats.push(this.selectedSeats[0]);
-      this.userService.invite(this.posterSeats, this.selectedFriends, this.selectedSeats.slice(1, this.selectedSeats.length), this.showtime.id).subscribe((data) => {
+      this.userService.invite(this.selectedSeats[0], this.selectedFriends, this.selectedSeats.slice(1, this.selectedSeats.length), this.showtime.id).subscribe((data) => {
         if (data.state == 'success') {
           this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
         }
