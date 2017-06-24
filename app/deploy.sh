@@ -6,6 +6,6 @@ ionic cordova build android --prod --release
 cp platforms/android/build/outputs/apk/android-release-unsigned.apk prod/
 cd prod/
 rm BeaverMovie.apk
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks android-release-unsigned.apk my-alias
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks android-release-unsigned.apk beaver-movie
 ~/Library/Android/sdk/build-tools/$version/zipalign -v 4 android-release-unsigned.apk BeaverMovie.apk
 ~/Library/Android/sdk/build-tools/$version/apksigner verify BeaverMovie.apk
