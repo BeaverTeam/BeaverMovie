@@ -1,5 +1,6 @@
 package beaver.backend.service;
 
+import beaver.backend.entity.Showtime;
 import beaver.backend.entity.Ticket;
 import beaver.backend.repository.ShowtimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,9 @@ public class ShowtimeService {
                 .stream()
                 .map(Ticket::getSeat)
                 .collect(Collectors.toSet());
+    }
+
+    public Showtime getShowtiemInfo(long id) {
+        return showtimeRepository.findOne(id);
     }
 }

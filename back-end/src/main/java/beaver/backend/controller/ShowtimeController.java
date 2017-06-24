@@ -24,4 +24,9 @@ public class ShowtimeController {
     public ResponseEntity<Info> getUnavailableSeats(@PathVariable long id) {
         return new ResponseEntity<Info>(new Info("success", "Get Seats", showtimeService.getUnavailableSeats(id)), HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Info> getShowtimeInfo(@PathVariable long id) {
+        return new ResponseEntity<Info>(new Info("success", "Get Showtime Info", showtimeService.getShowtiemInfo(id)), HttpStatus.OK);
+    }
 }
