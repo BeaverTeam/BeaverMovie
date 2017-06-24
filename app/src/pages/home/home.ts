@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, LoadingController, ToastController, App } from 'ionic-angular';
 
 import { MovieDetailPage } from '../movie-detail/movie-detail';
 import { CinemaPage } from '../cinema/cinema';
 import { NotificationPage } from '../notification/notification';
 import { SearchPage } from '../search/search';
-
+import { LoginPage } from '../login/login';
 import { TheaterService } from '../../providers/theater/theater.service';
 import { UserService } from '../../providers/user/user.service';
 
@@ -20,7 +20,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public theaterService: TheaterService,
               public loadingCtrl: LoadingController, public toastCtrl: ToastController,
-              private userService: UserService) {}
+              private userService: UserService, public appCtrl: App) {}
 
   ionViewWillEnter() {
     this.pageNum = 1;
@@ -43,7 +43,10 @@ export class HomePage {
           movie.stars = stars;
         }
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
     // 计算通知数目
@@ -63,7 +66,10 @@ export class HomePage {
           }
        });
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }
@@ -114,7 +120,10 @@ export class HomePage {
             this.movies.push(movie);
           }
         } else {
-          this.presentToast(data.message);
+          if (data.message == '未登录')
+            this.appCtrl.getRootNav().push(LoginPage);
+          else
+            this.presentToast(data.message);
         }
       });
     }

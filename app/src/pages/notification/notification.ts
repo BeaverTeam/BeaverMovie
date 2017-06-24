@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { PayPage } from '../pay/pay';
 import { UserService } from '../../providers/user/user.service';
 import { TheaterService } from '../../providers/theater/theater.service';
@@ -14,7 +15,7 @@ export class NotificationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public userService: UserService, public toastCtrl: ToastController,
-              public theaterService: TheaterService) {}
+              public theaterService: TheaterService, public appCtrl: App) {}
 
   // 显示 toast
   presentToast(message: string) {
@@ -63,7 +64,10 @@ export class NotificationPage {
         }
         if (refresher) refresher.complete();
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
         if (refresher) refresher.complete();
       }
     });
@@ -101,7 +105,10 @@ export class NotificationPage {
         }
         if (refresher) refresher.complete();
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
         if (refresher) refresher.complete();
       }
     });
@@ -125,8 +132,14 @@ export class NotificationPage {
     // 如果是好友申请类型
     if (notification.type == 'friend') {
       this.userService.handleFriendRequest(true, raw.invitationId).subscribe((data) => {
-        if (data.state == 'success') this.ionViewWillEnter();
-        else this.presentToast(data.message);
+        if (data.state == 'success') {
+          this.ionViewWillEnter();
+        } else {
+          if (data.message == '未登录')
+            this.appCtrl.getRootNav().push(LoginPage);
+          else
+            this.presentToast(data.message);
+        }
       });
     // 如果是邀请 AA 类型
     } else if (notification.type == 'invitation') {
@@ -135,7 +148,10 @@ export class NotificationPage {
           this.ionViewWillEnter();
           this.navCtrl.push(PayPage, {orderId: data.data, cost: raw.showtime.cost});
         } else {
-          this.presentToast(data.message);
+          if (data.message == '未登录')
+            this.appCtrl.getRootNav().push(LoginPage);
+          else
+            this.presentToast(data.message);
         }
       });
     }
@@ -153,8 +169,14 @@ export class NotificationPage {
     } else if (notification.type == 'invitation') {
       // 实现拒绝好友 AA 请求
       this.userService.rejectInvitation(raw.invitationId).subscribe((data) => {
-        if (data.state == 'success') this.ionViewWillEnter();
-        else this.presentToast(data.message);
+        if (data.state == 'success') {
+          this.ionViewWillEnter();
+        } else {
+          if (data.message == '未登录')
+            this.appCtrl.getRootNav().push(LoginPage);
+          else
+            this.presentToast(data.message);
+        }
       });
     }
   }

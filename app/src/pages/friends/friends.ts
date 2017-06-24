@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { User } from '../../providers/user/user';
 import { ConfirmPage } from '../confirm/confirm';
 import { UserService } from '../../providers/user/user.service';
@@ -16,11 +17,11 @@ export class FriendsPage {
   selectedFriends: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public toastCtrl: ToastController, private userService: UserService) {
+              public toastCtrl: ToastController, private userService: UserService,
+              public appCtrl: App) {
     // 获取前一个页面的参数
     this.showtime = navParams.get('showtime');
     this.selectedSeats = navParams.get('selectedSeats');
-    console.log(this.selectedSeats);
   }
 
   ionViewWillEnter() {
@@ -34,7 +35,10 @@ export class FriendsPage {
           this.friends.push(new User(user.username, user.avatar, ''));
         }
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { TheaterService } from '../../providers/theater/theater.service';
 import { ConfirmPage } from '../confirm/confirm';
 import { FriendsPage } from '../friends/friends';
@@ -30,7 +31,8 @@ export class ShowseatPage {
   selectedSeats: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private theaterService: TheaterService, public toastCtrl: ToastController) {
+              private theaterService: TheaterService, public toastCtrl: ToastController,
+              public appCtrl: App) {
     this.showtime = this.navParams.get('showtime');
     let temp = this.showtime.startTime.split(' ');
     this.showtime.startTime = temp[0] + ' ' + temp[1];
@@ -53,7 +55,10 @@ export class ShowseatPage {
           }
         }
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

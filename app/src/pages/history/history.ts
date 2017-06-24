@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class HistoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController, public appCtrl: App) {
     if (this.navParams.get("tickets") != undefined && this.navParams.get("tickets") != null) {
       this.type = this.navParams.get("tickets");
     }
@@ -54,7 +55,10 @@ export class HistoryPage {
         }
 
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { User } from '../../providers/user/user';
 import { UserService } from '../../providers/user/user.service';
 
@@ -14,22 +15,31 @@ export class SearchPage {
   username: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private userService: UserService, public toastCtrl: ToastController) {}
+              private userService: UserService, public toastCtrl: ToastController,
+              public appCtrl: App) {}
 
   ionViewWillEnter() {
     // 获取用户
     this.userService.getUser().subscribe((data) => {
-      if (data.state == 'success')
+      if (data.state == 'success') {
         this.username = data.data.username;
-      else
-        this.presentToast(data.message);
+      } else {
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
+      }
     });
     // 获取好友
     this.userService.getFriends().subscribe((data) => {
-      if (data.state == 'success')
+      if (data.state == 'success') {
         this.friends = data.data;
-      else
-        this.presentToast(data.message);
+      } else {
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
+      }
     });
   }
 
@@ -67,7 +77,10 @@ export class SearchPage {
           });
         }
       } else if (data.message != '用户不存在') {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

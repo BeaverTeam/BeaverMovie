@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { App } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
 import { SettingPage }  from '../setting/setting';
 import { LoginPage } from '../login/login';
@@ -27,7 +26,10 @@ export class ProfilePage {
        if (temp.phone == null) temp.phone = '未设定手机';
        this.user = new User(temp.username, temp.avatar, temp.phone);
      } else {
-       this.presentToast(data.message);
+       if (data.message == '未登录')
+         this.appCtrl.getRootNav().push(LoginPage);
+       else
+         this.presentToast(data.message);
      }
    });
  }

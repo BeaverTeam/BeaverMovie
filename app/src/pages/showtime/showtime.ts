@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { ShowseatPage } from '../showseat/showseat';
-
 import { TheaterService } from '../../providers/theater/theater.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class ShowtimePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private theaterService: TheaterService, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController, public appCtrl: App) {
     // 获取信息
     this.movieId = this.navParams.get('movieId');
     this.cinemaName = this.navParams.get('cinemaName');
@@ -81,7 +81,10 @@ export class ShowtimePage {
           }
         }, 100);
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

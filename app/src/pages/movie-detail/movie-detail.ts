@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { CinemaPage } from '../cinema/cinema';
 import { WebviewPage } from '../webview/webview';
 import { TheaterService } from '../../providers/theater/theater.service';
@@ -15,7 +16,7 @@ export class MovieDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {}
+              public toastCtrl: ToastController, public appCtrl: App) {}
 
   ionViewWillEnter() {
     // 显示 loading
@@ -33,7 +34,10 @@ export class MovieDetailPage {
         // 补空星星
         while (this.stars.length < 5) this.stars.push(0);
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

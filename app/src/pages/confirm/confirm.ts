@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { PayPage } from '../pay/pay';
 import { TheaterService } from '../../providers/theater/theater.service';
 import { UserService } from '../../providers/user/user.service';
@@ -30,7 +31,7 @@ export class ConfirmPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public toastCtrl: ToastController,
-              public userService: UserService) {
+              public userService: UserService, public appCtrl: App) {
     // 获取场次信息
     this.showtime = navParams.get('showtime');
     this.selectedFriends = navParams.get('selectedFriends');
@@ -89,7 +90,10 @@ export class ConfirmPage {
         if (data.state == 'success') {
           this.navCtrl.push(PayPage, {orderId: data.data, cost: this.cost + this.foodCost});
         } else {
-          this.presentToast(data.message);
+          if (data.message == '未登录')
+            this.appCtrl.getRootNav().push(LoginPage);
+          else
+            this.presentToast(data.message);
         }
       });
     }

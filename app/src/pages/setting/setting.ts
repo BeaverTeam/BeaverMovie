@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { UserService } from '../../providers/user/user.service';
 import { User } from '../../providers/user/user';
 
@@ -14,7 +15,7 @@ export class SettingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public userService: UserService, public alertCtrl: AlertController,
-              public toastCtrl: ToastController) {}
+              public toastCtrl: ToastController, public appCtrl: App) {}
 
   ionViewWillEnter() {
     this.userService.getUser().subscribe((data) => {
@@ -24,7 +25,10 @@ export class SettingPage {
         if (temp.phone == null) temp.phone = '';
         this.user = new User(temp.username, temp.avatar, temp.phone);
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }

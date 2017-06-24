@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, App } from 'ionic-angular';
 
+import { LoginPage } from '../login/login';
 import { ShowtimePage } from '../showtime/showtime';
 import { TheaterService } from '../../providers/theater/theater.service';
 
@@ -18,7 +19,7 @@ export class CinemaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public theaterService: TheaterService, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController, public appCtrl: App) {
     // 设置最远时间
     let tempDate = new Date();
     this.todayDate = (tempDate.getMonth() + 1) + "月" + tempDate.getDate() + "日";
@@ -83,7 +84,10 @@ export class CinemaPage {
           }
         }
       } else {
-        this.presentToast(data.message);
+        if (data.message == '未登录')
+          this.appCtrl.getRootNav().push(LoginPage);
+        else
+          this.presentToast(data.message);
       }
     });
   }
