@@ -22,7 +22,7 @@ public class MovieInvitationItem {
     private boolean rejected;
     private Set<Integer> seats;
 
-    public MovieInvitationItem(long invitationId, User user, Showtime showtimeId, Date lastAlterTime, boolean accepted, boolean rejected, Set<Integer> seats) {
+    public MovieInvitationItem(long invitationId, User user, Showtime showtime, Date lastAlterTime, boolean accepted, boolean rejected, Set<Integer> seats) {
         this.invitationId = invitationId;
         this.username = user.getUsername();
         this.avatar = user.getAvatar();
