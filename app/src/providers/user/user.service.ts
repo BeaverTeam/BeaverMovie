@@ -76,18 +76,17 @@ export class UserService {
   }
 
   // 同意 AA 请求
-  acceptInvitation(movieInvitationId: number, seats: number) {
+  accpetInvitation(movieInvitationId: number, seats: number) {
     return this.http.post(this.global.serverUrl + '/movie-invitation/accept',
                           {movieInvitationId: movieInvitationId,
-                           seats: [seats]},
+                           seats: seats},
                           this.options)
                     .map(res => res.json());
   }
 
   // 拒绝 AA 请求
   rejectInvitation(movieInvitationId: number) {
-    return this.http.get(this.global.serverUrl + '/movie-invitation/reject/' + movieInvitationId,
-                         this.options)
+    return this.http.get(this.global.serverUrl + '/movie-invitation/reject/' + movieInvitationId, this.options)
                     .map(res => res.json());
   }
 
