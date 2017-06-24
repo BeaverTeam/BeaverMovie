@@ -20,8 +20,9 @@ public class MovieInvitationItem {
     private Date lastAlterTime;
     private boolean accepted;
     private boolean rejected;
+    private Set<Integer> seats;
 
-    public MovieInvitationItem(long invitationId, User user, Showtime showtimeId, Date lastAlterTime, boolean accepted, boolean rejected) {
+    public MovieInvitationItem(long invitationId, User user, Showtime showtimeId, Date lastAlterTime, boolean accepted, boolean rejected, Set<Integer> seats) {
         this.invitationId = invitationId;
         this.username = user.getUsername();
         this.avatar = user.getAvatar();
@@ -30,6 +31,7 @@ public class MovieInvitationItem {
         this.lastAlterTime = lastAlterTime;
         this.accepted = accepted;
         this.rejected = rejected;
+        this.seats = seats;
     }
 
     public long getInvitationId() {
@@ -94,5 +96,13 @@ public class MovieInvitationItem {
 
     public void setRejected(boolean rejected) {
         this.rejected = rejected;
+    }
+
+    public Set<Integer> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Set<Integer> seats) {
+        this.seats = seats;
     }
 }
